@@ -1,0 +1,7 @@
+{
+  "/historias/maori/page": "app/historias/maori/page.js",
+  "/historias/babilonios/page": "app/historias/babilonios/page.js",
+  "/historias/page": "app/historias/page.js",
+  "/historias/incas/page": "app/historias/incas/page.js",
+  "/historias/egipcios/page": "app/historias/egipcios/page.js"
+}
