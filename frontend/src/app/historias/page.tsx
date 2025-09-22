@@ -1,143 +1,98 @@
-'use client';
+'use client'; // <-- MUITO IMPORTANTE: Marcar como Client Component
+import { libraryData } from '../../data/libraryData'; // <-- IMPORTAÇÃO AQUI
+import ChapterList from '../../components/ChapterList'; // Importe o Client Component
+import Navbar from '../../../components/Navbar'; 
 
-import Navbar from '../../../components/Navbar';
+export default function HistoriasIndexPage() {
+    return (
+        <>
+            <Navbar />
+            <div className="chapters-container">
+                <h1 className="main-title">Descubra as Histórias de Kuarasy!</h1>
 
-export default function ImpactosPage() {
-  const impactos = [
-    {
-      id: "astronauta",
-      icon: "👨‍🚀",
-      titulo: "Astronauta",
-      descricao: "No espaço, o clima solar pode bagunçar satélites, trajes espaciais e comunicações!",
-    },
-    {
-      id: "fazendeiro",
-      icon: "🌾",
-      titulo: "Fazendeiro",
-      descricao: "O GPS do trator pode falhar, atrapalhando o plantio e a colheita.",
-    },
-    {
-      id: "rede",
-      icon: "⚡",
-      titulo: "Rede elétrica",
-      descricao: "As tempestades solares podem causar apagões e danificar transformadores.",
-    },
-    {
-      id: "piloto",
-      icon: "✈️",
-      titulo: "Piloto",
-      descricao: "O rádio do avião pode ficar cheio de chiados e o GPS pode falhar.",
-    },
-    {
-      id: "pessoa",
-      icon: "📱",
-      titulo: "Pessoa comum",
-      descricao: "Seu celular ou internet podem parar de funcionar por causa do Sol bravo.",
-    },
-  ];
+                <div className="about-book-section">
+                    <p><strong>Olá, explorador! Prepare-se para uma aventura incrível pelo espaço e pelo tempo com Kuarasy, nosso guia solar.</strong></p>
+                    <p>Neste livro, vamos viajar para encontrar povos antigos de diferentes culturas. Você vai ler histórias inspiradas nas mitologias e lendas que eles criaram para explicar os mistérios do Sol e do céu. <span className="highlight-text">É importante lembrar que essas histórias são uma forma divertida e imaginativa de contar como o Sol funciona.</span></p>
+                    <p><span className="highlight-text">Nós vamos 'brincar' com a ideia de que esses povos percebiam fenômenos solares, mesmo que eles não tivessem o mesmo conhecimento científico que nós temos hoje. Pense nisso como uma ponte mágica entre o mundo das lendas e o mundo da ciência real!</span></p>
+                    <p>Quando você vir as Notas Interativas, Kuarasy vai te mostrar a ciência de verdade, com fatos e dados fresquinhos da NASA, sobre o que realmente acontece no Sol e como ele afeta a Terra.</p>
+                    <p>Esperamos que você ame essa jornada, onde lendas e ciência se encontram para desvendar os segredos do nosso astro-rei!</p>
+                </div>
 
-  return (
-    <>
-      <Navbar />
-      <div className="impactos-container">
-        <h1 className="main-title">🌌 Como o Sol pode nos afetar?</h1>
+                <h2 className="chapters-heading">Nossos Capítulos:</h2>
+                
+                {/* Renderiza o Client Component, passando os dados como props */}
+                <ChapterList libraryData={libraryData} />
 
-        <div className="intro-section">
-          <p><strong>O Sol não afeta só o clima da Terra.</strong> Quando ele fica agitado, pode impactar desde astronautas no espaço até nós, aqui embaixo, no dia a dia.</p>
-          <p><span className="highlight-text">Esses cartões mostram alguns exemplos de como o clima espacial pode mexer com a nossa vida.</span></p>
-        </div>
-
-        <h2 className="cards-heading">Quem pode ser afetado?</h2>
-
-        <div className="impacto-cards-grid">
-          {impactos.map((item) => (
-            <div key={item.id} className="impacto-card">
-              <span className="impacto-icon">{item.icon}</span>
-              <h3>{item.titulo}</h3>
-              <p>{item.descricao}</p>
+                <style jsx>{`
+                    /* Seus estilos existentes para .chapters-container, .main-title, etc. */
+                    /* Copie e cole todos os estilos que você já tinha aqui */
+                    .chapters-container {
+                        text-align: center;
+                        padding: 2rem;
+                        max-width: 1200px;
+                        margin: auto;
+                        font-family: 'Georgia', serif; 
+                        color: #333; 
+                        margin-top: 60px;
+                    }
+                    .main-title {
+                        font-size: 2.8em; 
+                        color: #8b4513; 
+                        margin-bottom: 2rem;
+                        font-family: 'Comic Sans MS', cursive; 
+                        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+                    }
+                    .about-book-section {
+                        background-color: #fdfaf1; 
+                        border: 1px solid #dcd3b8;
+                        border-radius: 12px;
+                        padding: 2.5rem;
+                        margin-bottom: 3rem;
+                        box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+                        line-height: 1.8;
+                        font-size: 1.15em;
+                        text-align: left; 
+                        color: #5c4033; 
+                    }
+                    .about-book-section p { margin-bottom: 1.2em; }
+                    .about-book-section p:last-child { margin-bottom: 0; }
+                    .about-book-section strong { color: #8b4513; }
+                    .highlight-text {
+                        background-color: #ffe0b3; 
+                        padding: 0.1em 0.3em;
+                        border-radius: 4px;
+                    }
+                    .chapters-heading {
+                        font-size: 2em;
+                        color: #5c4033;
+                        margin-top: 3rem;
+                        margin-bottom: 2.5rem;
+                        font-family: 'Comic Sans MS', cursive; 
+                    }
+                    /* O estilo do .chapter-cards-grid pode ficar aqui ou ser movido para o ChapterList */
+                    :global(.chapter-cards-grid) {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                        gap: 2rem;
+                        margin-top: 2rem; 
+                    }
+                    @media (max-width: 768px) {
+                        .chapters-container {
+                            padding: 1rem;
+                            margin-top: 50px;
+                        }
+                        .main-title { font-size: 2em; }
+                        .about-book-section {
+                            padding: 1.5rem;
+                            font-size: 1em;
+                        }
+                        .chapters-heading { font-size: 1.6em; }
+                        :global(.chapter-cards-grid) {
+                            grid-template-columns: 1fr; 
+                        }
+                    }
+                `}</style>
             </div>
-          ))}
-        </div>
-
-        <style jsx>{`
-          .impactos-container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: auto;
-            font-family: 'Georgia', serif; 
-            color: #333; 
-            margin-top: 60px;
-          }
-
-          .main-title {
-            font-size: 2.5em;
-            color: #4b0082; 
-            margin-bottom: 2rem;
-            font-family: 'Comic Sans MS', cursive;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
-          }
-
-          .intro-section {
-            background: linear-gradient(135deg, #e0d4ff, #f0f8ff);
-            border: 1px solid #d0c4f7;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            text-align: left;
-            line-height: 1.8;
-            font-size: 1.1em;
-            color: #2f1b47;
-          }
-
-          .highlight-text {
-            background-color: #ffe0f7;
-            padding: 0.1em 0.3em;
-            border-radius: 4px;
-          }
-
-          .cards-heading {
-            font-size: 2em;
-            color: #2f1b47;
-            margin-top: 2.5rem;
-            margin-bottom: 2rem;
-            font-family: 'Comic Sans MS', cursive; 
-          }
-
-          .impacto-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-          }
-
-          .impacto-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 1.8rem;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-          }
-
-          .impacto-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-          }
-
-          .impacto-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-          }
-
-          @media (max-width: 768px) {
-            .main-title { font-size: 2em; }
-            .intro-section { padding: 1.5rem; font-size: 1em; }
-            .cards-heading { font-size: 1.6em; }
-          }
-        `}</style>
-      </div>
-    </>
-  );
+        </>
+    );
 }

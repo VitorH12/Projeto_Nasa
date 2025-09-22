@@ -68,7 +68,8 @@ export const libraryData = {
                 // Diálogo mais plausível, focado em presságios
                 storyText: 'Kuarasy caminhou entre eles, curioso.<br/>— Vocês dizem que o Sol tudo vê... mas já notaram as pequenas sombras em seu rosto?<br/>O sumo-sacerdote suspirou:<br/>— Sim. Escuridões que aparecem e somem. Para nós, são sinais de sua ira, momentos de descontentamento.',
             },
-            {   imageSrc: '/babilonia-2-1.png',
+            {
+                imageSrc: '/babilonia-2-1.png',
                 imageAlt: 'Detalhe de uma mancha solar',
                 storyText: 'Um jovem sacerdote, com um olhar apreensivo, acrescentou: "— E quando a própria Lua, em sua dança, o cobre completamente? Nossas tabuletas nos ajudam a prever esse dia temível! É como se o grande Šamaš estivesse doente, ou fosse devorado! Então preparamos nossos mais importantes rituais para garantir que ele retorne e ilumine a Terra novamente!',
 
@@ -93,11 +94,11 @@ export const libraryData = {
                     title: '🌑 Manchas Solares e Eclipses',
                     // Nota interativa mais clara
                     content: 'As lendas babilônicas buscavam dar sentido às mudanças no céu, como eclipses, que eles eram muito bons em prever! Hoje, a ciência nos mostra que as "sombras" no rosto do Sol são as Manchas Solares (regiões de intensa atividade magnética e com baixa temperatura), e além disso elas aparecem e desaparecem em ciclos de 11 anos. Já os eclipses são quando a Lua se posiciona entre a Terra e o Sol, bloqueando sua luz por um momento. Tudo parte do show cósmico do nosso Sol!',
-                    realtimeDataText: 'Verificando o "rosto" de Kuarasy agora...', 
+                    realtimeDataText: 'Verificando o "rosto" de Kuarasy agora...',
                     source: 'Fonte: Relatório de Manchas Solares NOAA SWPC',
                     moreInfoLink: 'https://www.swpc.noaa.gov/phenomena/sunspots'
                 }
-                
+
             }
         ]
     },
@@ -187,7 +188,7 @@ export const libraryData = {
                     content: 'Há muito tempo, os Incas celebravam o Inti Raymi para ter certeza de que o Sol voltaria depois do inverno. Hoje, não temos medo que o Sol suma, mas que ele nos dê um "espirro" muito forte! O Sol, que é uma grande estrela de fogo, às vezes solta um "suspiro" gigante de plasma, chamado Ejeção de Massa Coronal (EMC), que é um tipo de gás quente. Esse "suspiro" é tão forte que, se chegar perto da Terra, pode causar uma tempestade magnética. Essa tempestade confunde nossos aparelhos, como satélites, GPS e redes de luz, e pode causar "apagões" temporários na nossa tecnologia. Mas não se preocupe, a Terra tem um escudo mágico, o campo magnético, que nos protege muito bem!',
                     realtimeDataText: 'Verificando as CMEs recentes...',
                     source: 'Fonte: API DONKI CME da NASA'
-                } 
+                }
             }
         ]
     },
@@ -227,9 +228,9 @@ export const libraryData = {
                     content: 'Os gregos antigos viam o Sol como um deus poderoso e imutável. Hoje, sabemos que o Sol pode ser muito mais dinâmico! Ele às vezes solta grandes explosões de energia que viajam pelo espaço como tempestades invisíveis. Quando essas tempestades chegam perto da Terra, podem causar tempestades geomagnéticas, que podem afetar nossos satélites, redes de energia e até mesmo a comunicação por rádio. Mas também são responsáveis por criar as lindas auroras que podemos ver perto dos polos!',
                     realtimeDataText: 'Verificando as tempestades geomagnéticas recentes...',
                     source: 'Fonte: API DONKI GST da NASA'
-                } 
+                }
             }
         ]
-    }     
+    }
 
 };

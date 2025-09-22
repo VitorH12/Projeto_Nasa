@@ -89,7 +89,6 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
-
                     let apiResultText = '';
                     if (data && data.length > 0) {
                         // Ordena os relatórios pela data/hora mais recente para pegar a observação mais nova
@@ -346,7 +345,6 @@ Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam
                                         Saiba Mais no NASAs &rarr;
                                     </a>
                                 )}
-
                                 {interactiveNote.source && <em className="source-text">{interactiveNote.source}</em>}
                             </div>
                         )}
