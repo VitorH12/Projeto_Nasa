@@ -1,43 +1,76 @@
-// /app/historias/[slug]/page.tsx (Exemplo de como ficaria)
+// src/components/StoryViewer.js
 'use client';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import StoryPage from '../../../../components/StoryPage';
 
-import React from 'react';
-import { notFound, useParams } from 'next/navigation';
-import { libraryData } from '../../../data/libraryData'; // Seus dados dos capítulos
-import StoryViewer from '../../../../components/StoryViewer';
-import Navbar from '../../../../components/Navbar';
+// ATENÇÃO: Adicione 'nextChapterSlug' como uma prop recebida
+export default function StoryViewer({ chapterData, handlebacktomenu, nextChapterSlug }) {
+    const [currentPageIndex, setCurrentPageIndex] = useState(0);
+    const pages = chapterData.pages;
+    const router = useRouter();
 
-type ChapterSlug = keyof typeof libraryData;
+    // VARIÁVEL ADICIONADA: Facilita a verificação se estamos na última página
+    const isLastPage = currentPageIndex === pages.length - 1;
 
-export default function ChapterPage() {
-  const params = useParams();
-  const slug = params.slug as ChapterSlug;
-  const chapterData = libraryData[slug];
+    // LÓGICA ATUALIZADA: Agora lida com o próximo capítulo
+    const handleNextPage = () => {
+        if (!isLastPage) {
+            // Se não for a última página, apenas avança para a próxima
+            setCurrentPageIndex(currentPageIndex + 1);
+        } else if (nextChapterSlug) {
+            // Se for a última página E existir um próximo capítulo, navega para ele
+            router.push(`/historias/${nextChapterSlug}`);
+        } else {
+            // Se for a última página do último capítulo, volta para o menu
+            router.push(handlebacktomenu);
+        }
+    };
 
-  if (!chapterData) {
-    return notFound();
-  }
+    const handlePreviousPage = () => {
+        if (currentPageIndex > 0) {
+            setCurrentPageIndex(currentPageIndex - 1);
+        }
+    };
 
-  // --- LÓGICA ADICIONADA ---
-  // 1. Pegue a lista ordenada de todos os capítulos
-  const chapterSlugs = Object.keys(libraryData);
-  // 2. Encontre o índice do capítulo atual
-  const currentChapterIndex = chapterSlugs.indexOf(slug);
-  // 3. Determine qual é o próximo capítulo (se houver)
-  const nextChapterSlug = 
-    currentChapterIndex < chapterSlugs.length - 1 
-      ? chapterSlugs[currentChapterIndex + 1] 
-      : null;
-  // --- FIM DA LÓGICA ADICIONADA ---
+    const handleBackToMenu = () => {
+        router.push(handlebacktomenu);
+    };
 
-  return (
-    <>
-      <Navbar />
-      <StoryViewer
-        chapterData={chapterData}
-        handlebacktomenu="/historias" // Define o caminho base para voltar ao menu
-        nextChapterSlug={nextChapterSlug} // <-- 4. Passe o slug do próximo capítulo como prop
-      />
-    </>
-  );
+    const currentPage = pages[currentPageIndex];
+
+    if (!currentPage) {
+        return <p>Página não encontrada neste capítulo.</p>;
+    }
+
+    return (
+        <div className="story-viewer-container">
+            <StoryPage
+               imageSrc={currentPage.imageSrc}
+                imageAlt={currentPage.imageAlt}
+                storyText={currentPage.storyText}
+                interactiveNote={currentPage.interactiveNote}
+                audioSrc={chapterData.audioSrc}
+
+  
+            />
+            <div className="navigation-controls">
+                <button onClick={handlePreviousPage} disabled={currentPageIndex === 0}>
+                    Previous Page
+                </button>
+                <button onClick={handleBackToMenu} className="back-to-menu-button">
+                    Back to Menu
+                </button>
+                
+                {/* BOTÃO ATUALIZADO: O texto e o estado 'disabled' agora são dinâmicos */}
+                <button onClick={handleNextPage} disabled={isLastPage && !nextChapterSlug}>
+                    {isLastPage && nextChapterSlug ? 'Next Chapter' : 'Next Page'}
+                </button>
+            </div>
+
+            <style jsx>{`
+                /* Seus estilos JSX aqui, sem alterações necessárias */
+            `}</style>
+        </div>
+    );
 }
