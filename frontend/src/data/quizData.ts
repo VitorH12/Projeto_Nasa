@@ -1,406 +1,406 @@
 // src/data/quizData.ts
-import { Question } from '../app/quiz/quiz'; // Importa a interface Question
+import { Question } from '../app/quiz/quiz'; // Imports the Question interface
 
 export const quizData: Question[] = [
-    // --- Capítulo 1: Manchas Solares (Babilônios) ---
+    // --- Chapter 1: Sunspots (Babylonians) ---
     {
         id: 'q1',
-        question: "Qual fenômeno solar os Babilônios interpretavam como 'sombras no rosto do Sol' e que hoje a ciência chama de?",
+        question: "What solar phenomenon did the Babylonians interpret as 'shadows on the Sun's face,' which science today calls?",
         options: [
-            "Erupções Solares (Flares)",
-            "Manchas Solares",
+            "Solar Flares",
+            "Sunspots",
             "Auroras",
-            "Vento Solar"
+            "Solar Wind"
         ],
-        correctAnswer: "Manchas Solares",
-        explanation: "As 'sombras' são as Manchas Solares, regiões mais frias e escuras na superfície do Sol causadas por intensa atividade magnética. Elas são a origem de muitos fenômenos solares.",
-        relatedChapterId: 'babilonios'
+        correctAnswer: "Sunspots",
+        explanation: "The 'shadows' are Sunspots, cooler and darker regions on the Sun's surface caused by intense magnetic activity. They are the origin of many solar phenomena.",
+        relatedChapterId: 'babylonians'
     },
     {
         id: 'q2',
-        question: "As Manchas Solares são regiões na superfície do Sol que são:",
+        question: "Sunspots are regions on the Sun's surface that are:",
         options: [
-            "Mais quentes e brilhantes que o resto do Sol",
-            "Mais frias e escuras que o resto do Sol",
-            "Locais onde o Sol está 'doente' ou fraco",
-            "Apenas ilusões de ótica na atmosfera da Terra"
+            "Hotter and brighter than the rest of the Sun",
+            "Cooler and darker than the rest of the Sun",
+            "Places where the Sun is 'sick' or weak",
+            "Just optical illusions in Earth's atmosphere"
         ],
-        correctAnswer: "Mais frias e escuras que o resto do Sol",
-        explanation: "As Manchas Solares são áreas onde fortes campos magnéticos inibem o transporte de calor para a superfície, tornando-as mais frias e, consequentemente, mais escuras do que as regiões circundantes.",
-        relatedChapterId: 'babilonios'
+        correctAnswer: "Cooler and darker than the rest of the Sun",
+        explanation: "Sunspots are areas where strong magnetic fields inhibit heat transport to the surface, making them cooler and, consequently, darker than the surrounding regions.",
+        relatedChapterId: 'babylonians'
     },
     {
         id: 'q3',
-        question: "Por que as Manchas Solares são consideradas o 'berço' de grande parte da atividade solar?",
+        question: "Why are Sunspots considered the 'cradle' of most solar activity?",
         options: [
-            "Porque é onde o Sol 'dorme' e recupera energia",
-            "Porque elas são as regiões de intensa e complexa atividade magnética, que pode ser liberada",
-            "Porque atraem meteoros que colidem com o Sol",
-            "Porque são buracos negros temporários na superfície solar"
+            "Because it's where the Sun 'sleeps' and recovers energy",
+            "Because they are regions of intense and complex magnetic activity that can be released",
+            "Because they attract meteors that collide with the Sun",
+            "Because they are temporary black holes on the solar surface"
         ],
-        correctAnswer: "Porque elas são as regiões de intensa e complexa atividade magnética, que pode ser liberada",
-        explanation: "As Manchas Solares são locais onde os campos magnéticos são extremamente fortes e emaranhados. A súbita liberação dessa energia magnética pode levar a erupções solares e ejeções de massa coronal.",
-        relatedChapterId: 'babilonios'
+        correctAnswer: "Because they are regions of intense and complex magnetic activity that can be released",
+        explanation: "Sunspots are locations where magnetic fields are extremely strong and tangled. The sudden release of this magnetic energy can lead to solar flares and coronal mass ejections.",
+        relatedChapterId: 'babylonians'
     },
     {
         id: 'q4',
-        question: "Além das Manchas Solares, qual outro fenômeno celeste os Babilônios eram muito bons em prever, interpretando-o como um 'abraço' entre a Lua e o Sol?",
+        question: "Besides Sunspots, what other celestial phenomenon were the Babylonians very good at predicting, interpreting it as an 'embrace' between the Moon and the Sun?",
         options: [
-            "A passagem de cometas",
-            "A ocorrência de auroras",
+            "The passing of comets",
+            "The occurrence of auroras",
             "Eclipses",
-            "A mudança das estações"
+            "The changing of the seasons"
         ],
         correctAnswer: "Eclipses",
-        explanation: "Os Babilônios eram astrônomos talentosos e podiam prever eclipses solares e lunares com notável precisão, interpretando-os dentro de seu sistema de presságios.",
-        relatedChapterId: 'babilonios'
+        explanation: "The Babylonians were talented astronomers and could predict solar and lunar eclipses with remarkable accuracy, interpreting them within their system of omens.",
+        relatedChapterId: 'babylonians'
     },
     {
         id: 'q5',
-        question: "As Manchas Solares aparecem e desaparecem em ciclos de aproximadamente quantos anos?",
+        question: "Sunspots appear and disappear in cycles of approximately how many years?",
         options: [
-            "1 ano",
-            "5 anos",
-            "11 anos",
-            "100 anos"
+            "1 year",
+            "5 years",
+            "11 years",
+            "100 years"
         ],
-        correctAnswer: "11 anos",
-        explanation: "A atividade das Manchas Solares segue um ciclo solar de aproximadamente 11 anos, variando de um mínimo (poucas manchas) a um máximo (muitas manchas e maior atividade solar).",
-        relatedChapterId: 'babilonios'
+        correctAnswer: "11 years",
+        explanation: "Sunspot activity follows a solar cycle of approximately 11 years, varying from a minimum (few spots) to a maximum (many spots and greater solar activity).",
+        relatedChapterId: 'babylonians'
     },
 
-    // --- Capítulo 2: Erupções Solares (Flares) (Māori) ---
+    // --- Chapter 2: Solar Flares (Māori) ---
     {
         id: 'q6',
-        question: "Quando o Sol tem 'sopros de fogo', como os Māori descreviam, o que realmente está acontecendo?",
+        question: "When the Sun has 'breaths of fire,' as the Māori described, what is actually happening?",
         options: [
-            "Ejeções de Massa Coronal (CMEs)",
-            "Vento Solar",
-            "Erupções Solares (Flares)",
-            "Tempestades Geomagnéticas"
+            "Coronal Mass Ejections (CMEs)",
+            "Solar Wind",
+            "Solar Flares",
+            "Geomagnetic Storms"
         ],
-        correctAnswer: "Erupções Solares (Flares)",
-        explanation: "Os 'sopros de fogo' dos Māori referem-se às Erupções Solares (Flares), que são explosões de radiação na superfície do Sol. Elas liberam energia e podem afetar a atmosfera da Terra.",
+        correctAnswer: "Solar Flares",
+        explanation: "The Māori's 'breaths of fire' refer to Solar Flares, which are bursts of radiation on the Sun's surface. They release energy and can affect Earth's atmosphere.",
         relatedChapterId: 'maori'
     },
     {
         id: 'q7',
-        question: "As Erupções Solares (Flares) são principalmente liberações de:",
+        question: "Solar Flares are primarily releases of:",
         options: [
-            "Plasma e matéria física",
-            "Vento frio",
-            "Radiação e luz",
-            "Água e vapor"
+            "Plasma and physical matter",
+            "Cold wind",
+            "Radiation and light",
+            "Water and vapor"
         ],
-        correctAnswer: "Radiação e luz",
-        explanation: "Flares são explosões de radiação eletromagnética (luz, raios-X, UV) que viajam na velocidade da luz. Embora possam ser acompanhadas por ejeções de partículas, a característica principal é a liberação de radiação.",
+        correctAnswer: "Radiation and light",
+        explanation: "Flares are explosions of electromagnetic radiation (light, X-rays, UV) that travel at the speed of light. Although they can be accompanied by particle ejections, their main feature is the release of radiation.",
         relatedChapterId: 'maori'
     },
     {
         id: 'q8',
-        question: "Como as Erupções Solares (Flares) podem afetar a Terra, mesmo não sendo vistas diretamente?",
+        question: "How can Solar Flares affect Earth, even without being seen directly?",
         options: [
-            "Causando terremotos",
-            "Aumentando a temperatura média do planeta drasticamente",
-            "Energizando a alta atmosfera e intensificando as cores do amanhecer e pôr do sol",
-            "Bloqueando a luz do Sol por dias"
+            "By causing earthquakes",
+            "By drastically increasing the planet's average temperature",
+            "By energizing the upper atmosphere and intensifying the colors of dawn and sunset",
+            "By blocking sunlight for days"
         ],
-        correctAnswer: "Energizando a alta atmosfera e intensificando as cores do amanhecer e pôr do sol",
-        explanation: "A radiação de flares pode ionizar a alta atmosfera da Terra, afetando comunicações de rádio e, de forma mais sutil, alterando a forma como a luz solar é dispersa, o que pode intensificar as cores do céu.",
+        correctAnswer: "By energizing the upper atmosphere and intensifying the colors of dawn and sunset",
+        explanation: "Radiation from flares can ionize Earth's upper atmosphere, affecting radio communications and, more subtly, altering how sunlight is scattered, which can intensify the colors of the sky.",
         relatedChapterId: 'maori'
     },
     {
         id: 'q9',
-        question: "As Erupções Solares são classificadas em categorias (A, B, C, M, X). O que a classe 'X' indica?",
+        question: "Solar Flares are classified into categories (A, B, C, M, X). What does the 'X' class indicate?",
         options: [
-            "Uma erupção muito fraca e sem importância",
-            "Uma erupção de intensidade média",
-            "Uma erupção de extrema potência e energia",
-            "Uma erupção que ocorre apenas durante o dia"
+            "A very weak and insignificant eruption",
+            "A medium-intensity eruption",
+            "An eruption of extreme power and energy",
+            "An eruption that only occurs during the day"
         ],
-        correctAnswer: "Uma erupção de extrema potência e energia",
-        explanation: "A classificação de flares é logarítmica, onde a classe X representa as erupções mais intensas e energeticamente poderosas, capazes de causar impactos significativos na Terra.",
+        correctAnswer: "An eruption of extreme power and energy",
+        explanation: "The classification of flares is logarithmic, where the X-class represents the most intense and energetically powerful eruptions, capable of causing significant impacts on Earth.",
         relatedChapterId: 'maori'
     },
     {
         id: 'q10',
-        question: "Onde as Erupções Solares geralmente se originam no Sol?",
+        question: "Where do Solar Flares generally originate on the Sun?",
         options: [
-            "No polo norte do Sol",
-            "Na parte mais profunda do núcleo solar",
-            "Nas regiões de Manchas Solares",
-            "Aleatoriamente em qualquer parte da fotosfera"
+            "At the Sun's north pole",
+            "In the deepest part of the solar core",
+            "In Sunspot regions",
+            "Randomly anywhere on the photosphere"
         ],
-        correctAnswer: "Nas regiões de Manchas Solares",
-        explanation: "As flares são explosões magnéticas que ocorrem acima das Manchas Solares, onde os campos magnéticos são mais complexos e podem se reconectar e liberar grandes quantidades de energia.",
+        correctAnswer: "In Sunspot regions",
+        explanation: "Flares are magnetic explosions that occur above Sunspots, where the magnetic fields are most complex and can reconnect, releasing large amounts of energy.",
         relatedChapterId: 'maori'
     },
 
-    // --- Capítulo 3: Ejeções de Massa Coronal (CMEs) (Incas) ---
+    // --- Chapter 3: Coronal Mass Ejections (CMEs) (Incas) ---
     {
         id: 'q11',
-        question: "Os 'suspiros fortes' do Sol, que os Incas temiam por sua capacidade de 'fazer a luz da Terra vacilar', são conhecidos cientificamente como:",
+        question: "The Sun's 'strong sighs,' which the Incas feared for their ability to 'make the Earth's light falter,' are known scientifically as:",
         options: [
-            "Manchas Solares",
-            "Vento Solar",
-            "Ejeções de Massa Coronal (CMEs)",
+            "Sunspots",
+            "Solar Wind",
+            "Coronal Mass Ejections (CMEs)",
             "Auroras"
         ],
-        correctAnswer: "Ejeções de Massa Coronal (CMEs)",
-        explanation: "Os 'suspiros fortes' são Ejeções de Massa Coronal (CMEs), grandes nuvens de plasma e campo magnético ejetadas do Sol. Elas são mais lentas que as flares, mas carregam mais matéria e podem causar tempestades geomagnéticas.",
+        correctAnswer: "Coronal Mass Ejections (CMEs)",
+        explanation: "The 'strong sighs' are Coronal Mass Ejections (CMEs), large clouds of plasma and magnetic fields ejected from the Sun. They are slower than flares but carry more matter and can cause geomagnetic storms.",
         relatedChapterId: 'incas'
     },
     {
         id: 'q12',
-        question: "Uma Ejeção de Massa Coronal (CME) é composta principalmente de:",
+        question: "A Coronal Mass Ejection (CME) is primarily composed of:",
         options: [
-            "Luz e radiação ultravioleta",
-            "Plasma (gás quente ionizado) e campo magnético",
-            "Meteoritos e poeira espacial",
-            "Água e gelo"
+            "Light and ultraviolet radiation",
+            "Plasma (hot ionized gas) and magnetic fields",
+            "Meteorites and space dust",
+            "Water and ice"
         ],
-        correctAnswer: "Plasma (gás quente ionizado) e campo magnético",
-        explanation: "CMEs são grandes nuvens de plasma solar (partículas carregadas) e campos magnéticos que são ejetadas da coroa solar para o espaço interplanetário.",
+        correctAnswer: "Plasma (hot ionized gas) and magnetic fields",
+        explanation: "CMEs are large clouds of solar plasma (charged particles) and magnetic fields that are ejected from the solar corona into interplanetary space.",
         relatedChapterId: 'incas'
     },
     {
         id: 'q13',
-        question: "Qual a principal diferença entre uma Erupção Solar (Flare) e uma Ejeção de Massa Coronal (CME)?",
+        question: "What is the main difference between a Solar Flare and a Coronal Mass Ejection (CME)?",
         options: [
-            "Flares são invisíveis e CMEs são sempre visíveis a olho nu",
-            "Flares são principalmente radiação, CMEs são matéria (plasma) e campo magnético",
-            "CMEs causam terremotos, Flares causam tsunamis",
-            "Flares são mais lentas que CMEs"
+            "Flares are invisible, and CMEs are always visible to the naked eye",
+            "Flares are primarily radiation; CMEs are matter (plasma) and magnetic fields",
+            "CMEs cause earthquakes; Flares cause tsunamis",
+            "Flares are slower than CMEs"
         ],
-        correctAnswer: "Flares são principalmente radiação, CMEs são matéria (plasma) e campo magnético",
-        explanation: "Flares são explosões de energia eletromagnética que viajam na velocidade da luz. CMEs são explosões de matéria (plasma) que viajam mais lentamente, mas carregam muito mais massa.",
+        correctAnswer: "Flares are primarily radiation; CMEs are matter (plasma) and magnetic fields",
+        explanation: "Flares are bursts of electromagnetic energy that travel at the speed of light. CMEs are explosions of matter (plasma) that travel more slowly but carry much more mass.",
         relatedChapterId: 'incas'
     },
     {
         id: 'q14',
-        question: "Se uma CME se dirige à Terra, qual o principal risco que ela apresenta?",
+        question: "If a CME is directed towards Earth, what is the main risk it presents?",
         options: [
-            "Aumento drástico da temperatura global",
-            "Danos a satélites, redes elétricas e sistemas de comunicação/GPS",
-            "Criação de novos buracos na camada de ozônio",
-            "Atração de asteroides para a órbita terrestre"
+            "A drastic increase in global temperature",
+            "Damage to satellites, power grids, and communication/GPS systems",
+            "The creation of new holes in the ozone layer",
+            "Attracting asteroids into Earth's orbit"
         ],
-        correctAnswer: "Danos a satélites, redes elétricas e sistemas de comunicação/GPS",
-        explanation: "CMEs podem induzir correntes elétricas em cabos longos (como redes elétricas), perturbar o campo magnético da Terra (afetando satélites e GPS) e causar interrupções de rádio.",
+        correctAnswer: "Damage to satellites, power grids, and communication/GPS systems",
+        explanation: "CMEs can induce electrical currents in long conductors (like power grids), disturb Earth's magnetic field (affecting satellites and GPS), and cause radio blackouts.",
         relatedChapterId: 'incas'
     },
     {
         id: 'q15',
-        question: "As CMEs são os principais causadores de qual tipo de 'tempestade' que pode afetar a Terra?",
+        question: "CMEs are the main cause of what type of 'storm' that can affect Earth?",
         options: [
-            "Tempestades de areia",
-            "Tempestades de neve",
-            "Tempestades geomagnéticas",
-            "Tempestades de raios"
+            "Sandstorms",
+            "Snowstorms",
+            "Geomagnetic storms",
+            "Thunderstorms"
         ],
-        correctAnswer: "Tempestades geomagnéticas",
-        explanation: "Quando uma CME atinge o campo magnético da Terra, ela pode causar uma tempestade geomagnética, que é uma grande perturbação do campo magnético terrestre.",
+        correctAnswer: "Geomagnetic storms",
+        explanation: "When a CME hits Earth's magnetic field, it can cause a geomagnetic storm, which is a major disturbance of the Earth's magnetosphere.",
         relatedChapterId: 'incas'
     },
 
-    // --- Capítulo 4: Vento Solar e Auroras (Egípcios) ---
+    // --- Chapter 4: Solar Wind and Auroras (Egyptians) ---
     {
         id: 'q16',
-        question: "O que o 'hálito invisível' de Rá, que os Egípcios observavam e que Kuarasy disse que fazia o céu 'dançar' com cores, é para a ciência?",
+        question: "What is Ra's 'invisible breath,' which the Egyptians observed and Kuarasy said made the sky 'dance' with colors, to science?",
         options: [
-            "Tempestades Geomagnéticas",
-            "Manchas Solares",
-            "Erupções Solares (Flares)",
-            "Vento Solar e Auroras"
+            "Geomagnetic Storms",
+            "Sunspots",
+            "Solar Flares",
+            "Solar Wind and Auroras"
         ],
-        correctAnswer: "Vento Solar e Auroras",
-        explanation: "O 'hálito invisível' é o Vento Solar, um fluxo constante de partículas do Sol. Quando interage com o campo magnético da Terra, ele causa as Auroras, as lindas luzes dançantes no céu, especialmente visíveis nos polos.",
+        correctAnswer: "Solar Wind and Auroras",
+        explanation: "The 'invisible breath' is the Solar Wind, a constant stream of particles from the Sun. When it interacts with Earth's magnetic field, it causes the Auroras, the beautiful dancing lights in the sky, especially visible at the poles.",
         relatedChapterId: 'egipcios'
     },
     {
         id: 'q17',
-        question: "O Vento Solar é composto por:",
+        question: "The Solar Wind is composed of:",
         options: [
-            "Ar e oxigênio do espaço",
-            "Partículas carregadas (elétrons, prótons) do Sol",
-            "Luz do Sol refletida",
-            "Vapor de água espacial"
+            "Space air and oxygen",
+            "Charged particles (electrons, protons) from the Sun",
+            "Reflected sunlight",
+            "Space water vapor"
         ],
-        correctAnswer: "Partículas carregadas (elétrons, prótons) do Sol",
-        explanation: "O Vento Solar é um fluxo contínuo de partículas carregadas, principalmente elétrons e prótons, que são ejetadas da coroa solar para o espaço.",
+        correctAnswer: "Charged particles (electrons, protons) from the Sun",
+        explanation: "The Solar Wind is a continuous stream of charged particles, primarily electrons and protons, that are ejected from the solar corona into space.",
         relatedChapterId: 'egipcios'
     },
     {
         id: 'q18',
-        question: "Qual o fenômeno natural mais espetacular causado pela interação do Vento Solar (e CMEs) com o campo magnético da Terra?",
+        question: "What is the most spectacular natural phenomenon caused by the interaction of the Solar Wind (and CMEs) with Earth's magnetic field?",
         options: [
-            "Arco-íris",
+            "Rainbows",
             "Eclipses",
-            "Auroras (Boreal e Austral)",
-            "Miragens"
+            "Auroras (Borealis and Australis)",
+            "Mirages"
         ],
-        correctAnswer: "Auroras (Boreal e Austral)",
-        explanation: "Quando as partículas carregadas do Vento Solar e das CMEs atingem o campo magnético da Terra, elas são canalizadas para os polos e interagem com os gases da atmosfera, produzindo as luzes coloridas das Auroras.",
+        correctAnswer: "Auroras (Borealis and Australis)",
+        explanation: "When charged particles from the Solar Wind and CMEs hit Earth's magnetic field, they are channeled towards the poles and interact with atmospheric gases, producing the colorful lights of the Auroras.",
         relatedChapterId: 'egipcios'
     },
     {
         id: 'q19',
-        question: "Por que as Auroras são mais visíveis perto dos polos da Terra?",
+        question: "Why are Auroras most visible near Earth's poles?",
         options: [
-            "Porque é onde o Sol está mais próximo da Terra",
-            "Porque os campos magnéticos da Terra canalizam as partículas solares para essas regiões",
-            "Porque a atmosfera é mais densa nos polos",
-            "Porque o gelo reflete melhor as luzes"
+            "Because that's where the Sun is closest to the Earth",
+            "Because Earth's magnetic fields channel solar particles to these regions",
+            "Because the atmosphere is denser at the poles",
+            "Because the ice reflects the lights better"
         ],
-        correctAnswer: "Porque os campos magnéticos da Terra canalizam as partículas solares para essas regiões",
-        explanation: "O campo magnético da Terra atua como um escudo, mas é mais fraco nos polos, permitindo que as partículas carregadas do Vento Solar penetrem na atmosfera e causem as Auroras.",
+        correctAnswer: "Because Earth's magnetic fields channel solar particles to these regions",
+        explanation: "Earth's magnetic field acts as a shield, but it is weaker at the poles, allowing charged particles from the Solar Wind to penetrate the atmosphere and cause the Auroras.",
         relatedChapterId: 'egipcios'
     },
     {
         id: 'q20',
-        question: "O que o Índice Kp mede e como ele se relaciona com as Auroras?",
+        question: "What does the Kp Index measure, and how does it relate to Auroras?",
         options: [
-            "A temperatura da superfície solar; temperaturas mais altas significam mais auroras",
-            "A quantidade de nuvens no céu; mais nuvens significam mais auroras",
-            "A agitação do campo magnético da Terra; níveis altos significam maior chance de auroras",
-            "A velocidade do vento na atmosfera terrestre; ventos fortes causam auroras"
+            "The temperature of the solar surface; higher temperatures mean more auroras",
+            "The amount of clouds in the sky; more clouds mean more auroras",
+            "The disturbance of Earth's magnetic field; high levels mean a greater chance of auroras",
+            "The wind speed in Earth's atmosphere; strong winds cause auroras"
         ],
-        correctAnswer: "A agitação do campo magnético da Terra; níveis altos significam maior chance de auroras",
-        explanation: "O Índice Kp é uma escala que mede a perturbação do campo magnético da Terra. Níveis mais altos de Kp (geralmente de 5 para cima) indicam maior atividade geomagnética e, consequentemente, uma maior probabilidade de ocorrência e visibilidade de auroras.",
+        correctAnswer: "The disturbance of Earth's magnetic field; high levels mean a greater chance of auroras",
+        explanation: "The Kp Index is a scale that measures the disturbance of Earth's magnetic field. Higher Kp levels (usually 5 and up) indicate greater geomagnetic activity and, consequently, a higher probability of auroras occurring and being visible.",
         relatedChapterId: 'egipcios'
     },
 
-    // --- Capítulo 5: Tempestades Geomagnéticas (Gregos) ---
+    // --- Chapter 5: Geomagnetic Storms (Greeks) ---
     {
         id: 'q21',
-        question: "Como os Gregos tentavam entender as 'tempestades invisíveis' que Kuarasy mencionou, e o que a ciência moderna usa para medi-las?",
+        question: "How did the Greeks try to understand the 'invisible storms' Kuarasy mentioned, and what does modern science use to measure them?",
         options: [
-            "Através de rituais com Hélio e observações de eclipses",
-            "Pela observação de Manchas Solares e Flares",
-            "Com o Índice Kp, que mede tempestades geomagnéticas",
-            "Analisando o Vento Solar e a formação de Auroras"
+            "Through rituals with Helios and eclipse observations",
+            "By observing Sunspots and Flares",
+            "With the Kp Index, which measures geomagnetic storms",
+            "By analyzing the Solar Wind and Aurora formation"
         ],
-        correctAnswer: "Com o Índice Kp, que mede tempestades geomagnéticas",
-        explanation: "As 'tempestades invisíveis' são as Tempestades Geomagnéticas, causadas por intensos ventos solares e CMEs. A ciência moderna as mede usando o Índice Kp, que indica a perturbação no campo magnético da Terra e o potencial de impacto tecnológico.",
+        correctAnswer: "With the Kp Index, which measures geomagnetic storms",
+        explanation: "The 'invisible storms' are Geomagnetic Storms, caused by intense solar winds and CMEs. Modern science measures them using the Kp Index, which indicates the disturbance in Earth's magnetic field and the potential for technological impacts.",
         relatedChapterId: 'gregos'
     },
     {
         id: 'q22',
-        question: "As 'tempestades invisíveis' que podem 'silenciar vozes no ar e apagar luzes na Terra' são conhecidas como:",
+        question: "The 'invisible storms' that can 'silence voices on the air and turn off lights on Earth' are known as:",
         options: [
-            "Tempestades de areia cósmica",
-            "Tempestades geomagnéticas",
-            "Tempestades de neutrinos",
-            "Tempestades de poeira lunar"
+            "Cosmic sandstorms",
+            "Geomagnetic storms",
+            "Neutrino storms",
+            "Lunar dust storms"
         ],
-        correctAnswer: "Tempestades geomagnéticas",
-        explanation: "Tempestades geomagnéticas são perturbações no campo magnético da Terra que podem ter diversos impactos, incluindo interrupções de rádio e problemas em redes elétricas.",
+        correctAnswer: "Geomagnetic storms",
+        explanation: "Geomagnetic storms are disturbances in Earth's magnetic field that can have various impacts, including radio blackouts and problems with power grids.",
         relatedChapterId: 'gregos'
     },
     {
         id: 'q23',
-        question: "Qual dos seguintes não é um efeito potencial de uma tempestade geomagnética intensa na Terra?",
+        question: "Which of the following is not a potential effect of an intense geomagnetic storm on Earth?",
         options: [
-            "Danos a satélites em órbita",
-            "Interrupção de sinais de GPS",
-            "Queda de energia em redes elétricas",
-            "Crescimento acelerado de plantas"
+            "Damage to orbiting satellites",
+            "Disruption of GPS signals",
+            "Power outages in electrical grids",
+            "Accelerated plant growth"
         ],
-        correctAnswer: "Crescimento acelerado de plantas",
-        explanation: "Tempestades geomagnéticas afetam a tecnologia, mas não têm um efeito direto e comprovado no crescimento de plantas.",
+        correctAnswer: "Accelerated plant growth",
+        explanation: "Geomagnetic storms affect technology but do not have a direct, proven effect on plant growth.",
         relatedChapterId: 'gregos'
     },
     {
         id: 'q24',
-        question: "O que Kuarasy quis dizer com 'O Sol é uma estrela viva, cheia de energia e movimento, assim como um leão que dorme tranquilo, mas pode rugir quando quiser!'?",
+        question: "What did Kuarasy mean by 'The Sun is a living star, full of energy and movement, just like a lion that sleeps peacefully but can roar whenever it wants!'?",
         options: [
-            "Que o Sol tem um temperamento imprevisível e maligno",
-            "Que o Sol é um ser vivo com emoções",
-            "Que o Sol, apesar de parecer calmo, tem um poder imenso e dinâmico que pode ser liberado de repente",
-            "Que o Sol emite sons audíveis no espaço"
+            "That the Sun has an unpredictable and evil temperament",
+            "That the Sun is a living being with emotions",
+            "That the Sun, despite seeming calm, has immense and dynamic power that can be released suddenly",
+            "That the Sun emits audible sounds in space"
         ],
-        correctAnswer: "Que o Sol, apesar de parecer calmo, tem um poder imenso e dinâmico que pode ser liberado de repente",
-        explanation: "A metáfora descreve a natureza do Sol como uma estrela que, embora pareça estável, é extremamente ativa e pode liberar grandes quantidades de energia em eventos como flares e CMEs.",
+        correctAnswer: "That the Sun, despite seeming calm, has immense and dynamic power that can be released suddenly",
+        explanation: "The metaphor describes the Sun's nature as a star that, although it appears stable, is extremely active and can release large amounts of energy in events like flares and CMEs.",
         relatedChapterId: 'gregos'
     },
     {
         id: 'q25',
-        question: "Qual é a principal 'proteção' natural da Terra contra as partículas e campos magnéticos das tempestades solares?",
+        question: "What is Earth's main natural 'protection' against the particles and magnetic fields of solar storms?",
         options: [
-            "A camada de ozônio",
-            "A atmosfera densa da Terra",
-            "O campo magnético terrestre (magnetosfera)",
-            "Os oceanos"
+            "The ozone layer",
+            "Earth's dense atmosphere",
+            "The Earth's magnetic field (magnetosphere)",
+            "The oceans"
         ],
-        correctAnswer: "O campo magnético terrestre (magnetosfera)",
-        explanation: "A magnetosfera da Terra atua como um escudo, desviando a maioria das partículas carregadas do Sol e protegendo a vida e a tecnologia na superfície.",
+        correctAnswer: "The Earth's magnetic field (magnetosphere)",
+        explanation: "Earth's magnetosphere acts as a shield, deflecting most of the charged particles from the Sun and protecting life and technology on the surface.",
         relatedChapterId: 'gregos'
     },
 
-    // --- Capítulo 6: O Sol Hoje (Atualmente) ---
+    // --- Chapter 6: The Sun Today (Currently) ---
     {
         id: 'q26',
-        question: "Qual termo os cientistas usam hoje para descrever como todos os fenômenos do Sol (manchas, erupções, CMEs e vento solar) interagem e afetam a Terra?",
+        question: "What term do scientists use today to describe how all of the Sun's phenomena (spots, flares, CMEs, and solar wind) interact and affect the Earth?",
         options: [
-            "Meteorologia Solar",
-            "Geofísica Atmosférica",
-            "Clima Espacial",
-            "Astrofísica Terrestre"
+            "Solar Meteorology",
+            "Atmospheric Geophysics",
+            "Space Weather",
+            "Terrestrial Astrophysics"
         ],
-        correctAnswer: "Clima Espacial",
-        explanation: "O termo 'Clima Espacial' é usado para descrever as condições no Sol e no espaço que podem afetar sistemas e tecnologias na Terra. Ele engloba todos os fenômenos solares e seus efeitos em nosso planeta.",
+        correctAnswer: "Space Weather",
+        explanation: "The term 'Space Weather' is used to describe the conditions on the Sun and in space that can affect systems and technologies on Earth. It encompasses all solar phenomena and their effects on our planet.",
         relatedChapterId: 'atualmente'
     },
     {
         id: 'q27',
-        question: "Por que é importante para nós, na era moderna, monitorar e entender o Clima Espacial?",
+        question: "Why is it important for us, in the modern era, to monitor and understand Space Weather?",
         options: [
-            "Para prever o clima na Terra com mais precisão",
-            "Para proteger astronautas, satélites, redes elétricas e sistemas de comunicação/GPS",
-            "Para saber quando o Sol vai se 'apagar'",
-            "Para controlar a velocidade da luz"
+            "To predict the weather on Earth more accurately",
+            "To protect astronauts, satellites, power grids, and communication/GPS systems",
+            "To know when the Sun will 'burn out'",
+            "To control the speed of light"
         ],
-        correctAnswer: "Para proteger astronautas, satélites, redes elétricas e sistemas de comunicação/GPS",
-        explanation: "O Clima Espacial pode ter impactos significativos em nossa infraestrutura tecnológica, sendo crucial o monitoramento para mitigar riscos a sistemas críticos.",
+        correctAnswer: "To protect astronauts, satellites, power grids, and communication/GPS systems",
+        explanation: "Space Weather can have significant impacts on our technological infrastructure, making monitoring crucial to mitigate risks to critical systems.",
         relatedChapterId: 'atualmente'
     },
     {
         id: 'q28',
-        question: "Quais ferramentas modernas são usadas para observar o Sol e prever eventos do Clima Espacial?",
+        question: "What modern tools are used to observe the Sun and predict Space Weather events?",
         options: [
-            "Bússolas e astrolábios",
-            "Telescópios espaciais, satélites e monitoramento em solo",
-            "Mapas estelares antigos e observações a olho nu",
-            "Ampulhetas e relógios de sol"
+            "Compasses and astrolabes",
+            "Space telescopes, satellites, and ground-based monitoring",
+            "Ancient star maps and naked-eye observations",
+            "Hourglasses and sundials"
         ],
-        correctAnswer: "Telescópios espaciais, satélites e monitoramento em solo",
-        explanation: "A NASA e outras agências utilizam uma vasta gama de instrumentos avançados, incluindo satélites como o SDO (Solar Dynamics Observatory) e observatórios terrestres, para monitorar o Sol constantemente.",
+        correctAnswer: "Space telescopes, satellites, and ground-based monitoring",
+        explanation: "NASA and other agencies use a wide range of advanced instruments, including satellites like the SDO (Solar Dynamics Observatory) and ground-based observatories, to constantly monitor the Sun.",
         relatedChapterId: 'atualmente'
     },
     {
         id: 'q29',
-        question: "Segundo Kuarasy, qual é a 'forma moderna de ouvir a minha história'?",
+        question: "According to Kuarasy, what is the 'modern way of hearing my story'?",
         options: [
-            "Adorar o Sol em templos antigos",
-            "Dançar para o Sol ao pôr do sol",
-            "Entender o Clima Espacial através da ciência e tecnologia",
-            "Consultar oráculos e presságios"
+            "Worshipping the Sun in ancient temples",
+            "Dancing for the Sun at sunset",
+            "Understanding Space Weather through science and technology",
+            "Consulting oracles and omens"
         ],
-        correctAnswer: "Entender o Clima Espacial através da ciência e tecnologia",
-        explanation: "Kuarasy sugere que a ciência e a tecnologia modernas oferecem as ferramentas para decifrar e compreender os fenômenos solares de uma forma que vai além das lendas antigas.",
+        correctAnswer: "Understanding Space Weather through science and technology",
+        explanation: "Kuarasy suggests that modern science and technology provide the tools to decipher and understand solar phenomena in a way that goes beyond ancient legends.",
         relatedChapterId: 'atualmente'
     },
     {
         id: 'q30',
-        question: "Por que os astronautas são um grupo que precisa de 'cuidado especial' em relação ao Clima Espacial?",
+        question: "Why are astronauts a group that needs 'special care' regarding Space Weather?",
         options: [
-            "Porque eles precisam de bronzeado espacial",
-            "Porque estão mais expostos à radiação solar e às partículas energéticas fora da proteção da atmosfera e magnetosfera terrestre",
-            "Porque as espaçonaves são feitas de materiais que atraem Manchas Solares",
-            "Porque o Vento Solar empurra suas naves para fora de órbita"
+            "Because they need a space tan",
+            "Because they are more exposed to solar radiation and energetic particles outside the protection of Earth's atmosphere and magnetosphere",
+            "Because spaceships are made of materials that attract Sunspots",
+            "Because the Solar Wind pushes their ships out of orbit"
         ],
-        correctAnswer: "Porque estão mais expostos à radiação solar e às partículas energéticas fora da proteção da atmosfera e magnetosfera terrestre",
-        explanation: "Fora da Terra, astronautas e equipamentos espaciais estão diretamente expostos à radiação e partículas de eventos solares, tornando a previsão do Clima Espacial vital para sua segurança e para o sucesso das missões.",
+        correctAnswer: "Because they are more exposed to solar radiation and energetic particles outside the protection of Earth's atmosphere and magnetosphere",
+        explanation: "Outside of Earth, astronauts and space equipment are directly exposed to radiation and particles from solar events, making Space Weather prediction vital for their safety and for the success of missions.",
         relatedChapterId: 'atualmente'
     }
 ];
