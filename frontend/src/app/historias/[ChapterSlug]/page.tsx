@@ -1,12 +1,16 @@
 // src/app/historias/[slug]/page.tsx
 import { notFound } from "next/navigation";
-import { libraryData } from "../../../data/libraryData"; 
+import { libraryData } from "../../../data/libraryData";
 import StoryViewer from "../../../../components/StoryViewer";
 import Navbar from "../../../../components/Navbar";
 
 type ChapterSlug = keyof typeof libraryData;
 
-export default function ChapterPage({ params }: { params: { slug: string } }) {
+export default function ChapterPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const slug = params.slug as ChapterSlug;
   const chapterData = libraryData[slug];
 
@@ -14,7 +18,7 @@ export default function ChapterPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  // Ordena os capítulos e acha o próximo
+  // Lista de capítulos ordenada
   const chapterSlugs = Object.keys(libraryData);
   const currentChapterIndex = chapterSlugs.indexOf(slug);
   const nextChapterSlug =
