@@ -12,10 +12,10 @@ export default function HomePage() {
                 <div className="hero-section">
                     {/* Imagem principal do Kuarasy no topo do conteúdo, mantendo proporções */}
 
-                    <h1 className="hero-title">Bem-vindo ao Mundo do Occlo!</h1>
-                    <p className="hero-subtitle">Uma jornada mágica pela história e ciência do nosso Sol, guiada por Kuarasy!</p>
+                    <h1 className="hero-title">Welcome to the Ocllo Space!</h1>
+                    <p className="hero-subtitle">A magical journey through the history and science of our Sun, guided by Kuarasy and his friends!</p>
                     <Link href="/historias" passHref>
-                        <button className="start-journey-button">Começar a Aventura!</button>
+                        <button className="start-journey-button">Start the Adventure!</button>
                     </Link>
                 </div>
             </main>

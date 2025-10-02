@@ -1,236 +1,281 @@
+
 // src/data/libraryData.js
 export const libraryData = {
-    maori: {
-        title: "Capítulo 1: Os Māori e os Sopros de Fogo",
-        summary: "Descubra a lenda de Kuarasy e os poderosos 'sopros de fogo' que pintam o céu, e o que a ciência da NASA tem a dizer sobre eles.",
-        coverImage: "/covers/maori-cover.png",
-        pages: [
-            {
-                imageSrc: '/maori-1.jpeg',
-                imageAlt: 'Kuarasy sendo resgatado por um pescador Māori',
-                storyText: 'Era uma vez um menino que brilhava. Não era um brilho comum — era um brilho que nascia de dentro, como se guardasse o próprio céu em seu peito. Ele não sabia seu nome, nem de onde vinha. Tudo que sabia... é que precisava seguir a luz.',
-            },
-            {
-                imageSrc: '/maori-2.png',
-                imageAlt: 'Kuarasy na praia com os Māori observando o pôr do sol',
-                storyText: 'Uma canoa cortou as ondas. Um velho Māori o resgatou.<br/>— Você veio de Tama-nui-te-rā — disse o velho com reverência. — O Grande Sol. Sentimos quando ele nos envia um presente.<br/>O menino sorriu: — Talvez eu seja... ou talvez eu sempre tenha estado com vocês.',
-            },
-            {
-                imageSrc: '/maori-3.png',
-                imageAlt: 'Kuarasy na praia com os Maori',
-                storyText: 'Na praia, o povo dançava ao ritmo dos tambores. As crianças, com os corpos pintados com as cores da terra, cantavam para o Sol poente.',
-            },
-            {
-                imageSrc: '/maori-4.png',
-                imageAlt: 'Kuarasy com a menina Maori',
-                storyText: 'Uma menina de olhos curiosos correu até Kuarasy:<br/>— Nossas lendas dizem que o herói Maui tentou laçar o Sol! Ele queria que os dias fossem mais longos para poder brincar!',
-            },
-            {
-                imageSrc: '/maori-5.png',
-                imageAlt: 'Kuarasy com a menina Maori',
-                storyText: 'Kuarasy ajoelhou-se diante dela:<br/>— E o que vocês fariam se conseguissem prendê-lo?<br/>— Ah... talvez o Sol ficasse bravo! — disse ela, rindo.',
-            },
-            {
-                imageSrc: '/maori-6.png',
-                imageAlt: 'Kuarasy com a menina Maori e o velho Maori',
-                // Percepção mais plausível (cores do céu)
-                storyText: 'O velho pescador aproximou-se, sério.<br/>— Há dias em que o Sol se despede de uma forma... diferente. O céu se enche de um vermelho tão intenso que parece que o próprio ar está em chamas. Nunca entendemos o porquê.',
-            },
-            {
-                imageSrc: '/maori-7.png',
-                imageAlt: 'Kuarasy com a menina Maori',
-                // Conexão poética de Kuarasy
-                storyText: 'Kuarasy ergueu os olhos dourados:<br/>— Esse fogo no céu é o eco da respiração do Sol! Vocês não veem esse sopro de fogo diretamente, mas sentem sua energia. É uma força tão poderosa que, ao tocar a sua atmosfera, faz o próprio ar brilhar com as minhas cores.',
-                interactiveNote: {
-                    buttonText: 'O que são esses "sopros de fogo"?',
-                    title: '🔆 Erupções Solares (Flares)',
-                    // Nota interativa mais clara
-                    content: 'As lendas dos Māori tentavam explicar os mistérios do céu. Hoje, a ciência nos mostra que o Sol tem explosões de energia chamadas Erupções Solares! Embora não possamos vê-las diretamente, a radiação delas pode energizar a alta atmosfera, intensificando as cores do amanhecer e do pôr do sol.',
-                    realtimeDataText: 'Conectando à NASA para dados em tempo real...',
-                    source: 'Fonte: API DONKI FLR da NASA'
-                }
-            }
-        ]
-    },
-    babilonios: {
-        title: "Capítulo 2: Os Babilônios e as Sombras no Coração do Sol",
-        summary: "Viaje no tempo para a antiga Babilônia e explore como eles buscavam sinais nos céus, e o que a ciência moderna revela sobre as Manchas Solares.",
+    babilonios: { // CAUSA 1: Manchas Solares - a origem da atividade
+        title: "Chapter 1: The Babylonians and the Shadows on the Sun's Face",
+        summary: "Journey back in time to ancient Babylonia and explore how they sought signs in the " +
+                 "Sun's shadows, and what modern science reveals about Sunspots, " +
+                 "the true birthplace of solar energy.",
         coverImage: "/covers/babilonia-cover.png",
+        audioSrc: "/audio/babilonia-audio.mp3",
         pages: [
             {
                 imageSrc: '/babilonia-1.png',
                 imageAlt: 'Kuarasy em um zigurate com os Babilônios',
-                storyText: 'No alto de um zigurate, sob um céu estrelado, sacerdotes desenhavam o cosmos em tabuletas de argila.<br/>"Šamaš! Olho que tudo vê!", clamavam ao Sol nascente.',
+                storyText: 'On the tallest tower, the priests knelt as the Sun arose. Some drew the sky on clay tablets, engraving its secrets.<br/>"Šamaš! All-seeing eye!" they chanted in chorus. "Guide us with your light!"',
             },
             {
                 imageSrc: '/babilonia-2.png',
                 imageAlt: 'Kuarasy apontando para o sol com um sacerdote',
-                // Diálogo mais plausível, focado em presságios
-                storyText: 'Kuarasy caminhou entre eles, curioso.<br/>— Vocês dizem que o Sol tudo vê... mas já notaram as pequenas sombras em seu rosto?<br/>O sumo-sacerdote suspirou:<br/>— Sim. Escuridões que aparecem e somem. Para nós, são sinais de sua ira, momentos de descontentamento.',
+                storyText: 'Kuarasy walked among them and asked: "If the Sun sees everything… have you noticed the shadows that sometimes appear on his face?"<br/>The high priest bowed his head: "Yes. Small darknesses that come and go. We think they are signs of his wrath"',
             },
             {
                 imageSrc: '/babilonia-2-1.png',
                 imageAlt: 'Detalhe de uma mancha solar',
-                storyText: 'Um jovem sacerdote, com um olhar apreensivo, acrescentou: "— E quando a própria Lua, em sua dança, o cobre completamente? Nossas tabuletas nos ajudam a prever esse dia temível! É como se o grande Šamaš estivesse doente, ou fosse devorado! Então preparamos nossos mais importantes rituais para garantir que ele retorne e ilumine a Terra novamente!',
-
+                storyText: 'A young priest, with an apprehensive look, added: "And what happens when the Moon itself, in its dance, covers the Sun completely? Our tablets help us to foresee that fearful day! It is as if the great Šamaš is sick, or has been devoured! So we prepare our most important rituals to ensure that he returns and illuminates the Earth again.!"',
             },
             {
                 imageSrc: '/babilonia-3-1.png',
                 imageAlt: 'Kuarasy com os sacerdotes babilonios',
-                // Resposta de Kuarasy
-                storyText: 'Kuarasy sorriu, seus olhos brilhando com uma sabedoria antiga.<br/>— Não são ira, nem doença. Pensem nas pequenas sombras como o Sol respirando fundo, fechando seus olhos por um instante. E quando a Lua o cobre, é um abraço, um jogo de esconde-esconde no céu. Ele está apenas concentrando sua energia.',
+                storyText: 'Kuarasy smiled, his eyes shining with ancient wisdom. "It is not anger, nor disease. Think of the small shadows as the sun taking a deep breath, closing its eyes for a moment to focus its energy. And when the moon covers it, it is an embrace, a game of hide-and-seek in the sky."',
             },
             {
                 imageSrc: '/babilonia-4.png',
                 imageAlt: 'Kuarasy com os sacerdotes babilonios',
-                storyText: 'Os sacerdotes se entreolharam, maravilhados.<br/>— Então as sombras e a escuridão não são um sinal de fraqueza ou doença? — perguntou um deles.',
+                storyText: 'The priests looked at each other in wonder. "So shadows and darkness are not a sign of weakness or illness?" one of them asked.',
             },
             {
                 imageSrc: '/babilonia-5.png',
                 imageAlt: 'Kuarasy com os sacerdotes babilonios',
-                storyText: '— Longe disso! — respondeu Kuarasy. — São a prova de uma força que se renova. Um poder imenso que se oculta para depois se revelar em grandes sopros de fogo!',
+                storyText: '"Far from it! — replied Kuarasy. — They are proof of a renewed force. An immense power that hides itself and then reveals itself in great breaths of fire and loud sighs.!"', // Adicionado link para próximos capítulos
                 interactiveNote: {
-                    buttonText: 'O que são essas "sombras" no Sol?',
-                    title: '🌑 Manchas Solares e Eclipses',
-                    // Nota interativa mais clara
-                    content: 'As lendas babilônicas buscavam dar sentido às mudanças no céu, como eclipses, que eles eram muito bons em prever! Hoje, a ciência nos mostra que as "sombras" no rosto do Sol são as Manchas Solares (regiões de intensa atividade magnética e com baixa temperatura), e além disso elas aparecem e desaparecem em ciclos de 11 anos. Já os eclipses são quando a Lua se posiciona entre a Terra e o Sol, bloqueando sua luz por um momento. Tudo parte do show cósmico do nosso Sol!',
-                    realtimeDataText: 'Verificando o "rosto" de Kuarasy agora...',
-                    source: 'Fonte: Relatório de Manchas Solares NOAA SWPC',
-                    moreInfoLink: 'https://www.swpc.noaa.gov/phenomena/sunspots'
+                    buttonText: 'What are these "shadows" on the Sun?',
+                    title: '🌑 Sunspots and Eclipses',
+                    content: 'Babylonian legends sought to make sense of changes in the sky, like eclipses, which they were very good at predicting! Today, science shows us that the "shadows" on the Sun\'s face are Sunspots (regions of intense magnetic activity and lower temperature), and they appear and disappear in 11-year cycles. It is in Sunspots that much of the energy causing eruptions and other "storms" is generated. Eclipses occur when the Moon positions itself between the Earth and the Sun, blocking its light for a moment. All part of our Sun\'s cosmic show!',
+                    realtimeDataText: 'Checking Kuarasy\'s "face" now...',
+                    source: 'Source: NOAA SWPC Sunspot Report',
+                    moreInfoLink: 'https://www.swpc.noaa.gov/phenomena/sunspotssolar-cycle'
                 }
-
             }
         ]
     },
-    egipcios: {
-        title: "Capítulo 3: Os Egípcios e o Hálito de Rá",
-        summary: "Aprenda sobre o deus Rá e como o 'vento solar' do Sol cria as lindas luzes das auroras, com dados da NASA.",
-        coverImage: "/covers/egito-cover.png",
+    maori: { // CAUSA 2: Erupções Solares (Flares) - primeiro efeito das manchas
+        title: "Chapter 2: The Māori and the Breaths of Fire",
+        summary: "Discover the legend of Kuarasy and the powerful 'breaths of fire' that paint the sky, " +
+                 "what science has to say about them, and how they are born from " +
+                 "Sunspots.",
+        coverImage: "/covers/maori-cover.png",
+        audioSrc: "/audio/maori-audio.mp3",
         pages: [
             {
-                imageSrc: '/egito-1.png',
-                imageAlt: 'Kuarasy às margens do Nilo',
-                storyText: 'Às margens do Nilo, multidões cantavam para Rá enquanto sacerdotes carregavam barcas douradas em sua homenagem.',
+                imageSrc: '/maori-2.png',
+                imageAlt: 'Kuarasy na praia com os Māori observando o pôr do sol',
+                storyText: 'A canoe cut through the waves. An old Maori man had rescued Kuarasy from the ocean after a long voyage to New Zealand, the home of the Maori. "You came from Tama-nui-te-rā," the old man said reverently. "The Great Sun. We feel it when he sends us a gift." The boy smiled. "Perhaps I am... or perhaps I have always been with you.".',
             },
             {
-                imageSrc: '/egito-2.png',
-                imageAlt: 'Crianças egípcias vendo uma aurora',
-                storyText: 'Uma sacerdotisa ergueu a voz:<br/>— Rá nasce outra vez! Que sua barca dourada nunca falhe em sua jornada pelo céu!',
+                imageSrc: '/maori-3.png',
+                imageAlt: 'Kuarasy na praia com os Maori',
+                storyText: 'The women beat the drums, and the children painted their bodies with the colors of the earth. Everyone sang to the Sun, as if singing to a friend.',
             },
             {
-                imageSrc: '/egito-3.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: 'Kuarasy se aproximou, sorrindo.<br/>— Vocês celebram sua viagem, mas sabem que, enquanto ele navega, Rá sopra um hálito constante e invisível? Um vento que cruza o espaço.',
+                imageSrc: '/maori-4.png',
+                imageAlt: 'Kuarasy com a menina Maori',
+                storyText: 'Suddenly, a girl ran up to Kuarasy, excited: — Maui tried to lasso the Sun! He wanted the days to be longer to help the people…<br/> She paused for a moment, thought like a child, and added with a mischievous smile: — … and that way there would also be more time to play!',
             },
             {
-                imageSrc: '/egito-4.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: 'A sacerdotisa estremeceu:<br/>— Um hálito invisível?<br/>— Sim. Ele dança até chegar à Terra. E quando chega... o céu também dança.',
+                imageSrc: '/maori-5.png',
+                imageAlt: 'Kuarasy com a menina Maori',
+                storyText: 'Kuarasy knelt before her and asked: — And what would you do if he managed to trap it?<br/> The girl started to laugh, hiding her face with her hands: — Ah… maybe the Sun would get angry!.',
             },
             {
-                imageSrc: '/egito-5.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: 'Um menino, que ouvia a conversa, gritou:<br/>— As luzes coloridas no céu? Como as pinturas dos deuses?',
+                imageSrc: '/maori-6.png',
+                imageAlt: 'Kuarasy com a menina Maori e o velho Maori',
+                storyText: 'The old fisherman approached, serious.<br/>— There are days when the Sun says goodbye in a... different way. The sky fills with such an intense red that it seems as if the air itself is on fire. We never understand why',
             },
             {
-                imageSrc: '/egito-6.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: '— Exatamente — disse Kuarasy. — Vocês as chamarão de Auroras. São o presente do hálito de Rá, uma prova de que sua energia nos alcança mesmo durante a noite.',
+                imageSrc: '/maori-7.png',
+                imageAlt: 'Kuarasy com a menina Maori',
+                storyText: "This fire in the sky is the echo of the Sun's breath! The energy that gathers in the Sun's shadows (sunspots) explodes and spreads into light. You do not see this fiery breath directly, but you feel its energy. It is a force so powerful that, when it touches Earth's upper atmosphere, it makes the very air glow with my colors.", // Linka de volta para manchas solares
                 interactiveNote: {
-                    buttonText: 'Como o "hálito" do Sol pinta o céu?',
-                    title: '🌌 Vento Solar e Auroras',
-                    // Nota interativa mais clara
-                    content: 'As lendas egípcias celebravam a jornada do Sol. Hoje, a ciência sabe que o Sol emite um "hálito" constante, chamado Vento Solar. Quando esse vento atinge o escudo magnético da Terra, ele canaliza partículas para os polos, que brilham e criam as luzes mágicas que chamamos de Auroras!',
-                    realtimeDataText: 'Verificando a previsão de auroras...',
-                    source: 'Fonte: API DONKI GST da NASA'
+                    buttonText: 'What are these "breaths of fire"?',
+                    title: '🔆 Solar Flares',
+                    content: 'Māori legends tried to explain the mysteries of the sky. Today, science shows us that the Sun has energy explosions called Solar Flares! They originate in Sunspot regions, where magnetic energy accumulates and is suddenly released. Although we cannot see them directly, their radiation can energize the upper atmosphere, intensifying the colors of sunrise and sunset. An intense Flare can also be the beginning of a powerful sigh from the Sun, which we\'ll see next!', // Prepara para CMEs
+                    realtimeDataText: 'Connecting to NASA for real-time data...',
+                    source: 'Source: NASA DONKI FLR API'
                 }
             }
         ]
     },
-    incas: {
-        title: "Capítulo 4: Os Incas e o Coração Ardente do Sol",
-        summary: "Explore a reverência dos Incas pelo Sol e descubra como as tempestades solares podem afetar a Terra, com insights da NASA.",
+    incas: { // CAUSA 3: Ejeções de Massa Coronal (CMEs) - o "suspiro forte"
+        title: "Chapter 3: The Incas and the Sun's Strong Sigh",
+        summary: "Explore the Incas' reverence for the Sun and discover how the Sun's 'strong sighs' " +
+                 "can affect Earth, and how they are " +
+                 "even more powerful than the 'breaths of fire'.",
         coverImage: "/covers/incas-cover.png",
+        audioSrc: "/audio/incas-audio.mp3",
         pages: [
             {
                 imageSrc: '/incas-1.png',
                 imageAlt: 'Kuarasy no templo do Sol com os Incas',
-                storyText: 'No coração das montanhas andinas, onde o ar é fino e o Sol parece mais próximo, era o grande festival de Inti Raymi. Cusco, a majestosa capital do Império Inca, vibrava com a música suave das flautas e o ritmo forte dos tambores, enquanto o povo se reunia para a mais importante celebração do ano.',
-
+                storyText: 'It was the time of Inti Raymi. Cusco pulsed with music and colors: drums echoed, feet stamped the earth in circular dances, and adorned llamas paraded before the golden temple.',
             },
             {
                 imageSrc: '/incas-2.png',
                 imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'O Inca ergueu os braços: — Inti é nosso pai! Tudo que vive deve a ele sua luz!',
+                storyText: 'The Inca raised his arms to the sky: "Inti is our father! All life breathes because his light sustains it!"',
             },
             {
                 imageSrc: '/incas-3.png',
                 imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'Kuarasy, com seu brilho gentil, sorriu. Ele via o amor e o temor nos corações dos Incas. Aproximando-se daqueles que estavam ouvindo, falou com uma voz que parecia sussurrar com o vento da montanha.<br/>— Vocês o amam como filhos e temem sua ausência. Mas sabiam que Inti, às vezes, lança tanta energia para longe de si que poderia, por um instante, fazer a luz da Terra vacilar, apagando até mesmo a chama mais forte que vocês acenderam?',
+                storyText: 'Kuarasy, with his gentle glow, smiled. He saw the love and fear in the hearts of the Incas. Approaching those listening, he spoke in a voice that seemed to whisper with the mountain wind. "You love him like children and fear his absence. But did you know that Inti sometimes casts so much energy away from himself that he could, for an instant, make the light of the Earth waver, extinguishing even the brightest flame you have lit?',
             },
             {
                 imageSrc: '/incas-4-1.png',
                 imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'Um murmúrio de espanto e apreensão correu pelo povo. A ideia de Inti, seu protetor, causando uma escuridão tão grande era quase inconcebível. Uma jovem tecelã, com os olhos arregalados, perguntou baixinho:<br/>— E o que faríamos sem ele, mesmo que por um breve momento? Como colheríamos? Como viveríamos?',
+                storyText: 'A murmur of astonishment and apprehension ran through the people. The idea of ​​Inti, their protector, causing such darkness was almost inconceivable. A young weaver, wide-eyed, asked softly, "And what would we do without him, even for a brief moment? How would we harvest? How would we live?"?',
             },
             {
                 imageSrc: '/incas-5.png',
                 imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'Kuarasy, com a calma de quem conhece os segredos do universo, respondeu:<br/>— Vocês dançariam no escuro, guiados pela fé em seu retorno... porque o Sol sempre volta. Essa é a promessa de sua existência, mesmo quando ele mostra seu lado mais poderoso e misterioso. Não é um castigo, mas uma demonstração de sua imensa e constante energia.',
+                storyText: 'Kuarasy, with the calm of someone who knows the secrets of the universe, replied: "You would dance in the dark, guided by faith in its return... because the Sun always returns. That is the promise of its existence, even when it shows its most powerful and mysterious side. It is not a punishment, but a demonstration of its immense and constant energy."', // Linka para flares
             },
             {
                 imageSrc: '/incas-6.png',
                 imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'Uma criança, que observava atentamente, finalmente teve coragem de olhar nos olhos dourados de Kuarasy.<br/>— Então Inti nunca nos abandona de verdade? Nem quando ele respira tão forte?<br/>— Nunca — respondeu Kuarasy, tocando o topo da cabeça da criança. — Mas ele deseja ser compreendido em sua plenitude, não apenas adorado em seus mistérios.',
+                storyText: "A child, who had been watching intently, finally had the courage to look into Kuarasy's golden eyes. - So Inti never truly abandons us? Not even when he breathes so heavily? - Never, Kuarasy replied, touching the top of the child's head. - But he wishes to be understood in his fullness, not just worshipped in his mysteries.",
                 interactiveNote: {
-                    buttonText: 'O que é o "suspiro" tão forte do Sol?',
-                    title: '☀️ Ejeções de Massa Coronal (CMEs)',
-                    content: 'Há muito tempo, os Incas celebravam o Inti Raymi para ter certeza de que o Sol voltaria depois do inverno. Hoje, não temos medo que o Sol suma, mas que ele nos dê um "espirro" muito forte! O Sol, que é uma grande estrela de fogo, às vezes solta um "suspiro" gigante de plasma, chamado Ejeção de Massa Coronal (EMC), que é um tipo de gás quente. Esse "suspiro" é tão forte que, se chegar perto da Terra, pode causar uma tempestade magnética. Essa tempestade confunde nossos aparelhos, como satélites, GPS e redes de luz, e pode causar "apagões" temporários na nossa tecnologia. Mas não se preocupe, a Terra tem um escudo mágico, o campo magnético, que nos protege muito bem!',
-                    realtimeDataText: 'Verificando as CMEs recentes...',
-                    source: 'Fonte: API DONKI CME da NASA'
+                    buttonText: 'What is the Sun\'s "strong sigh"?',
+                    title: '☀️ Coronal Mass Ejections (CMEs)',
+                    content: 'A long time ago, the Incas celebrated Inti Raymi to ensure the Sun would return after winter. Today, we don\'t fear the Sun disappearing, but that it might give us a very "strong sigh"! The Sun, which is a great ball of fire, sometimes releases a giant "sigh" of plasma (hot gas), called a Coronal Mass Ejection (CME). This "sigh" is so powerful that, if it comes close to Earth, it can cause a magnetic storm. It is a much larger release of material than Solar Flares, which we saw earlier. A CME takes longer to reach Earth, but carries much more energy and matter, potentially causing an even stronger "breath" from the Sun!', // Linka CMEs a Flares e prepara para Vento Solar
+                    realtimeDataText: 'Checking for recent CMEs...',
+                    source: 'Source: NASA DONKI CME API'
                 }
             }
         ]
     },
-    gregos: {
-        title: "Capítulo 5: Os Gregos e o Fôlego de Hélio",
-        summary: "Mergulhe na mitologia grega e descubra como os antigos viam o Sol, além de aprender sobre as tempestades solares!.",
+    egipcios: { // EFEITO 1: Vento Solar e Auroras - o "hálito" constante
+        title: "Chapter 4: The Egyptians and Ra's Breath (Solar Wind)",
+        summary: "Learn about the god Ra and how the Sun's constant 'breath' creates the beautiful " +
+                 "lights of the auroras, with datas, and how 'strong sighs' can " +
+                 "intensify this breath.",
+        coverImage: "/covers/egito-cover.png",
+        audioSrc: "/audio/egipcios-audio.mp3",
+        pages: [
+            {
+                imageSrc: '/egito-1.png',
+                imageAlt: 'Kuarasy às margens do Nilo',
+                storyText: 'On the banks of the Nile River, the people gathered in celebration. Priests carried golden boats, while children cast flowers upon the waters',
+            },
+            {
+                imageSrc: '/egito-2.png',
+                imageAlt: 'Crianças egípcias vendo uma aurora',
+                storyText: 'A priestess raised her voice: "Ra is reborn once again! May his boat never fail to cross the sky!"',
+            },
+            {
+                imageSrc: '/egito-3.png',
+                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+                storyText: 'Kuarasy moved, smiling.<br/>— You celebrate his voyage, but do you know that, as he sails, Ra blows a constant and invisible breath? A wind that crosses space, made of small particles. And, sometimes, a strong sigh from the Sun (the CMEs) makes this breath even denser and more powerful!', // Linka com CMEs
+            },
+            {
+                imageSrc: '/egito-4.png',
+                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+                storyText: 'The priestess shuddered:<br/>— An invisible breath?<br/>— Yes. It dances until it reaches the Earth. And when it arrives... the sky also dances, creating wonderful colors, especially in the distant lands of the north and south.',
+            },
+            {
+                imageSrc: '/egito-5.png',
+                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+                storyText: 'A kid, who was listening to the conversation, shouted:<br/>— The colored lights in the sky? Like the paintings of the gods?',
+            },
+            {
+                imageSrc: '/egito-6.png',
+                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+                storyText: "-Exactly, said Kuarasy. - You will call them Auroras. They are the gift of Ra's breath, proof that my energy reaches us even in the night. And the stronger my breath or the louder sigh that escapes me, the more vibrant and spectacular these dancing lights will be!", // Linka com CMEs e Vento Solar
+                interactiveNote: {
+                    buttonText: 'How does the Sun\'s "breath" paint the sky?',
+                    title: '🌌 Solar Wind and Auroras',
+                    content: 'Egyptian legends celebrated the Sun\'s journey. Today, science knows that the Sun emits a constant "breath" called Solar Wind. This wind is made of particles that come directly from the Sun. When this wind or a "strong sigh" (a CME) hits Earth\'s magnetic shield, it channels these particles towards the poles, which glow and create the magical lights we call Auroras! The intensity of the auroras depends on how strong this "breath" from the Sun is, which can be measured by the Kp Index, a sign that a **storm** may be approaching!', // Prepara para Tempestades Geomagnéticas
+                    realtimeDataText: 'Checking aurora forecast...',
+                    source: 'Source: NASA DONKI GST API',
+                    moreInfoLink: 'https://www.swpc.noaa.gov/content/tips-viewing-aurora'
+                }
+            }
+        ]
+    },
+    gregos: { // EFEITO 2: Tempestades Geomagnéticas - o impacto do hálito forte
+        title: "Chapter 5: The Greeks and Helios' Invisible Storms",
+        summary: "Dive into Greek mythology and discover how the ancients viewed the Sun, " +
+                 "as well as learning about solar storms and how the Sun's 'breath' " +
+                 "and 'strong sighs' can affect Earth.",
         coverImage: "/covers/gregos-cover.png",
+        audioSrc: "/audio/gregos-audio.mp3",
         pages: [
             {
                 imageSrc: '/gregos-1.png',
                 imageAlt: 'Kuarasy com os gregos em um templo',
-                storyText: 'Em colinas verdes, filósofos discutiam. Crianças brincavam sob o Sol. No horizonte, Hélio conduzia sua carruagem de cavalos flamejantes. <br/>— O Sol é razão! É ordem! — proclamavam os homens.<br/>— Ele nasce e se põe todos os dias, como o compasso perfeito dos deuses.',
+                storyText: 'On the green hills, philosophers debated under the Sun. Some raised their hands, others pointed to the sky, as if trying to solve a riddle. In the distance, Helios sped by in his chariot of flaming horses. - The Sun is reason! It is order! — proclaimed the men.<br/>— He rises and sets every day, like the perfect compass of the gods.',
             },
             {
                 imageSrc: '/gregos-2.png',
                 imageAlt: 'Kuarasy com os gregos em um templo',
-                storyText: 'Mais tarde após ouvir os gregos, Kuarasy caminhou até eles, seus olhos refletindo tanto o fogo quanto a calma do astro. <br/>— Vocês veneram Hélio, o Deus Sol, mas saibam que ele também é cheio de surpresas — disse com voz firme. — Ele lança tempestades invisíveis que nem o maior filósofo pode prever',
+                storyText: 'Later, after listening to the Greeks, Kuarasy walked up to them, his eyes reflecting both the fire and the calm of the star. "You worship Helios, the sun god, but know that he is also full of surprises," he said firmly. "He unleashes invisible storms that not even the greatest philosopher can foresee, caused by his heavy breathing and sighs!"', // Linka com CMEs e Vento Solar
             },
             {
                 imageSrc: '/gregos-3.png',
                 imageAlt: 'Kuarasy com os gregos em um templo',
-                storyText: 'Um jovem curioso, de olhar inquieto, se aproximou:— Tempestades invisíveis? Como algo tão radiante pode esconder fúria?<br/> Kuarasy sorriu de leve: — São ventos de fogo que correm pelo espaço. Eles podem silenciar vozes no ar, apagar luzes na Terra, confundir viajantes e até prejudicar máquinas que voam sobre as nuvens.',
+                storyText: 'A curious young man, with a restless look, approached: "Invisible storms? How can something so radiant hide fury?" Kuarasy smiled slightly: "They are winds of fire that run through space. They can silence voices in the air, extinguish lights on Earth, confuse travelers and even harm machines that fly above the clouds. This is the true fury, invisible, but powerful."',
             },
             {
                 imageSrc: '/gregos-4.png',
                 imageAlt: 'Kuarasy com os gregos em um templo',
-                storyText: 'Os filósofos se entreolharam, inseguros. Alguns riram como se fosse um mito distante.<br/>— Se não podemos ver, como acreditar? — murmurou um deles.',
-
+                storyText: 'The philosophers looked at each other, uncertain. Some laughed as if it were a distant myth.<br/>"If we can not see it, how can we believe it?" murmured one of them.',
             },
             {
                 imageSrc: '/gregos-5.png',
                 imageAlt: 'Kuarasy com os gregos em um templo',
-                storyText: 'Kuarasy, com a paciência de quem conhece os segredos do universo, respondeu:<br/>— Vocês chamarão isso de ciência! Assim como o vento que não vemos, mas sentimos em nossos rostos, essas tempestades existem. Isso não acontece pelo Sol ser brabo, mas porque ele é uma estrela viva, cheia de energia e movimento, assim como um leão que dorme tranquilo, mas pode rugir quando quiser!.',
+                storyText: 'Kuarasy, with the patience of someone who knows the secrets of the universe, replied: "You will call this science! Just like the wind we can not see but feel on our faces, these storms exist. This does not happen because the Sun is fierce, but because it is a living star, full of energy and movement, just like a lion that sleeps peacefully but can roar whenever it wants! And the intensity of this "roar" can be measured, alerting us to its impact!"', // Prepara para Clima Espacial
                 interactiveNote: {
-                    buttonText: 'O que são essas "tempestades invisíveis"?',
-                    title: '🌪️ Tempestades Geomagnéticas',
-                    content: 'Os gregos antigos viam o Sol como um deus poderoso e imutável. Hoje, sabemos que o Sol pode ser muito mais dinâmico! Ele às vezes solta grandes explosões de energia que viajam pelo espaço como tempestades invisíveis. Quando essas tempestades chegam perto da Terra, podem causar tempestades geomagnéticas, que podem afetar nossos satélites, redes de energia e até mesmo a comunicação por rádio. Mas também são responsáveis por criar as lindas auroras que podemos ver perto dos polos!',
-                    realtimeDataText: 'Verificando as tempestades geomagnéticas recentes...',
-                    source: 'Fonte: API DONKI GST da NASA'
+                    buttonText: 'What are these "invisible storms"?',
+                    title: '🌪️ Geomagnetic Storms and Kp Index',
+                    content: 'The ancient Greeks viewed the Sun as a powerful and unchanging god. Today, we know the Sun can be much more dynamic! When the Solar Wind and, especially, CMEs (the "strong sighs") hit Earth\'s magnetic field, they can cause geomagnetic storms. These storms can affect our satellites, power grids, and even radio communication. The Kp Index measures the intensity of these disturbances, and it alerts us to potential impacts on our technology and the visibility of auroras!',
+                    realtimeDataText: 'Checking current geomagnetic storm level...',
+                    source: 'Source: NASA DONKI GST API'
                 }
             }
         ]
+    },
+    atualmente: { // EFEITO FINAL: Clima Espacial e Impactos Modernos - a grande síntese
+        title: "Chapter 6: The Sun Today and Space Weather",
+        summary: "Discover how the Sun is currently behaving and how all the " +
+                 "phenomena (sunspots, breaths, sighs, and winds) combine to " +
+                 "create Space Weather and affect our planet",
+        coverImage: "/covers/atuais-cover.png",
+        audioSrc: "/audio/atualmente-audio.mp3", // Correção: "atuais" deve ser "atualmente" no caminho do áudio
+        pages: [
+            {
+                imageSrc: '/atualmente-1.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: 'In a wide field filled with solar panels, children wore special glasses and gazed at the sky. Scientists, in buildings full of glowing screens, watched every detail of the Sun. And airplanes traced lines across the sky, dependent on the energy and light the Sun gives every day.',
+            },
+            {
+                imageSrc: '/atualmente-2.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: "A girl, who had heard all of Kuarasy's stories, turned to him with eyes full of curiosity. </br>-Kuarasy, you told us about the 'shadows' of the Babylonians, the 'fire breaths' of the Maori, the 'heavy sighs' of the Incas, and the 'breath' of Ra that paints the sky... What does all this mean for us today? Kuarasy smiled, and his voice sounded like the gentle warmth of the morning sun. - Everything you have learned, every legend, every mystery... today, scientists have a name for it: <strong>Space Weather</strong>. It is the way my breath, my spots, and my storms travel through space and touch your world.",
+            },
+            {
+                imageSrc: '/atualmente-3.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: 'The girl looked at the scientists in the control room and then at the plane in the sky. "So... can space weather really affect us? Like a rainstorm?" "Exactly," Kuarasy said, gesturing to the surrounding scenery. "And that is why you are watching the Sun so carefully today. The fire breaths (flares) can disrupt communications for pilots flying near the poles. And the massive storms can threaten to knock out city lights if power engineers are not vigilant.',
+            },
+            {
+                imageSrc: '/atualmente-4.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: '— They can even confuse the GPS signals that guide farmers to their crops and the satellites that carry their voices and videos to the other side of the world.',
+            },
+            {
+                imageSrc: '/atualmente-5-1.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: 'And of course, I need to be especially careful with the astronauts, the travelers who come closest to the Sun.',
+            },
+            {
+                imageSrc: '/atualmente-6-1.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: 'The girl looked at him in wonder. "So, everything is connected." "It always has been," Kuarasy replied. "Ancient peoples looked at me with respect and tried to understand my messages. Today, you do the same, but with telescopes, satellites, and science. Understanding Space Weather is the modern way of hearing my story."',
+            },
+            {
+                imageSrc: '/atualmente-7-1.png',
+                imageAlt: 'Kuarasy olhando para o sol com um tablet',
+                storyText: "- And you... who are you really? the girl asked. He knelt, and his golden eyes reflected the sun's brightness. - I am the memory of the sun, the voice of the stars. But in the ancient Tupi language, here in this land, my name is Kuarasy. And Kuarasy means... <strong>Sun</strong>. The children approached, touching hands. And for the first time, the sun did not seem distant. He was a force, a neighbor, a story that everyone could now begin to understand.",
+            }
+        ]
     }
-
-};
+}

@@ -1,45 +1,92 @@
 // src/components/StoryPage.js
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'; // Import useRef here
 import Image from 'next/image';
-import React from 'react'; // Importe React para usar React.Fragment
+import React from 'react';
 
-export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNote }) {
+// Add audioSrc to props
+export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNote, audioSrc }) {
     const [noteVisible, setNoteVisible] = useState(false);
-    // Inicializamos realtimeData como string vazia ou com o placeholder, mas o useEffect principal lidará com isso
     const [realtimeData, setRealtimeData] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    // Novo estado para controlar se os dados da API para esta NOTA já foram carregados
     const [apiDataLoaded, setApiDataLoaded] = useState(false);
 
-    // Função para buscar dados da API
+    // Ref for the audio element
+    const audioRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(false); // State to control UI play/pause
+
+    // Effect to manage chapter audio playback
+    useEffect(() => {
+        if (audioRef.current) {
+            // Pause previous audio, if any
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0; // Restart audio
+
+            if (audioSrc) {
+                audioRef.current.src = audioSrc;
+                audioRef.current.loop = true; // Set to loop
+                audioRef.current.volume = 0.5; // Set an initial volume
+
+                // Try to play. Browsers may block auto-play without user interaction.
+                audioRef.current.play()
+                    .then(() => setIsPlaying(true)) // Update state if playback starts
+                    .catch(error => {
+                        console.log("Auto-play blocked, user interaction needed:", error);
+                        setIsPlaying(false); // Ensure state reflects not playing
+                    });
+            } else {
+                audioRef.current.src = ''; // Clear source if no audio
+                setIsPlaying(false);
+            }
+        }
+    }, [audioSrc]); // React when audioSrc changes (i.e., chapter changes)
+
+    // Functions for audio control (optional, can be added to UI)
+    const togglePlayPauseAudio = () => {
+        if (audioRef.current) {
+            if (audioRef.current.paused) {
+                audioRef.current.play().then(() => setIsPlaying(true)).catch(e => console.error("Error trying to play audio:", e));
+            } else {
+                audioRef.current.pause();
+                setIsPlaying(false);
+            }
+        }
+    };
+
+    const changeAudioVolume = (e) => {
+        if (audioRef.current) {
+            audioRef.current.volume = e.target.value;
+        }
+    };
+
+    // Function to fetch API data
     const fetchRealtimeData = async () => {
         if (!interactiveNote) return;
 
-        // Evita múltiplas requisições se já estiver carregando ou se já carregou os dados para esta nota
+        // Avoid multiple requests if already loading or if data has already been loaded for this note
         if (isLoading || apiDataLoaded) {
             console.log('API call skipped: already loading or data already loaded for this note.');
             return;
         }
 
-        setIsLoading(true); // Indica que o carregamento começou
-        // Define um estado temporário para 'carregando' para o usuário ver
-        setRealtimeData('Buscando dados da NASA...');
+        setIsLoading(true); // Indicate that loading has started
+        // Set a temporary 'loading' state for the user to see
+        setRealtimeData('Fetching data...');
 
-        const apiKey = "u5NsMGeGaw39nszCF7A1M6WGjPHgejOnVxVbVXBI"; // SUA CHAVE AQUI! 
+        const apiKey = "u5NsMGeGaw39nszCF7A1M6WGjPHgejOnVxVbVXBI"; // YOUR KEY HERE!
         if (!apiKey || apiKey.length < 20) {
-            setRealtimeData('Erro: API Key da NASA não configurada ou inválida no código.');
+            setRealtimeData('Error: NASA API Key not configured or invalid in code.');
             setIsLoading(false);
-            setApiDataLoaded(true); // Marca como carregado (com erro) para não tentar de novo imediatamente
+            setApiDataLoaded(true); // Mark as loaded (with error) so it doesn't try again immediately
             return;
         }
 
-        const today = new Date().toISOString().split('T')[0]; // Data de hoje (YYYY-MM-DD)
-        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 7 dias atrás
+        const today = new Date().toISOString().split('T')[0]; // Today's date (YYYY-MM-DD)
+        const sevenDaysAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 7 days ago
 
         try {
-            // Lógica para Erupções Solares (Flares)
-            if (interactiveNote.title.includes('Erupções Solares (Flares)')) {
+            // Logic for Solar Flares
+            if (interactiveNote.title.includes('Solar Flares')) {
                 const response = await fetch(`https://api.nasa.gov/DONKI/FLR?startDate=${sevenDaysAgo}&endDate=${today}&api_key=${apiKey}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,39 +96,39 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                 let apiResultText;
                 if (data && data.length > 0) {
                     const latestFlare = data.sort((a, b) => new Date(b.beginTime).getTime() - new Date(a.beginTime).getTime())[0];
-                    const flareClass = latestFlare.classType || latestFlare.flr_goescls || 'Desconhecida';
-                    const formattedNote = latestFlare.note ? `Uma curiosidade que os cientistas viram: "${latestFlare.note}"` : '';
+                    const flareClass = latestFlare.classType || latestFlare.flr_goescls || 'Unknown';
+                    const formattedNote = latestFlare.note ? `A curiosity scientists observed: "${latestFlare.note}"` : '';
 
                     apiResultText = (
-                        `Olha só o que o Sol fez recentemente!\n` +
-                        `No dia ${new Date(latestFlare.beginTime).toLocaleDateString('pt-BR')}, por volta das ${new Date(latestFlare.beginTime).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC,\n` +
-                        `houve um grande 'espirro' de luz e energia, uma Erupção Solar de Classe ${flareClass}! As erupções solares são classificadas pelas suas classes A, B, C, M e X, com a classe X a ser a mais energética e a classe A a mais fraca\n` +
-                        `O momento mais forte desse 'espirro' foi às ${new Date(latestFlare.peakTime).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC.\n` +
-                        `Ele veio de uma parte do Sol chamada ${latestFlare.sourceLocation || 'Não especificada'}.\n\n` +
+                        `Look what the Sun did recently!\n` +
+                        `On ${new Date(latestFlare.beginTime).toLocaleDateString('en-US')}, around ${new Date(latestFlare.beginTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC,\n` +
+                        `there was a huge 'sneeze' of light and energy, a Class ${flareClass} Solar Flare! Solar flares are classified by their classes A, B, C, M, and X, with class X being the most energetic and class A the weakest.\n` +
+                        `The strongest moment of this 'sneeze' was at ${new Date(latestFlare.peakTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC.\n` +
+                        `It came from a part of the Sun called ${latestFlare.sourceLocation || 'Not specified'}.\n\n` +
                         `${formattedNote}\n\n`
                     );
                 } else {
-                    apiResultText = 'Nenhuma erupção solar (sopro de fogo) detectada nos últimos 7 dias.';
+                    apiResultText = 'No solar flares (breaths of fire) detected in the last 7 days.';
                 }
                 setRealtimeData(apiResultText);
 
             }
-            // ----- Lógica para Manchas Solares (Active Regions) -----
-            else if (interactiveNote.title.includes('Manchas Solares')) {
+            // ----- Logic for Sunspots (Active Regions) -----
+            else if (interactiveNote.title.includes('Sunspots')) {
                 function getMagClassDescription(magClass) {
-                    if (!magClass) return 'com magnetismo desconhecido';
+                    if (!magClass) return 'with unknown magnetism';
 
                     const lowerMagClass = magClass.toLowerCase();
 
-                    // Simplificação das classes magnéticas para uma descrição infantil
-                    if (lowerMagClass.includes('delta') || lowerMagClass.includes('gamma')) { // BG-D, GD, BGD, G, etc.
-                        return '**magnetismo MUITO apertado e cheio de energia** (potencial para grandes "espirros")';
-                    } else if (lowerMagClass.includes('b')) { // B, BG, BD
-                        return 'magnetismo um pouco apertado (potencial para "espirros" médios)';
-                    } else if (lowerMagClass.includes('alpha') || lowerMagClass === 'a') { // A
-                        return '**magnetismo calmo** (baixo potencial para "espirros")';
+                    // Simplification of magnetic classes for a child-friendly description
+                    if (lowerMagClass.includes('delta') || lowerMagClass.includes('gamma') || lowerMagClass === 'd' || lowerMagClass === 'g' || lowerMagClass === 'bg') { 
+                        return 'VERY tight and energetic magnetism (potential for large "sneezes")';
+                    } else if (lowerMagClass.includes('b') || lowerMagClass === 'b') { 
+                        return 'somewhat tight magnetism (potential for medium "sneezes")';
+                    } else if (lowerMagClass.includes('alpha') || lowerMagClass === 'a') {
+                        return 'calm magnetism (low potential for "sneezes")';
                     }
-                    return '**magnetismo que os cientistas estão observando**';
+                    return 'magnetism that scientists are observing';
                 }
                 try {
                     const response = await fetch(`https://services.swpc.noaa.gov/json/sunspot_report.json`);
@@ -91,65 +138,82 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                     const data = await response.json();
                     let apiResultText = '';
                     if (data && data.length > 0) {
-                        // Ordena os relatórios pela data/hora mais recente para pegar a observação mais nova
+                        // Sort reports by most recent date/time to get the newest observation
                         const sortedReports = data.sort((a, b) => new Date(b.time_tag).getTime() - new Date(a.time_tag).getTime());
-                        const latestReport = sortedReports[0]; // A observação mais recente
+                        const latestReport = sortedReports[0]; // The most recent observation
 
-                        // Contar o número de regiões ativas únicas na observação mais recente (ou no total)
+                        // Count the number of unique active regions in the most recent observation (or total)
                         const uniqueRegions = new Set(data.map(spot => spot.Region));
                         const numberOfActiveRegions = uniqueRegions.size;
 
-                        const regionNum = latestReport.Region || 'Desconhecido';
-                        const location = latestReport.Location || 'Não especificada';
-                        const numSpots = latestReport.Numspot > 0 ? latestReport.Numspot : 'poucas';
-                        const magClass = latestReport.Magclass || 'Não informada';
-                        const magDescription = getMagClassDescription(magClass); // <--- Chama a nova função aqui!
+                        const regionNum = latestReport.Region || 'Unknown';
+                        const location = latestReport.Location || 'Not specified';
+                        const numSpots = latestReport.Numspot > 0 ? latestReport.Numspot : 'few';
+                        const magClass = latestReport.Magclass || 'Not informed';
+                        const magDescription = getMagClassDescription(magClass); // <--- Call the new function here!
 
-                        const obsTime = new Date(latestReport.time_tag).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+                        const obsTime = new Date(latestReport.time_tag).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
 
-                        // Decidir como apresentar a informação
+                        // Decide how to present the information
                         if (numberOfActiveRegions > 1) {
-                            apiResultText = `Os cientistas do NOAA estão observando ${numberOfActiveRegions} regiões ativas com "sombras" no Sol!<br/><br/>` +
-                                `A mais recente observação, de ${obsTime}, detalha a Região Solar #${regionNum}.<br/>` +
-                                `Ela está em ${location}, com ${numSpots} mancha(s) solar(es) e tem um magnetismo de classe ${magClass}, que se caracteriza como um ${magDescription}.<br/>` +
-                                `É nessas áreas com muita energia 'guardada' que Kuarasy pode ter um grande "espirro" (erupção solar)!`;
+                            apiResultText = `NOAA scientists are observing ${numberOfActiveRegions} active regions with "shadows" on the Sun!<br/><br/>` +
+                                `The latest observation, from ${obsTime}, details Solar Region #${regionNum}.<br/>` +
+                                `It is at ${location}, with ${numSpots} sunspot(s) and has a magnetism of class ${magClass}, characterized as ${magDescription}.<br/>` +
+                                `It is in these areas with a lot of 'stored' energy that Kuarasy can have a big "sneeze" (solar flare)!`;
                         } else {
-                            apiResultText = `Os cientistas do NOAA estão observando as "sombras" no Sol!<br/><br/>` +
-                                `A última observação, de **${obsTime}**, detalha a **Região Solar #${regionNum}**.<br/>` +
-                                `Ela está em **${location}**, com **${numSpots} mancha(s) solar(es)** e tem um **magnetismo de classe ${magClass}, que se caracteriza como um ${magDescription}**.<br/>` +
-                                `Essa é a principal área onde Kuarasy está concentrando sua energia, podendo ter "espirros" fortes (erupções solares)!`;
+                            apiResultText = `NOAA scientists are observing the "shadows" on the Sun!<br/><br/>` +
+                                `The last observation, from ${obsTime}, details Solar Region #${regionNum}.<br/>` +
+                                `It is at ${location}, with ${numSpots} sunspot(s) and has a magnetism of class ${magClass}, characterized as ${magDescription}.<br/>` +
+                                `This is the main area where Kuarasy is concentrating its energy, potentially having strong "sneezes" (solar flares)!`;
                         }
 
                     } else {
-                        apiResultText = 'Nenhuma região ativa (mancha solar) significativa detectada no Sol agora. Kuarasy está com o rosto "limpo" e calmo!';
+                        apiResultText = 'No significant active regions (sunspots) detected on the Sun right now. Kuarasy\'s face is "clean" and calm!';
                     }
                     setRealtimeData(apiResultText);
                 } catch (error) {
-                    console.error("Erro ao buscar dados de manchas solares:", error);
-                    setRealtimeData('Erro ao carregar dados de manchas solares. Verifique sua conexão ou a API Key. Tente novamente mais tarde.');
+                    console.error("Error fetching sunspot data:", error);
+                    setRealtimeData('Error loading sunspot data. Check your connection or API Key. Please try again later.');
                 }
             }
-            // ----- Lógica para Vento Solar e Auroras (GST) -----
-            else if (interactiveNote.title.includes('Vento Solar e Auroras')) {
+            // ----- Logic for Solar Wind and Auroras (GST) -----
+            else if (interactiveNote.title.includes('Solar Wind and Auroras')) {
                 const response = await fetch(`https://api.nasa.gov/DONKI/GST?startDate=${sevenDaysAgo}&endDate=${today}&api_key=${apiKey}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
+                const getKpDescription = (kp) => {
+                    if (isNaN(kp)) {
+                        return "Could not retrieve a Kp Index value. Geomagnetic activity is unknown.";
+                    }
+                    
+                    if (kp <= 2) {
+                        return "<b>Low Activity:</b> At this level, auroras are typically far to the north, quite dim, and not very active.";
+                    } else if (kp <= 5) {
+                        return "<b>Moderate Activity:</b> The aurora moves further from the poles, becomes brighter, and shows more activity. A great show if you're in the right place!";
+                    } else if (kp <= 7) {
+                        return "<b>High Activity:</b> The aurora expands, becoming very bright and dynamic. It might be possible to see it from the northern edge of the United States.";
+                    } else { // Kp 8 or 9
+                        return "<b>Extreme Activity (Geomagnetic Storm):</b> The best auroras occur at these levels! They expand towards the equator, becoming very bright and visible to a large number of people.";
+                    }
+                };
 
                 let apiResultText;
                 if (data && data.length > 0) {
                     const latestStorm = data.sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime())[0];
                     const kpValue = latestStorm.allKpIndex && latestStorm.allKpIndex.length > 0 ? latestStorm.allKpIndex[0].kpIndex : 'N/A';
-                    apiResultText = `A tempestade geomagnética mais recente teve um **Nível Kp de ${kpValue}**.<br/><br/>` +
-                        `O Índice Kp mede a agitação do campo magnético da Terra (de 0 a 9). Níveis altos (de 5 para cima) significam uma chance muito maior de ver as luzes mágicas das auroras brilhando no céu!`;
+                    const numericKp = parseInt(kpValue, 10);
+                    const description = getKpDescription(numericKp);
+                    apiResultText = `The most recent geomagnetic storm had a Kp Level of ${kpValue}.<br/> According NOAA, this mean <br/> ${description} <br/><br/>` +
+                        `The Kp Index measures the disturbance of Earth's magnetic field (from 0 to 9). High levels (5 and above) mean a much higher chance of seeing the magical lights of the auroras shining in the sky!`;
                 } else {
-                    apiResultText = 'Nenhuma tempestade geomagnética recente detectada nos últimos 7 dias. Baixa chance de auroras.';
+                    apiResultText = 'No recent geomagnetic storms detected in the last 7 days. Low chance of auroras.';
                 }
                 setRealtimeData(apiResultText);
             }
-            // ----- LÓGICA AQUI para Ejeções de Massa Coronal (CMEs) -----
-            else if (interactiveNote.title.includes('Ejeções de Massa Coronal (CMEs)')) {
+            // ----- LOGIC HERE for Coronal Mass Ejections (CMEs) -----
+            else if (interactiveNote.title.includes('Coronal Mass Ejections (CMEs)')) {
                 const response = await fetch(`https://api.nasa.gov/DONKI/CME?startDate=${sevenDaysAgo}&endDate=${today}&api_key=${apiKey}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -166,52 +230,52 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                         const latestCME = relevantCMEs[0];
                         const analysis = latestCME.cmeAnalyses[0];
 
-                        const startTime = new Date(latestCME.startTime).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'UTC' }) + ' UTC';
-                        const speed = analysis.speed ? `${Math.round(analysis.speed)} km/s` : 'Desconhecida';
-                        const halfAngle = analysis.halfAngle ? `${analysis.halfAngle}°` : 'Desconhecido';
-                        const sourceLocation = latestCME.sourceLocation || 'Não especificada';
-                        const note = latestCME.note || 'Sem detalhes adicionais.';
+                        const startTime = new Date(latestCME.startTime).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short', timeZone: 'UTC' }) + ' UTC';
+                        const speed = analysis.speed ? `${Math.round(analysis.speed)} km/s` : 'Unknown';
+                        const halfAngle = analysis.halfAngle ? `${analysis.halfAngle}°` : 'Unknown';
+                        const sourceLocation = latestCME.sourceLocation || 'Not specified';
+                        const note = latestCME.note || 'No additional details.';
 
-                        let impactStatus = 'Não há previsão de impacto direto na Terra.';
+                        let impactStatus = 'No direct Earth impact predicted.';
                         let arrivalTime = '';
 
                         if (analysis.enlilList && analysis.enlilList.length > 0) {
                             const enlilAnalysis = analysis.enlilList[0];
                             if (enlilAnalysis.isEarthGB) {
-                                impactStatus = 'Pode haver um impacto de "raspão" (leve) na Terra!';
+                                impactStatus = 'There might be a glancing (light) impact on Earth!';
                             } else if (enlilAnalysis.isEarthMinorImpact || enlilAnalysis.isEarthModerateImpact || enlilAnalysis.isEarthHighImpact) {
-                                impactStatus = 'Há previsão de um impacto na Terra!';
+                                impactStatus = 'An impact on Earth is predicted!';
                             }
 
                             if (enlilAnalysis.estimatedShockArrivalTime) {
-                                arrivalTime = `<strong>Previsão de Chegada:</strong> ${new Date(enlilAnalysis.estimatedShockArrivalTime).toLocaleString('pt-BR', { dateStyle: 'full', timeStyle: 'short', timeZone: 'UTC' })} UTC.`;
-                            } else if (impactStatus !== 'Não há previsão de impacto direto na Terra.') {
-                                arrivalTime = '<strong>Ainda não há previsão de horário de chegada.</strong>';
+                                arrivalTime = `<strong>Estimated Arrival:</strong> ${new Date(enlilAnalysis.estimatedShockArrivalTime).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short', timeZone: 'UTC' })} UTC.`;
+                            } else if (impactStatus !== 'No direct Earth impact predicted.') {
+                                arrivalTime = '<strong>No estimated arrival time yet.</strong>';
                             }
                         }
 
                         apiResultText = (
-                            `<h3>Última Ejeção de Massa Coronal (CME) Registrada:</h3>` +
+                            `<h3>Latest Coronal Mass Ejection (CME) Recorded:</h3>` +
                             `<div style="margin-bottom: 1.5rem;">` +
-                            `<strong>Início:</strong> ${startTime}<br />` +
-                            `<strong>Velocidade:</strong> ${speed}<br />` +
-                            `<strong>Ângulo:</strong> ${halfAngle}<br />` +
-                            `<strong>Origem:</strong> ${sourceLocation}<br />` +
-                            `<strong>Impacto na Terra:</strong> ${impactStatus}<br />` +
+                            `<strong>Start:</strong> ${startTime}<br />` +
+                            `<strong>Speed:</strong> ${speed}<br />` +
+                            `<strong>Angle:</strong> ${halfAngle}<br />` +
+                            `<strong>Origin:</strong> ${sourceLocation}<br />` +
+                            `<strong>Earth Impact:</strong> ${impactStatus}<br />` +
                             `${arrivalTime ? `${arrivalTime}<br />` : ''}` +
-                            `<em>Observação dos Cientistas:</em> "${note}"` +
+                            `<em>Scientists' Note:</em> "${note}"` +
                             `</div>`
                         );
 
                     } else {
-                        apiResultText = 'Nenhuma Ejeção de Massa Coronal (suspiro forte) com análise precisa detectada nos últimos 7 dias.';
+                        apiResultText = 'No Coronal Mass Ejection (strong sigh) with accurate analysis detected in the last 7 days.';
                     }
                 } else {
-                    apiResultText = 'Nenhuma Ejeção de Massa Coronal (suspiro forte) detectada nos últimos 7 dias.';
+                    apiResultText = 'No Coronal Mass Ejection (strong sigh) detected in the last 7 days.';
                 }
                 setRealtimeData(apiResultText);
             }
-            else if (interactiveNote.title.includes('Tempestades Geomagnéticas') || interactiveNote.title.includes('Índice Kp')) {
+            else if (interactiveNote.title.includes('Geomagnetic Storms') || interactiveNote.title.includes('Kp Index')) {
                 const response = await fetch(`https://api.nasa.gov/DONKI/GST?startDate=${sevenDaysAgo}&endDate=${today}&api_key=${apiKey}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -226,48 +290,48 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                     let impactAnalysis = '';
                     if (kpValue !== null) {
                         if (kpValue >= 8.5) {
-                            impactAnalysis = `☀️ **G5 – O Sol está rugindo! (Kp=${kpValue.toFixed(1)})**  
-Hoje o Sol está com energia enorme! Pode fazer luzes piscarem, satélites confundirem-se e até algumas cidades perderem energia. Mas se você olhar para o céu, verá auroras incríveis, dançando em lugares onde normalmente não aparecem!`;
+                            impactAnalysis = `This Kp level indicates the G5 scale! – The Sun is roaring! 
+Today the Sun has enormous energy! It can cause lights to flicker, satellites to get confused, and even some cities to lose power. But if you look up, you'll see incredible auroras, dancing in places they normally don't appear!`;
                         } else if (kpValue >= 7.5) {
-                            impactAnalysis = `☀️ **G4 – O Sol está muito agitado! (Kp=${kpValue.toFixed(1)})**  
-O Sol está soprando ventos fortes. Luzes podem oscilar, rádios podem chiar e satélites precisam prestar atenção. Mas também é hora de ver auroras brilhantes e coloridas!`;
+                            impactAnalysis = `This Kp level indicates the G4 scale! – The Sun is very agitated! 
+The Sun is blowing strong winds. Lights may flicker, radios may crackle, and satellites need to pay attention. But it's also time to see bright and colorful auroras!`;
                         } else if (kpValue >= 6.5) {
-                            impactAnalysis = `☀️ **G3 – O Sol está brincando de gigante! (Kp=${kpValue.toFixed(1)})**  
-Alguns aparelhos podem se confundir, e auroras podem aparecer mais ao sul do que o normal. É uma tempestade invisível, mas mágica!`;
+                            impactAnalysis = `This Kp level indicates the G3 scale! – The Sun is playing giant!
+Some devices may get confused, and auroras may appear further south than usual. It's an invisible, yet magical, storm!`;
                         } else if (kpValue >= 5.5) {
-                            impactAnalysis = `☀️ **G2 – O Sol está animado! (Kp=${kpValue.toFixed(1)})**  
-Pequenos problemas em alguns aparelhos podem acontecer, mas nada sério. As auroras já podem ser vistas em lugares altos, como Nova York ou Idaho.`;
+                            impactAnalysis = `This Kp level indicates the G2 scale! – The Sun is excited! 
+Small problems in some devices can happen, but nothing serious. Auroras can already be seen in high places, like New York or Idaho.`;
                         } else if (kpValue >= 5.0) {
-                            impactAnalysis = `☀️ **G1 – O Sol está só resmungando um pouquinho. (Kp=${kpValue.toFixed(1)})**  
-Tudo está calmo na maior parte da Terra. Alguns aparelhos podem notar pequenas falhas, e as auroras aparecem só nas regiões mais ao norte, como Michigan e Maine.`;
+                            impactAnalysis = `This Kp level indicates the G1 scale! – The Sun is just grumbling a little. 
+Everything is calm for most of Earth. Some devices may notice small glitches, and auroras only appear in the northernmost regions, like Michigan and Maine.`;
                         } else {
-                            impactAnalysis = `☀️ **Calmo – Kp=${kpValue.toFixed(1)}**  
-O Sol está tranquilo, descansando e sorrindo. Nenhuma tempestade invisível atrapalha a Terra hoje, e tudo está seguro.`;
+                            impactAnalysis = `☀️ Calm – Kp=${kpValue.toFixed(1)}  
+The Sun is calm, resting and smiling. No invisible storms disrupt Earth today, and everything is safe.`;
                         }
 
-                        apiResultText = `O último registro mostra uma tempestade geomagnética com **Índice Kp de ${kpValue.toFixed(1)}**.<br/><br/>${impactAnalysis}<br/><br/>` +
-                            `🔎 **De onde vem essa história?**  
-As informações sobre o Sol e suas tempestades invisíveis vêm de cientistas de verdade! Eles trabalham na **NASA** e na **NOAA**, observando o espaço com satélites e telescópios.  
-A escala G1 até G5 que usamos é oficial da **NOAA (National Oceanic and Atmospheric Administration)**, que mede o “humor do Sol” e nos ajuda a entender quando ele está calmo ou muito animado.`;
+                        apiResultText = `The latest record shows a geomagnetic storm with a Kp Index of ${kpValue.toFixed(1)}.<br/><br/>${impactAnalysis}<br/><br/>` +
+                            `🔎 Where does this story come from?  
+Information about the Sun and its invisible storms comes from real scientists! They work at NASA and NOAA, observing space with satellites and telescopes.  
+The G1 to G5 scale we use is official from NOAA (National Oceanic and Atmospheric Administration), which measures the "Sun's mood" and helps us understand when it is calm or very excited.`;
                     } else {
-                        apiResultText = 'O Kp não pôde ser calculado desta vez. Talvez o Sol esteja muito calmo ou os dados ainda não chegaram.<br/><br/>' +
-                            `🔎 Mesmo assim, os cientistas da **NASA** e da **NOAA** observam o Sol todos os dias para proteger a Terra e contar a história mágica do céu!`;
+                        apiResultText = 'Kp could not be calculated this time. Perhaps the Sun is very calm or the data has not arrived yet.<br/><br/>' +
+                            `🔎 Even so, NASA and NOAA scientists observe the Sun every day to protect Earth and tell the magical story of the sky!`;
                     }
 
                 } else {
-                    apiResultText = 'Nenhuma tempestade geomagnética significativa detectada nos últimos 7 dias. O Sol e a Terra estão calmos, sem grandes "tempestades invisíveis".<br/><br/>' +
-                        `🔎 **De onde vem essa história?**  
-Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam o espaço todos os dias. A escala G1–G5 mostra quando ele está tranquilo ou agitado, ajudando a proteger a Terra e a entender a magia do céu.`;
+                    apiResultText = 'No significant geomagnetic storms detected in the last 7 days. The Sun and Earth are calm, without major "invisible storms".<br/><br/>' +
+                        `🔎 Where does this story come from?  
+Even when the Sun is calm, NASA and NOAA scientists observe space every day. The G1–G5 scale shows when it's calm or agitated, helping to protect Earth and understand the magic of the sky.`;
                 }
 
                 setRealtimeData(apiResultText);
             }
         } catch (error) {
-            console.error("Erro ao buscar dados da API da NASA:", error);
-            setRealtimeData('Erro ao carregar dados. Verifique sua conexão ou a API Key. Tente novamente mais tarde.');
+            console.error("Error fetching data:", error);
+            setRealtimeData('Error loading data. Check your connection or API Key. Please try again later.');
         } finally {
             setIsLoading(false);
-            setApiDataLoaded(true); // Marca que a tentativa de carregar a API para esta nota foi feita.
+            setApiDataLoaded(true); // Mark that the API attempt for this note has been made.
         }
     };
 
@@ -342,7 +406,7 @@ Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam
                                         rel="noopener noreferrer"
                                         className="more-info-link"
                                     >
-                                        Saiba Mais no NASAs &rarr;
+                                        Learn More &rarr;
                                     </a>
                                 )}
                                 {interactiveNote.source && <em className="source-text">{interactiveNote.source}</em>}
@@ -352,11 +416,32 @@ Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam
                 )}
             </div>
 
+            {/* Componente de Áudio (visível, mas pode ser estilizado para ficar escondido ou como um controle pequeno) */}
+            <div className="audio-controls">
+                <audio ref={audioRef} />
+                {audioSrc && ( // Só mostra os controles se houver um arquivo de áudio
+                    <>
+                        <button onClick={togglePlayPauseAudio}>
+                            {isPlaying ? '⏸️' : '▶️'}
+                        </button>
+                        <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            defaultValue="0.5" // Volume inicial
+                            onChange={changeAudioVolume}
+                            title="Volume da música"
+                        />
+                    </>
+                )}
+            </div>
+
             <style jsx>{`
-                /* --- MUDANÇAS PRINCIPAIS AQUI --- */
+                /* Estilos existentes */
                 .book-page-container {
                     display: flex;
-                    align-items: flex-start; /* Alinha os itens ao topo */
+                    align-items: flex-start;
                     width: 100%;
                     max-width: 1100px;
                     margin: 2rem auto;
@@ -377,22 +462,20 @@ Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam
                     align-items: center;
                     justify-content: center;
                     background-color: #e0d8c0;
-                    /* A altura da imagem vai ditar a altura desta div */
                 }
 
                 .right-page {
                     padding: 3rem;
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+                    justify-content: flex-start;
                     font-family: 'Georgia', serif;
-                    font-size: 1.1em;
+                    font-size: 1.4em;
                     line-height: 1.7;
                     color: #4a4a4a;
                     border-left: 1px dashed #dcd3b8;
-                    min-height: 100%; /* Garante que a borda se estenda se a imagem for muito alta */
+                    min-height: 100%;
                 }
-                /* --- FIM DAS MUDANÇAS --- */
                 
                 .interactive-section { margin-top: 2rem; }
                 button {
@@ -441,6 +524,69 @@ Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam
                     text-decoration: underline;
                 }
 
+                /* Estilos para os controles de áudio */
+                .audio-controls {
+                position: fixed;
+                top: 20px;            /* Agora fica no topo */
+                right: 20px;          /* Encostado à direita */
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background-color: rgba(255, 255, 255, 0.85);
+                padding: 10px 15px;
+                border-radius: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+                z-index: 1000;
+            }
+
+                .audio-controls button {
+                    background-color: #333;
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    font-size: 1.2em;
+                    line-height: 1; /* Para centralizar o ícone */
+                    padding: 0;
+                }
+                .audio-controls button:hover {
+                    background-color: #555;
+                }
+                .audio-controls input[type="range"] {
+                    width: 100px;
+                    -webkit-appearance: none;
+                    height: 5px;
+                    background: #ddd;
+                    outline: none;
+                    opacity: 0.7;
+                    transition: opacity .2s;
+                }
+                .audio-controls input[type="range"]:hover {
+                    opacity: 1;
+                }
+                .audio-controls input[type="range"]::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    background: #8b4513;
+                    cursor: pointer;
+                }
+                .audio-controls input[type="range"]::-moz-range-thumb {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    background: #8b4513;
+                    cursor: pointer;
+                }
+
+
                 @media (max-width: 768px) {
                     .book-page-container {
                         flex-direction: column;
@@ -452,6 +598,14 @@ Mesmo quando o Sol está calmo, os cientistas da **NASA** e da **NOAA** observam
                         padding: 1.5rem;
                         border-left: none;
                         border-top: 1px dashed #dcd3b8;
+                    }
+                    .audio-controls {
+                        bottom: 10px;
+                        left: 10px;
+                        transform: translateX(0); /* Remove a centralização para telas pequenas */
+                        width: auto; /* Permite que os controles se ajustem ao conteúdo */
+                        right: 10px; /* Alinha à direita também */
+                        justify-content: center; /* Centraliza o conteúdo dentro dos controles */
                     }
                 }
             `}</style>

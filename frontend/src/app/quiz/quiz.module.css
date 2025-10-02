@@ -1,0 +1,267 @@
+/* src/app/quiz.module.css */
+
+.quizContainer {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    padding: 25px;              /* reduzi de 40px → 25px */     /* reduzi de 40px → 20px */
+    max-width: 600px;           /* reduzi de 900px → 700px */
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.05); /* sombra mais leve */
+    color: #ecf0f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin: 40px auto;          /* reduzi de 60px → 40px */
+}
+
+.quizTitle {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+.quizDescription {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #bdc3c7;
+}
+
+.startButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.startButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+}
+
+.questionCounter {
+    font-size: 1rem;
+    color: #9b59b6;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.questionText {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.optionButton {
+    background-color: #333;
+    color: #ecf0f1;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    width: 100%;
+}
+
+.optionButton:hover:not(:disabled) {
+    background-color: #444;
+    border-color: #3498db;
+}
+
+.optionButton.selected {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: white;
+}
+
+.optionButton.correct {
+    background-color: #27ae60; /* Verde para correto */
+    border-color: #27ae60;
+    color: white;
+}
+
+.optionButton.incorrect {
+    background-color: #e74c3c; /* Vermelho para incorreto */
+    border-color: #e74c3c;
+    color: white;
+}
+
+.optionButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Garante que opções não selecionadas fiquem desabilitadas mas com cor padrão */
+.optionButton.disabled {
+    background-color: #333; /* Mantém a cor original */
+    border-color: #555;
+    color: #ecf0f1;
+    opacity: 0.5; /* Reduz um pouco a opacidade */
+}
+
+.feedbackContainer {
+    min-height: 0;       /* remove espaço fixo exagerado */
+    margin-top: 10px;    /* um pouco de distância do botão */
+    margin-bottom: 15px; /* espaço antes do próximo elemento */
+    text-align: center;
+}
+
+
+.correctText {
+    color: #27ae60;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.incorrectText {
+    color: #e74c3c;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.warningText {
+    color: #f1c40f;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.explanationText {
+    font-size: 1rem;
+    color: #bdc3c7;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.quizNavigation {
+    margin-top: 5px;   /* aproxima o botão das opções */
+    margin-bottom: 20px; /* mantém espaçamento antes do feedback */
+}
+.quizWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px; /* espaço entre quiz e painel de feedback */
+    margin-top: 20px;
+}
+
+
+.submitButton,
+.nextButton,
+.restartButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    min-width: 180px;
+}
+
+.submitButton:hover:not(:disabled),
+.nextButton:hover:not(:disabled),
+.restartButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.5);
+}
+
+.submitButton:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.resultsContainer {
+    padding: 60px 40px;
+}
+
+.quizScore {
+    font-size: 1.8rem;
+    color: #9b59b6;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.quizFeedback {
+    font-size: 1.2rem;
+    color: #ecf0f1;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .quizContainer {
+        margin: 20px auto;
+        padding: 25px;
+        max-width: 95%;
+    }
+
+    .quizTitle {
+        font-size: 1.8rem;
+    }
+
+    .questionText {
+        font-size: 1.3rem;
+    }
+
+    .optionButton {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    .submitButton,
+    .nextButton,
+    .restartButton {
+        font-size: 1rem;
+        padding: 10px 20px;
+        min-width: 150px;
+    }
+}
+.feedbackPopup {
+    position: fixed; /* flutua sobre todo o conteúdo */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    border-radius: 15px;
+    padding: 25px 30px;
+    min-width: 280px;
+    max-width: 350px;
+    color: #ecf0f1;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    z-index: 1000;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.feedbackPopup .correctText { color: #27ae60; font-weight: 600; font-size: 1.1rem; }
+.feedbackPopup .incorrectText { color: #e74c3c; font-weight: 600; font-size: 1.1rem; }
+.feedbackPopup .warningText { color: #f1c40f; font-weight: 500; font-size: 1rem; }
+.feedbackPopup .explanationText { margin-top: 10px; color: #bdc3c7; line-height: 1.4; font-size: 0.95rem; }
+
+/* fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -55%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+

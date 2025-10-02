@@ -1,0 +1,129 @@
+/* /src/app/impactos/impactos.css */
+
+/* --- Configuração Geral da Página --- */
+body {
+  background-color: #f8f9fa; /* Um fundo cinza muito claro para dar profundidade */
+}
+
+.impactos-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* --- Cabeçalho da Página --- */
+.impactos-header {
+  margin-bottom: 60px;
+}
+.story-media-container {
+  position: relative; /* ESSENCIAL: Torna este o contêiner de referência */
+  width: 100%;
+  max-height: 90vh; /* Mantém sua regra de altura máxima */
+  height: auto;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+}
+.story-media-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem cobrir todo o espaço sem distorcer */
+  display: block; /* Evita pequenos espaços em branco que a tag <img> pode criar */
+}
+
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #5a6a7a;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Grade de Cards --- */
+.impacto-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 35px;
+  text-align: left;
+}
+
+/* --- Estilo do Card Individual --- */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-link:hover {
+  transform: translateY(-10px);
+}
+
+.impacto-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e9ecef;
+}
+
+.card-link:hover .impacto-card {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Conteúdo do Card --- */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.impacto-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.card-header h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.card-summary {
+  flex-grow: 1; /* Garante que as tags fiquem alinhadas na base */
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #5a6a7a;
+  margin-bottom: 25px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}

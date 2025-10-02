@@ -8,17 +8,18 @@ export default function HistoriasIndexPage() {
         <>
             <Navbar />
             <div className="chapters-container">
-                <h1 className="main-title">Descubra as Histórias de Kuarasy!</h1>
+                <h1 className="main-title">Discover the Stories of Kuarasy!</h1>
 
                 <div className="about-book-section">
-                    <p><strong>Olá, explorador! Prepare-se para uma aventura incrível pelo espaço e pelo tempo com Kuarasy, nosso guia solar.</strong></p>
-                    <p>Neste livro, vamos viajar para encontrar povos antigos de diferentes culturas. Você vai ler histórias inspiradas nas mitologias e lendas que eles criaram para explicar os mistérios do Sol e do céu. <span className="highlight-text">É importante lembrar que essas histórias são uma forma divertida e imaginativa de contar como o Sol funciona.</span></p>
-                    <p><span className="highlight-text">Nós vamos 'brincar' com a ideia de que esses povos percebiam fenômenos solares, mesmo que eles não tivessem o mesmo conhecimento científico que nós temos hoje. Pense nisso como uma ponte mágica entre o mundo das lendas e o mundo da ciência real!</span></p>
-                    <p>Quando você vir as Notas Interativas, Kuarasy vai te mostrar a ciência de verdade, com fatos e dados fresquinhos da NASA, sobre o que realmente acontece no Sol e como ele afeta a Terra.</p>
-                    <p>Esperamos que você ame essa jornada, onde lendas e ciência se encontram para desvendar os segredos do nosso astro-rei!</p>
+                    <p><strong>Hello, explorer! Get ready for an incredible adventure through space and time with Kuarasy, our solar guide.</strong></p>
+                    <p>In this book, we will travel to meet ancient peoples from different cultures. You will read stories inspired by the mythologies and legends they created to explain the mysteries of the Sun and the sky. <span className="highlight-text">It is important to remember that these stories are a fun and imaginative way to explain how the Sun works.</span></p>
+                    <p><span className="highlight-text">We will 'play' with the idea that these people perceived solar phenomena, even if they did not have the same scientific knowledge that we have today. Think of it as a magical bridge between the world of legends and the world of real science!</span></p>
+                    <p>When you see the Interactive Notes, Kuarasy will show you real science, with fresh facts and data from NASA, about what really happens on the Sun and how it affects Earth.</p>
+                    <p>We hope you love this journey, where legends and science meet to unravel the secrets of our Sun!</p>
+
                 </div>
 
-                <h2 className="chapters-heading">Nossos Capítulos:</h2>
+                <h2 className="chapters-heading">Chapters:</h2>
                 
                 {/* Renderiza o Client Component, passando os dados como props */}
                 <ChapterList libraryData={libraryData} />

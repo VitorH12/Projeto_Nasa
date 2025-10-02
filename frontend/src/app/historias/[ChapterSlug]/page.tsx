@@ -1,25 +1,43 @@
-import { notFound } from 'next/navigation';
-import { libraryData } from '../../../data/libraryData'; // Ajuste o caminho
-import StoryViewer from '@/../../components/StoryViewer';
+// /app/historias/[slug]/page.tsx (Exemplo de como ficaria)
+'use client';
 
-// Define os parâmetros estáticos para build (se usar SSG)
-export async function generateStaticParams() {
-    return Object.keys(libraryData).map((slug) => ({
-        chapterSlug: slug,
-    }));
-}
+import React from 'react';
+import { notFound, useParams } from 'next/navigation';
+import { libraryData } from '../../../data/libraryData'; // Seus dados dos capítulos
+import StoryViewer from '../../../../components/StoryViewer';
+import Navbar from '../../../../components/Navbar';
 
-export default function ChapterPage({ params }) {
-    const { chapterSlug } = params;
-    const chapter = libraryData[chapterSlug];
+type ChapterSlug = keyof typeof libraryData;
 
-    if (!chapter) {
-        notFound(); // Redireciona para a página 404 se o capítulo não for encontrado
-    }
+export default function ChapterPage() {
+  const params = useParams();
+  const slug = params.slug as ChapterSlug;
+  const chapterData = libraryData[slug];
 
-    return (
-        <main>
-            <StoryViewer chapterData={chapter} chapterSlug={chapterSlug} />
-        </main>
-    );
+  if (!chapterData) {
+    return notFound();
+  }
+
+  // --- LÓGICA ADICIONADA ---
+  // 1. Pegue a lista ordenada de todos os capítulos
+  const chapterSlugs = Object.keys(libraryData);
+  // 2. Encontre o índice do capítulo atual
+  const currentChapterIndex = chapterSlugs.indexOf(slug);
+  // 3. Determine qual é o próximo capítulo (se houver)
+  const nextChapterSlug = 
+    currentChapterIndex < chapterSlugs.length - 1 
+      ? chapterSlugs[currentChapterIndex + 1] 
+      : null;
+  // --- FIM DA LÓGICA ADICIONADA ---
+
+  return (
+    <>
+      <Navbar />
+      <StoryViewer
+        chapterData={chapterData}
+        handlebacktomenu="/historias" // Define o caminho base para voltar ao menu
+        nextChapterSlug={nextChapterSlug} // <-- 4. Passe o slug do próximo capítulo como prop
+      />
+    </>
+  );
 }

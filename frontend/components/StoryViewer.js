@@ -42,18 +42,19 @@ export default function StoryViewer({ chapterData, chapterSlug }) {
                 imageAlt={currentPage.imageAlt}
                 storyText={currentPage.storyText}
                 interactiveNote={currentPage.interactiveNote}
+                audioSrc={chapterData.audioSrc}
             />
             <div className="navigation-controls">
                 <button onClick={handlePreviousPage} disabled={currentPageIndex === 0}>
-                    Página Anterior
+                    Previous Page
                 </button>
                 {/* NOVO BOTÃO AQUI */}
                 <button onClick={handleBackToMenu} className="back-to-menu-button">
-                    Voltar para o Menu
+                    Back to Menu
                 </button>
                 {/* FIM DO NOVO BOTÃO */}
                 <button onClick={handleNextPage} disabled={currentPageIndex === pages.length - 1}>
-                    Próxima Página
+                    Next Page
                 </button>
             </div>
 
