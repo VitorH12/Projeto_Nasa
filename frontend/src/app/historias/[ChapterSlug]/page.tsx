@@ -1,76 +1,38 @@
-// src/components/StoryViewer.js
-'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import StoryPage from '../../../../components/StoryPage';
+// src/app/historias/[slug]/page.tsx
+import { notFound } from "next/navigation";
+import { libraryData } from "../../../data/libraryData"; 
+import StoryViewer from "../../../../components/StoryViewer";
+import Navbar from "../../../../components/Navbar";
 
-// ATENÇÃO: Adicione 'nextChapterSlug' como uma prop recebida
-export default function StoryViewer({ chapterData, handlebacktomenu, nextChapterSlug }) {
-    const [currentPageIndex, setCurrentPageIndex] = useState(0);
-    const pages = chapterData.pages;
-    const router = useRouter();
+type ChapterSlug = keyof typeof libraryData;
 
-    // VARIÁVEL ADICIONADA: Facilita a verificação se estamos na última página
-    const isLastPage = currentPageIndex === pages.length - 1;
+interface ChapterPageProps {
+  params: { slug: string };
+}
 
-    // LÓGICA ATUALIZADA: Agora lida com o próximo capítulo
-    const handleNextPage = () => {
-        if (!isLastPage) {
-            // Se não for a última página, apenas avança para a próxima
-            setCurrentPageIndex(currentPageIndex + 1);
-        } else if (nextChapterSlug) {
-            // Se for a última página E existir um próximo capítulo, navega para ele
-            router.push(`/historias/${nextChapterSlug}`);
-        } else {
-            // Se for a última página do último capítulo, volta para o menu
-            router.push(handlebacktomenu);
-        }
-    };
+export default function ChapterPage({ params }: ChapterPageProps) {
+  const slug = params.slug as ChapterSlug;
+  const chapterData = libraryData[slug];
 
-    const handlePreviousPage = () => {
-        if (currentPageIndex > 0) {
-            setCurrentPageIndex(currentPageIndex - 1);
-        }
-    };
+  if (!chapterData) {
+    notFound();
+  }
 
-    const handleBackToMenu = () => {
-        router.push(handlebacktomenu);
-    };
+  // Ordena os capítulos e acha o próximo
+  const chapterSlugs = Object.keys(libraryData);
+  const currentChapterIndex = chapterSlugs.indexOf(slug);
+  const nextChapterSlug =
+    currentChapterIndex < chapterSlugs.length - 1
+      ? chapterSlugs[currentChapterIndex + 1]
+      : null;
 
-    const currentPage = pages[currentPageIndex];
-
-    if (!currentPage) {
-        return <p>Página não encontrada neste capítulo.</p>;
-    }
-
-    return (
-        <div className="story-viewer-container">
-            <StoryPage
-               imageSrc={currentPage.imageSrc}
-                imageAlt={currentPage.imageAlt}
-                storyText={currentPage.storyText}
-                interactiveNote={currentPage.interactiveNote}
-                audioSrc={chapterData.audioSrc}
-
-  
-            />
-            <div className="navigation-controls">
-                <button onClick={handlePreviousPage} disabled={currentPageIndex === 0}>
-                    Previous Page
-                </button>
-                <button onClick={handleBackToMenu} className="back-to-menu-button">
-                    Back to Menu
-                </button>
-                
-                {/* BOTÃO ATUALIZADO: O texto e o estado 'disabled' agora são dinâmicos */}
-                <button onClick={handleNextPage} disabled={isLastPage && !nextChapterSlug}>
-                    {isLastPage && nextChapterSlug ? 'Next Chapter' : 'Next Page'}
-                </button>
-            </div>
-
-            <style jsx>{`
-                /* Seus estilos JSX aqui, sem alterações necessárias */
-            `}</style>
-        </div>
-    );
+  return (
+    <>
+      <Navbar />
+      <StoryViewer
+        chapterData={chapterData}
+        chapterSlug={slug}
+      />
+    </>
+  );
 }
