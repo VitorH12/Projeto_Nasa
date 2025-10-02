@@ -6,11 +6,7 @@ import Navbar from "../../../../components/Navbar";
 
 type ChapterSlug = keyof typeof libraryData;
 
-interface ChapterPageProps {
-  params: { slug: string };
-}
-
-export default function ChapterPage({ params }: ChapterPageProps) {
+export default function ChapterPage({ params }: { params: { slug: string } }) {
   const slug = params.slug as ChapterSlug;
   const chapterData = libraryData[slug];
 
