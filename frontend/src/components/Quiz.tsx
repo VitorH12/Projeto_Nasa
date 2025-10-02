@@ -1,10 +1,10 @@
 // src/components/Quiz.tsx
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { quizData } from '../data/quizData';
-import { Question } from '../app/quiz/quiz.d'; // Importa a interface Question - VERIFIQUE ESTE CAMINHO
-import styles from '../app/quiz/quiz.module.css'; // Criaremos este CSS depois - VERIFIQUE ESTE CAMINHO
+import { Question } from '../app/quiz/quiz.d'; // Imports the Question interface - CHECK THIS PATH
+import styles from '../app/quiz/quiz.module.css'; // We'll create this CSS later - CHECK THIS PATH
 
 export default function Quiz() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -14,18 +14,8 @@ export default function Quiz() {
     const [showResults, setShowResults] = useState<boolean>(false);
     const [quizStarted, setQuizStarted] = useState<boolean>(false);
 
-    // Para garantir que as perguntas sejam re-embaralhadas a cada reinício
+    // To ensure questions are re-shuffled on every restart
     const [randomQuestions, setRandomQuestions] = useState<Question[]>([]);
-
-    // --- REMOVA ESTA LINHA ---
-    // const questions: Question[] = useMemo(() => {
-    //     const shuffled = [...quizData].sort(() => 0.5 - Math.random());
-    //     return shuffled.slice(0, 8);
-    // }, []);
-
-    // --- REMOVA ESTA LINHA ---
-    // const currentQuestion: Question = questions[currentQuestionIndex];
-
 
     useEffect(() => {
         if (quizStarted && randomQuestions.length === 0) {
@@ -34,38 +24,37 @@ export default function Quiz() {
         }
     }, [quizStarted, randomQuestions.length]);
 
-
-    // Se o quiz não tiver começado, não tentamos acessar currentQuestion
+    // If the quiz hasn't started, we don't try to access currentQuestion
     if (!quizStarted) {
         return (
             <div className={styles.quizContainer}>
-                <h1 className={styles.quizTitle}>Teste Seus Conhecimentos sobre o Sol!</h1>
+                <h1 className={styles.quizTitle}>Test Your Knowledge About the Sun!</h1>
                 <p className={styles.quizDescription}>
-                    Prepare-se para responder a 8 perguntas aleatórias sobre os mistérios de Kuarasy e o Clima Espacial.
-                    Será que você ouviu bem a história?
+                    Get ready to answer 8 random questions about the mysteries of Kuarasy and Space Weather.
+                    Did you listen carefully to the story?
                 </p>
                 <button onClick={() => {
                     setQuizStarted(true);
-                    // Garante que as perguntas sejam embaralhadas ao iniciar
+                    // Ensures questions are shuffled upon starting
                     const shuffled = [...quizData].sort(() => 0.5 - Math.random());
                     setRandomQuestions(shuffled.slice(0, 8));
                 }} className={styles.startButton}>
-                    Começar o Quiz!
+                    Start the Quiz!
                 </button>
             </div>
         );
     }
     
-    // Se ainda não carregou as perguntas aleatórias (primeira vez após iniciar)
+    // If it still hasn't loaded the random questions (first time after starting)
     if (randomQuestions.length === 0) {
         return (
             <div className={styles.quizContainer}>
-                <p className={styles.quizDescription}>Carregando perguntas...</p>
+                <p className={styles.quizDescription}>Loading questions...</p>
             </div>
         );
     }
 
-    // AGORA SIM, use currentQuizQuestion para TUDO relacionado à pergunta atual
+    // NOW, use currentQuizQuestion for EVERYTHING related to the current question
     const currentQuizQuestion: Question = randomQuestions[currentQuestionIndex];
 
     const handleOptionSelect = (option: string) => {
@@ -79,7 +68,6 @@ export default function Quiz() {
             return;
         }
 
-        // CORREÇÃO AQUI: Compare com currentQuizQuestion.correctAnswer
         if (selectedOption === currentQuizQuestion.correctAnswer) {
             setScore(prevScore => prevScore + 1);
             setFeedback('correct');
@@ -91,7 +79,6 @@ export default function Quiz() {
     const handleNextQuestion = () => {
         setFeedback('');
         setSelectedOption(null);
-        // CORREÇÃO AQUI: Use randomQuestions.length
         if (currentQuestionIndex < randomQuestions.length - 1) {
             setCurrentQuestionIndex(prevIndex => prevIndex + 1);
         } else {
@@ -105,22 +92,22 @@ export default function Quiz() {
         setFeedback('');
         setScore(0);
         setShowResults(false);
-        setQuizStarted(false); // Volta para a tela inicial para re-embaralhar
-        setRandomQuestions([]); // Limpa as perguntas para que o useEffect re-embaralhe no próximo início
+        setQuizStarted(false); // Go back to the initial screen to re-shuffle
+        setRandomQuestions([]); // Clear questions so the useEffect re-shuffles on the next start
     };
 
     if (showResults) {
         return (
             <div className={`${styles.quizContainer} ${styles.resultsContainer}`}>
-                <h2 className={styles.quizTitle}>Quiz Concluído!</h2>
-                <p className={styles.quizScore}>Sua pontuação final: {score} de {randomQuestions.length}</p>
+                <h2 className={styles.quizTitle}>Quiz Completed!</h2>
+                <p className={styles.quizScore}>Your final score: {score} out of {randomQuestions.length}</p>
                 <p className={styles.quizFeedback}>
-                    {score === randomQuestions.length ? "Parabéns, você é um mestre do Clima Espacial!" :
-                     score >= randomQuestions.length / 2 ? "Muito bom! Você aprendeu bastante sobre Kuarasy." :
-                     "Continue explorando! Há mais segredos do Sol para descobrir."}
+                    {score === randomQuestions.length ? "Congratulations, you're a master of Space Weather!" :
+                     score >= randomQuestions.length / 2 ? "Great job! You've learned a lot about Kuarasy." :
+                     "Keep exploring! There are more secrets of the Sun to discover."}
                 </p>
                 <button onClick={handleRestartQuiz} className={styles.restartButton}>
-                    Tentar Novamente
+                    Try Again
                 </button>
             </div>
         );
@@ -128,9 +115,9 @@ export default function Quiz() {
 
     return (
         <div className={styles.quizContainer}>
-            <h2 className={styles.quizTitle}>Quiz sobre o Sol e Clima Espacial</h2>
+            <h2 className={styles.quizTitle}>Quiz on the Sun and Space Weather</h2>
             <div className={styles.questionCounter}>
-                Questão {currentQuestionIndex + 1} de {randomQuestions.length}
+                Question {currentQuestionIndex + 1} of {randomQuestions.length}
             </div>
             <p className={styles.questionText}>{currentQuizQuestion.question}</p>
 
@@ -158,35 +145,34 @@ export default function Quiz() {
                         className={styles.submitButton}
                         disabled={!selectedOption}
                     >
-                        Confirmar Resposta
+                        Confirm Answer
                     </button>
                 ) : (
                     <button
                         onClick={handleNextQuestion}
                         className={styles.nextButton}
                     >
-                        {currentQuestionIndex < randomQuestions.length - 1 ? 'Próxima Questão' : 'Ver Resultados'}
+                        {currentQuestionIndex < randomQuestions.length - 1 ? 'Next Question' : 'See Results'}
                     </button>
                 )}
             </div>
 
-            {/* Popup de feedback */}
+            {/* Feedback Popup */}
             {feedback && (
                 <div className={styles.feedbackPopup}>
                     {feedback === 'correct' && <>
-                        <p className={styles.correctText}>Correto! 🎉</p>
+                        <p className={styles.correctText}>Correct! 🎉</p>
                         <p className={styles.explanationText}>{currentQuizQuestion.explanation}</p>
                     </>}
                     {feedback === 'incorrect' && <>
                         <p className={styles.incorrectText}>
-                            Incorreto. A resposta certa era: {currentQuizQuestion.correctAnswer} 😔
+                            Incorrect. The right answer was: {currentQuizQuestion.correctAnswer} 😔
                         </p>
                         <p className={styles.explanationText}>{currentQuizQuestion.explanation}</p>
                     </>}
-                    {feedback === 'warning' && <p className={styles.warningText}>Por favor, selecione uma opção!</p>}
+                    {feedback === 'warning' && <p className={styles.warningText}>Please select an option!</p>}
                 </div>
             )}
         </div>
-
-);
+    );
 }
