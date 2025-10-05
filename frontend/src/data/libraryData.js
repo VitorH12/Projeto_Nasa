@@ -3,9 +3,7 @@
 export const libraryData = {
     babilonios: { // CAUSA 1: Manchas Solares - a origem da atividade
         title: "Chapter 1: The Babylonians and the Shadows on the Sun's Face",
-        summary: "Journey back in time to ancient Babylonia and explore how they sought signs in the " +
-                 "Sun's shadows, and what modern science reveals about Sunspots, " +
-                 "the true birthplace of solar energy.",
+        summary: "Travel to ancient Babylon and discover how the Babylonians interpreted the 'shadows' on the Sun's face, what science tells us about them, and how they are the origin of solar activity.",
         coverImage: "/covers/babilonia-cover.png",
         audioSrc: "/audio/babilonia-audio.mp3",
         pages: [
@@ -51,9 +49,7 @@ export const libraryData = {
     },
     maori: { // CAUSA 2: Erupções Solares (Flares) - primeiro efeito das manchas
         title: "Chapter 2: The Māori and the Breaths of Fire",
-        summary: "Discover the legend of Kuarasy and the powerful 'breaths of fire' that paint the sky, " +
-                 "what science has to say about them, and how they are born from " +
-                 "Sunspots.",
+        summary: "Discover the Māori's connection to the Sun and learn about solar flares, the 'breaths of fire' that come from the Sunspots, and how they can affect Earth.",
         coverImage: "/covers/maori-cover.png",
         audioSrc: "/audio/maori-audio.mp3",
         pages: [
@@ -80,14 +76,14 @@ export const libraryData = {
             {
                 imageSrc: '/maori-6.png',
                 imageAlt: 'Kuarasy com a menina Maori e o velho Maori',
-                storyText: 'The old fisherman approached, serious.<br/>— There are days when the Sun says goodbye in a... different way. The sky fills with such an intense red that it seems as if the air itself is on fire. We never understand why',
+                storyText: 'There are days when the Sun says goodbye in a… different way. The sky glows red and gold, like flames dancing across the clouds. We don’t know why, but it feels as if the Sun is stretching its arms a little longer, sending sparks of its own stories across the world before night falls.',
             },
             {
                 imageSrc: '/maori-7.png',
                 imageAlt: 'Kuarasy com a menina Maori',
-                storyText: "This fire in the sky is the echo of the Sun's breath! The energy that gathers in the Sun's shadows (sunspots) explodes and spreads into light. You do not see this fiery breath directly, but you feel its energy. It is a force so powerful that, when it touches Earth's upper atmosphere, it makes the very air glow with my colors.", // Linka de volta para manchas solares
+                storyText: "This fire in the sky is the Sun sending out bursts of energy! Sometimes, the dark spots on its surface, called sunspots, store up so much power that they suddenly explode. These explosions shoot waves of energy and light into space. You cannot see this energy itself, but it is strong enough that we can feel its presence here on Earth as warmth, light, or even tiny shakes in the Sun’s invisible wind.", // Linka de volta para manchas solares
                 interactiveNote: {
-                    buttonText: 'What are these "breaths of fire"?',
+                    buttonText: 'What are this "bursts of energy"?',
                     title: '🔆 Solar Flares',
                     content: 'Māori legends tried to explain the mysteries of the sky. Today, science shows us that the Sun has energy explosions called Solar Flares! They originate in Sunspot regions, where magnetic energy accumulates and is suddenly released. Although we cannot see them directly, their radiation can energize the upper atmosphere, intensifying the colors of sunrise and sunset. An intense Flare can also be the beginning of a powerful sigh from the Sun, which we\'ll see next!', // Prepara para CMEs
                     realtimeDataText: 'Connecting to NASA for real-time data...',
@@ -132,9 +128,9 @@ export const libraryData = {
             {
                 imageSrc: '/incas-6.png',
                 imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: "A child, who had been watching intently, finally had the courage to look into Kuarasy's golden eyes. - So Inti never truly abandons us? Not even when he breathes so heavily? - Never, Kuarasy replied, touching the top of the child's head. - But he wishes to be understood in his fullness, not just worshipped in his mysteries.",
+                storyText: "A child, who had been watching intently, finally had the courage to look into Kuarasy's golden eyes. - So Inti never truly abandons us? Not even when he sighs so heavily? - Never, Kuarasy replied, touching the top of the child's head. - But he wishes to be understood in his fullness, not just worshipped in his mysteries.",
                 interactiveNote: {
-                    buttonText: 'What is the Sun\'s "strong sigh"?',
+                    buttonText: 'What is the Sun\'s "sigh"?',
                     title: '☀️ Coronal Mass Ejections (CMEs)',
                     content: 'A long time ago, the Incas celebrated Inti Raymi to ensure the Sun would return after winter. Today, we don\'t fear the Sun disappearing, but that it might give us a very "strong sigh"! The Sun, which is a great ball of fire, sometimes releases a giant "sigh" of plasma (hot gas), called a Coronal Mass Ejection (CME). This "sigh" is so powerful that, if it comes close to Earth, it can cause a magnetic storm. It is a much larger release of material than Solar Flares, which we saw earlier. A CME takes longer to reach Earth, but carries much more energy and matter, potentially causing an even stronger "breath" from the Sun!', // Linka CMEs a Flares e prepara para Vento Solar
                     realtimeDataText: 'Checking for recent CMEs...',
@@ -143,54 +139,54 @@ export const libraryData = {
             }
         ]
     },
-    egipcios: { // EFEITO 1: Vento Solar e Auroras - o "hálito" constante
-        title: "Chapter 4: The Egyptians and Ra's Breath (Solar Wind)",
-        summary: "Learn about the god Ra and how the Sun's constant 'breath' creates the beautiful " +
-                 "lights of the auroras, with datas, and how 'strong sighs' can " +
-                 "intensify this breath.",
-        coverImage: "/covers/egito-cover.png",
-        audioSrc: "/audio/egipcios-audio.mp3",
-        pages: [
-            {
-                imageSrc: '/egito-1.png',
-                imageAlt: 'Kuarasy às margens do Nilo',
-                storyText: 'On the banks of the Nile River, the people gathered in celebration. Priests carried golden boats, while children cast flowers upon the waters',
-            },
-            {
-                imageSrc: '/egito-2.png',
-                imageAlt: 'Crianças egípcias vendo uma aurora',
-                storyText: 'A priestess raised her voice: "Ra is reborn once again! May his boat never fail to cross the sky!"',
-            },
-            {
-                imageSrc: '/egito-3.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: 'Kuarasy moved, smiling.<br/>— You celebrate his voyage, but do you know that, as he sails, Ra blows a constant and invisible breath? A wind that crosses space, made of small particles. And, sometimes, a strong sigh from the Sun (the CMEs) makes this breath even denser and more powerful!', // Linka com CMEs
-            },
-            {
-                imageSrc: '/egito-4.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: 'The priestess shuddered:<br/>— An invisible breath?<br/>— Yes. It dances until it reaches the Earth. And when it arrives... the sky also dances, creating wonderful colors, especially in the distant lands of the north and south.',
-            },
-            {
-                imageSrc: '/egito-5.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: 'A kid, who was listening to the conversation, shouted:<br/>— The colored lights in the sky? Like the paintings of the gods?',
-            },
-            {
-                imageSrc: '/egito-6.png',
-                imageAlt: 'Kuarasy com a sacerdotisa egípcia',
-                storyText: "-Exactly, said Kuarasy. - You will call them Auroras. They are the gift of Ra's breath, proof that my energy reaches us even in the night. And the stronger my breath or the louder sigh that escapes me, the more vibrant and spectacular these dancing lights will be!", // Linka com CMEs e Vento Solar
-                interactiveNote: {
-                    buttonText: 'How does the Sun\'s "breath" paint the sky?',
-                    title: '🌌 Solar Wind and Auroras',
-                    content: 'Egyptian legends celebrated the Sun\'s journey. Today, science knows that the Sun emits a constant "breath" called Solar Wind. This wind is made of particles that come directly from the Sun. When this wind or a "strong sigh" (a CME) hits Earth\'s magnetic shield, it channels these particles towards the poles, which glow and create the magical lights we call Auroras! The intensity of the auroras depends on how strong this "breath" from the Sun is, which can be measured by the Kp Index, a sign that a **storm** may be approaching!', // Prepara para Tempestades Geomagnéticas
-                    realtimeDataText: 'Checking aurora forecast...',
-                    source: 'Source: NASA DONKI GST API',
-                    moreInfoLink: 'https://www.swpc.noaa.gov/content/tips-viewing-aurora'
-                }
-            }
-        ]
-    },
+    egipcios: { // EFEITO 1: Vento Solar e Auroras - o "vento invisível" constante
+    title: "Chapter 4: The Egyptians and Ra's Invisible Wind",
+    summary: "Learn about the god Ra and how the Sun's constant 'wind' carries particles across space, " +
+             "creating the beautiful auroras, and how 'strong sighs' (CMEs) can intensify this flow.",
+    coverImage: "/covers/egito-cover.png",
+    audioSrc: "/audio/egipcios-audio.mp3",
+    pages: [
+        {
+            imageSrc: '/egito-1.png',
+            imageAlt: 'Kuarasy às margens do Nilo',
+            storyText: 'On the banks of the Nile River, the people gathered in celebration. Priests carried golden boats, while children cast flowers upon the waters.',
+        },
+        {
+            imageSrc: '/egito-2.png',
+            imageAlt: 'Crianças egípcias vendo uma aurora',
+            storyText: 'A priestess raised her voice: "Ra is reborn once again! May his boat never fail to cross the sky!"',
+        },
+        {
+            imageSrc: '/egito-3.png',
+            imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+            storyText: 'Kuarasy moved, smiling.<br/>— You celebrate his voyage, but do you know that, as he sails, <strong>Ra sends a constant and invisible wind</strong>? A flow of particles that stretches across space. And sometimes, a strong sigh from the Sun (a CME) intensifies this current, making it denser and more powerful!',
+        },
+        {
+            imageSrc: '/egito-4.png',
+            imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+            storyText: 'The priestess shuddered:<br/>— An invisible wind?<br/>— Yes. It dances until it reaches the Earth. And when it arrives, the sky also dances, painting wonderful colors across the heavens, especially near the northern and southern lands.',
+        },
+        {
+            imageSrc: '/egito-5.png',
+            imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+            storyText: 'A kid, who was listening to the conversation, shouted:<br/>— The colored lights in the sky? Like the paintings of the gods?',
+        },
+        {
+            imageSrc: '/egito-6.png',
+            imageAlt: 'Kuarasy com a sacerdotisa egípcia',
+            storyText: "-Exactly, said Kuarasy. - You will call them Auroras. They are the gift of Ra's invisible wind, proof that his energy reaches us even during the night. And the stronger the flow or the louder the Sun\'s sighs, the more vibrant and spectacular these dancing lights become!",
+            interactiveNote: {
+                buttonText: 'How does Ra\'s invisible wind create auroras?',
+                title: '🌌 Solar Wind and Auroras',
+                content: 'Egyptian legends celebrated the Sun\'s journey. Today, science knows that the Sun sends a constant flow of particles called Solar Wind. When this wind—or a "strong sigh" (CME)—hits Earth\'s magnetic field, it channels these particles to the poles, producing the magical lights we call Auroras. The intensity depends on the strength of Ra\'s wind, which can be measured by the Kp Index, indicating possible geomagnetic storms.',
+                realtimeDataText: 'Checking aurora forecast...',
+                source: 'Source: NASA DONKI GST API',
+                moreInfoLink: 'https://www.swpc.noaa.gov/content/tips-viewing-aurora'
+            }
+        }
+    ]
+},
+
     gregos: { // EFEITO 2: Tempestades Geomagnéticas - o impacto do hálito forte
         title: "Chapter 5: The Greeks and Helios' Invisible Storms",
         summary: "Dive into Greek mythology and discover how the ancients viewed the Sun, " +
@@ -233,49 +229,62 @@ export const libraryData = {
             }
         ]
     },
-    atualmente: { // EFEITO FINAL: Clima Espacial e Impactos Modernos - a grande síntese
-        title: "Chapter 6: The Sun Today and Space Weather",
-        summary: "Discover how the Sun is currently behaving and how all the " +
-                 "phenomena (sunspots, breaths, sighs, and winds) combine to " +
-                 "create Space Weather and affect our planet",
-        coverImage: "/covers/atuais-cover.png",
-        audioSrc: "/audio/atualmente-audio.mp3", // Correção: "atuais" deve ser "atualmente" no caminho do áudio
-        pages: [
-            {
-                imageSrc: '/atualmente-1.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: 'In a wide field filled with solar panels, children wore special glasses and gazed at the sky. Scientists, in buildings full of glowing screens, watched every detail of the Sun. And airplanes traced lines across the sky, dependent on the energy and light the Sun gives every day.',
-            },
-            {
-                imageSrc: '/atualmente-2.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: "A girl, who had heard all of Kuarasy's stories, turned to him with eyes full of curiosity. </br>-Kuarasy, you told us about the 'shadows' of the Babylonians, the 'fire breaths' of the Maori, the 'heavy sighs' of the Incas, and the 'breath' of Ra that paints the sky... What does all this mean for us today? Kuarasy smiled, and his voice sounded like the gentle warmth of the morning sun. - Everything you have learned, every legend, every mystery... today, scientists have a name for it: <strong>Space Weather</strong>. It is the way my breath, my spots, and my storms travel through space and touch your world.",
-            },
-            {
-                imageSrc: '/atualmente-3.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: 'The girl looked at the scientists in the control room and then at the plane in the sky. "So... can space weather really affect us? Like a rainstorm?" "Exactly," Kuarasy said, gesturing to the surrounding scenery. "And that is why you are watching the Sun so carefully today. The fire breaths (flares) can disrupt communications for pilots flying near the poles. And the massive storms can threaten to knock out city lights if power engineers are not vigilant.',
-            },
-            {
-                imageSrc: '/atualmente-4.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: '— They can even confuse the GPS signals that guide farmers to their crops and the satellites that carry their voices and videos to the other side of the world.',
-            },
-            {
-                imageSrc: '/atualmente-5-1.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: 'And of course, I need to be especially careful with the astronauts, the travelers who come closest to the Sun.',
-            },
-            {
-                imageSrc: '/atualmente-6-1.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: 'The girl looked at him in wonder. "So, everything is connected." "It always has been," Kuarasy replied. "Ancient peoples looked at me with respect and tried to understand my messages. Today, you do the same, but with telescopes, satellites, and science. Understanding Space Weather is the modern way of hearing my story."',
-            },
-            {
-                imageSrc: '/atualmente-7-1.png',
-                imageAlt: 'Kuarasy olhando para o sol com um tablet',
-                storyText: "- And you... who are you really? the girl asked. He knelt, and his golden eyes reflected the sun's brightness. - I am the memory of the sun, the voice of the stars. But in the ancient Tupi language, here in this land, my name is Kuarasy. And Kuarasy means... <strong>Sun</strong>. The children approached, touching hands. And for the first time, the sun did not seem distant. He was a force, a neighbor, a story that everyone could now begin to understand.",
-            }
-        ]
+    atualmente: {
+    title: "Chapter 6: The Sun Today and Space Weather",
+    summary:
+        "Discover how the Sun is currently behaving and how all the phenomena (sunspots, breaths, sighs, and winds) combine to create Space Weather and affect our planet",
+    coverImage: "/covers/atuais-cover.png",
+    audioSrc: "/audio/atualmente-audio.mp3",
+    pages: [
+        {
+        imageSrc: "/atualmente-1.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            "In a wide field filled with solar panels, children wore special glasses and gazed at the sky. Scientists, in buildings full of glowing screens, watched every detail of the Sun. And airplanes traced lines across the sky, dependent on the energy and light the Sun gives every day.",
+        },
+        {
+        imageSrc: "/atualmente-2.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            "A girl, who had heard all of Kuarasy's stories, turned to him with eyes full of curiosity. </br>-Kuarasy, you told us about the 'shadows' of the Babylonians, the 'fire breaths' of the Maori, the 'heavy sighs' of the Incas, and the 'winds' of Ra that paints the sky... What does all this mean for us today? Kuarasy smiled, and his voice sounded like the gentle warmth of the morning sun. - Everything you have learned, every legend, every mystery... today, scientists have a name for it: <strong>Space Weather</strong>. It is the way my breath, my spots, and my storms travel through space and touch your world.",
+        },
+        {
+        imageSrc: "/atualmente-3.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            'The girl looked at the scientists in the control room and then at the plane in the sky. "So... can space weather really affect us? Like a rainstorm?" "Exactly," Kuarasy said, gesturing to the surrounding scenery. "And that is why you are watching the Sun so carefully today. The fire breaths (flares) can disrupt communications for pilots flying near the poles. And the massive storms can threaten to knock out city lights if power engineers are not vigilant.',
+        },
+        {
+        imageSrc: "/atualmente-4.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            "— They can even confuse the GPS signals that guide farmers to their crops and the satellites that carry their voices and videos to the other side of the world.",
+        },
+        {
+        imageSrc: "/atualmente-5-1.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            "And of course, I need to be especially careful with the astronauts, the travelers who come closest to the Sun.",
+        },
+        {
+        imageSrc: "/atualmente-6-1.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            "“Ancient peoples looked at me with respect and tried to understand my messages. Today, you do the same, but with telescopes, satellites, and science. Understanding Space Weather is the modern way of hearing my story. </br></br>Do you want to see how today’s scientists explain it? Let’s watch together!”",
+        },
+        {
+        videoSrc: "/videos/space-weather.mp4", // sempre comece com barra se estiver na pasta public
+        videoAlt: "Vídeo explicativo sobre Clima Espacial",
+        storyText:
+            "Kuarasy opened a tablet, and together they watched a NOAA video explaining Space Weather, its causes, and its effects on Earth.",
+        },
+        {
+        imageSrc: "/atualmente-7-1.png",
+        imageAlt: "Kuarasy olhando para o sol com um tablet",
+        storyText:
+            "- And you... who are you really? the girl asked. He knelt, and his golden eyes reflected the sun's brightness. - I am the memory of the sun, the voice of the stars. But in the ancient Tupi language, here in this land, my name is Kuarasy. And Kuarasy means... <strong>Sun</strong>. The children approached, touching hands. And for the first time, the sun did not seem distante. He was a force, a neighbor, a story that everyone could now begin to understand.",
+        },
+    ],
     }
+
 }

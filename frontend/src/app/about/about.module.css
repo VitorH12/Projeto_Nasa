@@ -1,0 +1,86 @@
+/* src/app/about/about.module.css */
+
+.pageContainer {
+    background-color: #0f172a;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #e2e8f0;
+}
+
+.contentWrapper {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.7;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mainTitle {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #facc15; /* Amarelo solar */
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.introText {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #94a3b8; /* Cinza mais suave */
+}
+
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    color: #facc15;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(250, 204, 21, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.section p, .section li {
+    font-size: 1.1rem;
+}
+
+.linkList {
+    list-style-type: '🛰️ ';
+    padding-left: 20px;
+}
+
+.linkItem a {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.linkItem a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.finalMessage {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 3rem;
+    font-style: italic;
+}
+
+/* --- Nova Seção de Colaboração --- */
+.collaborationSection {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: rgba(250, 204, 21, 0.05); /* Fundo sutil amarelo */
+    border: 1px solid rgba(250, 204, 21, 0.2);
+    border-radius: 15px;
+    text-align: center;
+}

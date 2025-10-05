@@ -1,0 +1,15 @@
+/* components/PersonalForecast.module.css */
+.forecastContainer {
+    margin-top: 3rem;
+    text-align: center;
+    background: rgba(23, 25, 35, 0.5);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.forecastContainer button { /* Estilize o botão como preferir */ }
+.forecastMessage {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+}

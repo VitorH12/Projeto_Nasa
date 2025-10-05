@@ -1,0 +1,172 @@
+.labContainer {
+    position: relative;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+    background: radial-gradient(circle at bottom, #000010 0%, #000015 50%, #000020 100%);
+    color: white;
+}
+
+/* Fundo de estrelas animado */
+.labContainer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/stars-bg.webp') repeat;
+    background-size: cover;
+    opacity: 0.25;
+    z-index: 0;
+    animation: twinkle 8s infinite ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.35; }
+}
+
+.header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(0, 0, 30, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 60, 0.5);
+    z-index: 1;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: #FFD700;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.header .introText {
+    font-size: 1.2rem;
+    color: #cfd9e6;
+    max-width: 800px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.header .safetyNote {
+    font-size: 1rem;
+    color: #fff3cd;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1rem;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+}
+
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.filterContainer button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filterContainer button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.filterContainer button.active {
+    background-color: #3498db;
+    border-color: #3498db;
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+.activityGrid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    z-index: 1;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: rgba(22, 12, 215, 0.5);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #dcdcdc;
+}
+
+.cardSource {
+    font-weight: 700;
+    color: #FFD700;
+}
+
+.cardType {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.cardTitle {
+    font-size: 1.4rem;
+    padding: 15px 15px 10px 15px;
+    margin: 0;
+    color: #fff;
+}
+
+.cardDescription {
+    padding: 0 15px 15px 15px;
+    line-height: 1.6;
+    flex-grow: 1;
+    color: #d1d1e0;
+}
+
+.cardFooter {
+    margin-top: auto;
+    padding: 15px;
+    text-align: right;
+    font-weight: 600;
+    color: #00bfff;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}

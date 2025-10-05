@@ -1,0 +1,76 @@
+/* app/jornada/jornada.module.css */
+
+/* O "trilho" de scroll. A altura gigante (500vh) é o que nos dá o espaço para rolar. */
+.scrollContainer {
+  height: 500vh; /* 5 vezes a altura da tela */
+  position: relative;
+}
+
+/* O "palco" da animação. Ele fica "grudado" no topo da tela enquanto o scrollContainer passa por baixo dele. */
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Garante que nada saia da tela */
+  background: #000010 url('/background-star.png'); /* Um fundo estrelado (adicione uma imagem em /public) */
+  background-size: cover;
+}
+
+/* Elementos da nossa cena */
+.sol, .terra, .cme {
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+}
+
+/* O Sol */
+.sol {
+  left: 5%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #fffbd9, #ffc107, #f44336);
+  box-shadow: 0 0 50px #ffc107, 0 0 100px #f44336;
+}
+
+/* A Terra */
+.terra {
+  right: 5%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #81d4fa, #0288d1, #01579b);
+  box-shadow: 0 0 30px #81d4fa;
+}
+
+/* A Ejeção de Massa Coronal (CME) */
+.cme {
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255, 180, 180, 0.8), rgba(229, 62, 62, 0.5));
+  filter: blur(10px);
+  box-shadow: 0 0 20px rgba(229, 62, 62, 0.8);
+}
+
+/* Overlay para os textos */
+.textOverlay {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.storyText {
+  position: absolute; /* Todos os textos ocupam o mesmo lugar, a opacidade os controla */
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  max-width: 700px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}

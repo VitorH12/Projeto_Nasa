@@ -5,6 +5,7 @@ export const impactsData = {
     title: "Ana, the Guardian of the Stars",
     summary: "Follow Ana on her journey aboard the Space Station and discover why even astronauts need to protect themselves from the Sun.",
     coverImage: "/illustrations/astronauta.png",
+    audioSrc: "/audio/ana.mp3",
     pages: [
       {
         imageSrc: '/astronauta-1.png',
@@ -39,7 +40,8 @@ export const impactsData = {
             buttonText: 'Why is radiation the biggest risk?',
             title: 'Impact: Radiation for Astronauts',
             content: 'Solar flares and Solar Particle Events (SEPs) accelerate particles to high speeds. Outside the protection of Earth\'s atmosphere, this radiation is a significant health risk for astronauts. In extreme events, the crew needs to take shelter in compartments with extra shielding. Learning from past events, such as the 2003 Halloween Storms, is crucial for developing more effective protections for future long-duration missions, such as those to the Moon and Mars.',
-            source: 'https://www.ncei.noaa.gov/news/great-halloween-solar-storm-2003'
+            source: 'https://www.ncei.noaa.gov/news/great-halloween-solar-storm-2003',
+            moreInfoLink: 'https://www.ncei.noaa.gov/news/great-halloween-solar-storm-2003'
         }
       }
     ]
@@ -49,6 +51,7 @@ export const impactsData = {
     title: "Maria and the City Lights",
     summary: "Maria is an energy engineer. See how she protects an entire city from an invisible 'breath' from the Sun.",
     coverImage: "/rede.png",
+    audioSrc: "/audio/maria.mp3",
     pages: [
       {
         imageSrc: '/rede-1.png',
@@ -83,7 +86,7 @@ export const impactsData = {
       {
         imageSrc: '/rede-7.png',
         imageAlt: 'The city remains fully lit, seen from Maria\'s control room, who smiles in relief with her team.',
-        storyText: 'The storm arrived. Our sensors detected elevated GICs, but the transformers held up. The protections worked. The city lights remained on. It\'s a silent battle, fought with planning, science, and a deep respect for the power of the Sun.',
+        storyText: 'The storm arrived. Our sensors detected elevated GICs, but the transformers held up. The protections worked. The city lights remained on. It\'s a silent battle, fought with planning, science, and a deep respect for the power of the Sun. Watch a <a href="https://www.youtube.com/watch?v=caHYgTf6tO8" target="_blank" rel="noopener noreferrer">NOAA video showing the impacts of space weather on power grids</a> to see how this phenomena affect our world in real-time.',
         interactiveNote: {
             buttonText: 'Understand the Threat to the Power Grid',
             title: '⚡️ Real Threat: Geomagnetically Induced Currents (GICs)',
@@ -98,6 +101,7 @@ export const impactsData = {
     title: "Carlos and the Polar Route",
     summary: "Fly with Carlos, an experienced pilot, and discover the challenges space weather poses to flights over the poles.",
     coverImage: "/illustrations/piloto.png",
+    audioSrc: "/audio/carlos.mp3",
     pages: [
       {
         imageSrc: '/piloto-1.png',
@@ -122,7 +126,7 @@ export const impactsData = {
       {
         imageSrc: '/piloto-5.png',
         imageAlt: '',
-        storyText: 'Following protocol, we received a new route from air traffic control, further south, away from the main impact zone. It increases flight time, but safety is non-negotiable. Flying is not just about taking a plane from point A to B, it\'s about managing risks, including those that come from the Sun.',
+        storyText: 'Following protocol, we received a new route from air traffic control, further south, away from the main impact zone. It increases flight time, but safety is non-negotiable. Flying is not just about taking a plane from point A to B, it\'s about managing risks, including those that come from the Sun. Learn more with a <a href="https://www.youtube.com/watch?v=7vFGTl_Cp6I" target="_blank" rel="noopener noreferrer">NOAA video showing the impacts of space weather on the communications</a>.',
         interactiveNote: {
             buttonText: 'How does the Sun impact aviation?',
             title: '✈️ Impact: Aviation and Polar Routes',
@@ -137,6 +141,7 @@ export const impactsData = {
     title: "Pedro and the Smart Tractor",
     summary: "Pedro uses cutting-edge technology on his farm, but what happens when that technology relies on signals from space?",
     coverImage: "/illustrations/fazendeiro.png",
+    audioSrc: "/audio/pedro.mp3",
     pages: [
         {
             imageSrc: '/fazendeiro-1.png',
@@ -161,12 +166,13 @@ export const impactsData = {
         {
             imageSrc: '/fazendeiro-5.png',
             imageAlt: 'Pedro at the wheel of the tractor, taking manual control with a determined smile.',
-            storyText: 'During the strong storm of May 2024, that\'s exactly what happened. There were reports of disruptions affecting satellite-guided tractors in the agricultural sector. For now, I\'m going to turn off the autopilot and rely on my own eyes. It\'s a good reminder that, even with all the technology, we are still connected to the cycles of nature and the Sun.',
+            storyText: 'During the strong storm of May 2024, that\'s exactly what happened. There were reports of disruptions affecting satellite-guided tractors in the agricultural sector. For now, I\'m going to turn off the autopilot and rely on my own eyes. It\'s a good reminder that, even with all the technology, we are still connected to the cycles of nature and the Sun. Watch a <a href="https://www.youtube.com/watch?v=V4rSC6Hje0E" target="_blank" rel="noopener noreferrer">NOAA video showing the impacts of space weather on GPS navigation</a> to understand more about this impact.',
             interactiveNote: {
                 buttonText: 'How does the Sun affect GPS?',
                 title: '🌾 Impact: Navigation Systems (GNSS)',
                 content: 'Geomagnetic storms disturb Earth\'s ionosphere, which can introduce errors and unavailability in signals from navigation systems like GPS. This has a direct impact on sectors that rely on high-precision positioning, such as modern agriculture, aviation, and logistics.',
-                source: 'https://science.nasa.gov/science-research/heliophysics/what-nasa-is-learning-from-the-biggest-geomagnetic-storm-in-20-years/#:~:text=Descubra%20mais%20t%C3%B3picos%20da%20NASA'
+                source: 'https://science.nasa.gov/science-research/heliophysics/what-nasa-is-learning-from-the-biggest-geomagnetic-storm-in-20-years/#:~:text=Descubra%20mais%20t%C3%B3picos%20da%20NASA',
+                moreInfoLink: 'https://www.youtube.com/watch?v=V4rSC6Hje0E'
             }
         }
     ]
@@ -176,6 +182,7 @@ export const impactsData = {
     title: "Lia and the Disconnected World",
     summary: "Lia's life is on her phone. Discover what happens when the satellites that connect our world are hit by a solar storm.",
     coverImage: "/pessoa-cover.png",
+    audioSrc: "/audio/lia.mp3",
     pages: [
       {
         imageSrc: '/pessoa-1.png',

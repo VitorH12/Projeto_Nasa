@@ -1,63 +1,73 @@
-/* /src/app/impactos/impactos.css */
-
-/* --- Configuração Geral da Página --- */
+/* --- General Page Setup --- */
 body {
-  background-color: #f8f9fa; /* Um fundo cinza muito claro para dar profundidade */
+  background: radial-gradient(circle at top, #0b0f25 0%, #000 100%);
+  color: #e2e8f0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
+/* --- Container --- */
 .impactos-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 80px 20px;
   text-align: center;
+  position: relative;
 }
 
-/* --- Cabeçalho da Página --- */
+/* --- Subtle animated stars background --- */
+.impactos-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: url('/stars-bg.png') repeat;
+  background-size: contain;
+  opacity: 0.15;
+  animation: starsMove 80s linear infinite;
+  z-index: -1;
+}
+
+@keyframes starsMove {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-200px, -200px); }
+}
+
+/* --- Header --- */
 .impactos-header {
-  margin-bottom: 60px;
-}
-.story-media-container {
-  position: relative; /* ESSENCIAL: Torna este o contêiner de referência */
-  width: 100%;
-  max-height: 90vh; /* Mantém sua regra de altura máxima */
-  height: auto;
-  overflow: hidden;
-  border-radius: 15px;
-  background-color: #f0f0f0;
-}
-.story-media-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Faz a imagem cobrir todo o espaço sem distorcer */
-  display: block; /* Evita pequenos espaços em branco que a tag <img> pode criar */
+  margin-bottom: 70px;
 }
 
 .main-title {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  color: #2c3e50;
-  letter-spacing: -1px;
+  color: #facc15; /* solar yellow */
+  text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
-  font-size: 1.25rem;
-  color: #5a6a7a;
+  font-size: 1.2rem;
+  color: #cbd5e1;
   max-width: 750px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.7;
+  opacity: 0.9;
 }
 
-/* --- Grade de Cards --- */
+/* --- Grid --- */
 .impacto-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 35px;
+  gap: 40px;
   text-align: left;
 }
 
-/* --- Estilo do Card Individual --- */
+/* --- Card Links --- */
 .card-link {
   text-decoration: none;
   color: inherit;
@@ -66,25 +76,29 @@ body {
 }
 
 .card-link:hover {
-  transform: translateY(-10px);
+  transform: translateY(-10px) scale(1.02);
 }
 
+/* --- Card --- */
 .impacto-card {
-  background-color: #ffffff;
-  border-radius: 20px;
+  background: rgba(20, 25, 45, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 150, 255, 0.2);
+  border-radius: 18px;
   padding: 30px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
-  border: 1px solid #e9ecef;
+  box-shadow: 0 0 25px rgba(0, 30, 60, 0.3);
+  transition: all 0.3s ease;
 }
 
 .card-link:hover .impacto-card {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(250, 204, 21, 0.6);
+  box-shadow: 0 0 35px rgba(250, 204, 21, 0.4);
 }
 
-/* --- Conteúdo do Card --- */
+/* --- Card Header --- */
 .card-header {
   display: flex;
   align-items: center;
@@ -94,21 +108,23 @@ body {
 
 .impacto-icon {
   font-size: 2.8rem;
-  line-height: 1;
+  color: #60a5fa;
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
 }
 
 .card-header h3 {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #2c3e50;
+  color: #f8fafc;
   margin: 0;
 }
 
+/* --- Card Content --- */
 .card-summary {
-  flex-grow: 1; /* Garante que as tags fiquem alinhadas na base */
-  font-size: 1.05rem;
+  flex-grow: 1;
+  font-size: 1rem;
   line-height: 1.7;
-  color: #5a6a7a;
+  color: #cbd5e1;
   margin-bottom: 25px;
 }
 
@@ -119,11 +135,17 @@ body {
 }
 
 .tag {
-  background-color: #e9ecef;
-  color: #495057;
-  padding: 6px 15px;
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+  color: white;
+  padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.tag:hover {
+  background: linear-gradient(90deg, #3b82f6, #1e3a8a);
 }

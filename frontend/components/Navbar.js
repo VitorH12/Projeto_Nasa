@@ -67,8 +67,11 @@ export default function Navbar() {
           { href: '/historias', label: 'The story of the Sun' },
           { href: '/impactos', label: 'Impacts of Space Weather on Earth' },
           { href: '/quiz', label: 'Interactive Quiz' },
+          { href: '/laboratorio', label: 'Space Lab' },     // Novo link para o Space Lab
+          { href: '/tour-solar', label: 'Solar System Tour' }, // Novo link para o Solar System Tour
           { href: '/glossary', label: 'Glossary' }, // Novo link para o Glossário
           { href: '/about', label: 'About' },       // Novo link para o About
+          
         ].map(({ href, label }) => (
           <li key={href}>
             <Link

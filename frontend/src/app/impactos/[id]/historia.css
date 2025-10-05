@@ -209,3 +209,116 @@ body {
     font-size: 1.1rem;
   }
 }
+.video-frame {
+    position: relative; /* ESSENCIAL: Torna este o contêiner de referência */
+  width: 100%;
+  max-height: 90vh; /* Mantém sua regra de altura máxima */
+  height: auto;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+}
+.video-frame iframe {
+    border-radius: 5px;
+}
+
+/* Adicione no seu arquivo historia.css */
+
+/* Novo container para agrupar a navegação e o áudio */
+.story-controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+/* Deixa os botões de navegação no centro */
+.story-navigation {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Posiciona os controles de áudio na esquerda */
+.audio-controls {
+    display: flex;
+    align-items: center;
+}
+
+.play-pause-button {
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.play-pause-button:hover {
+    background-color: #e0e0e0;
+}
+.next-volume-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaço entre Next, play/pause e slider */
+}
+
+.volume-slider {
+  width: 120px; /* Slider maior */
+  height: 12px; /* Mais grosso */
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ff6ec7, #6ec1ff); /* Cores divertidas */
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Thumb customizado */
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffd93d; /* Amarelo divertido */
+  border: 2px solid #ff6ec7;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffd93d;
+  border: 2px solid #ff6ec7;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.volume-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+.play-pause-button {
+  font-size: 1.5rem; /* Ícone maior */
+  border-radius: 8px;
+  background-color: #6ec1ff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.play-pause-button:hover {
+  background-color: #ff6ec7;
+  transform: scale(1.1);
+}

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 
 // Add audioSrc to props
-export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNote, audioSrc }) {
+export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNote, audioSrc, videoSrc }) {
     const [noteVisible, setNoteVisible] = useState(false);
     const [realtimeData, setRealtimeData] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -102,7 +102,7 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                     apiResultText = (
                         `Look what the Sun did recently!\n` +
                         `On ${new Date(latestFlare.beginTime).toLocaleDateString('en-US')}, around ${new Date(latestFlare.beginTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC,\n` +
-                        `there was a huge 'sneeze' of light and energy, a Class ${flareClass} Solar Flare! Solar flares are classified by their classes A, B, C, M, and X, with class X being the most energetic and class A the weakest.\n` +
+                        `there was a huge 'sneeze' of light and energy, a <strong>Class ${flareClass} Solar Flare </strong>! Solar flares are classified by their classes A, B, C, M, and X, with class X being the most energetic and class A the weakest.\n` +
                         `The strongest moment of this 'sneeze' was at ${new Date(latestFlare.peakTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC.\n` +
                         `It came from a part of the Sun called ${latestFlare.sourceLocation || 'Not specified'}.\n\n` +
                         `${formattedNote}\n\n`
@@ -203,10 +203,14 @@ export default function StoryPage({ imageSrc, imageAlt, storyText, interactiveNo
                 if (data && data.length > 0) {
                     const latestStorm = data.sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime())[0];
                     const kpValue = latestStorm.allKpIndex && latestStorm.allKpIndex.length > 0 ? latestStorm.allKpIndex[0].kpIndex : 'N/A';
+                    const date = latestStorm.startTime ? new Date(latestStorm.startTime).toLocaleDateString('en-US') : 'Unknown date';
+                    const time = latestStorm.startTime ? new Date(latestStorm.startTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC' : 'Unknown time';
                     const numericKp = parseInt(kpValue, 10);
                     const description = getKpDescription(numericKp);
-                    apiResultText = `The most recent geomagnetic storm had a Kp Level of ${kpValue}.<br/> According NOAA, this mean <br/> ${description} <br/><br/>` +
-                        `The Kp Index measures the disturbance of Earth's magnetic field (from 0 to 9). High levels (5 and above) mean a much higher chance of seeing the magical lights of the auroras shining in the sky!`;
+                    apiResultText = `The most recent geomagnetic storm had a Kp Level of <strong>${kpValue}</strong>, on ${date} around ${time}.<br/><br/>` +
+                        `According to NOAA, this means:<br/>${description}<br/><br/>` +
+                        `The Kp Index measures the disturbance of Earth's magnetic field (from 0 to 9). High levels (5 and above) mean a much higher chance of seeing the magical lights of the auroras shining in the sky!` +
+                        `<br/><br/><hr style="border-top: 1px dashed #ccc; border-bottom: none; margin: 20px 0;" />`
                 } else {
                     apiResultText = 'No recent geomagnetic storms detected in the last 7 days. Low chance of auroras.';
                 }
@@ -362,253 +366,378 @@ Even when the Sun is calm, NASA and NOAA scientists observe space every day. The
         }
     }, [interactiveNote]); // Depende apenas de interactiveNote
 
-    return (
-        <div className="book-page-container">
-            <div className="left-page">
-                <Image
-                    src={imageSrc}
-                    alt={imageAlt}
-                    width={832}
-                    height={1248}
-                    style={{
-                        width: '100%',
-                        height: 'auto', // A altura se ajusta para manter a proporção
-                        display: 'block',
-                        objectFit: 'cover',
-                        objectPosition: 'center',
-                    }}
-                />
-            </div>
-            <div className="right-page">
-                <p dangerouslySetInnerHTML={{ __html: storyText }}></p>
+   return (
+  <div className="page-background">
+    <div className="book-page-container">
+      {/* LEFT PAGE: VIDEO OR IMAGE */}
+      <div className="left-page">
+        {videoSrc ? (
+          <div className="video-frame">
+            {videoSrc.endsWith(".mp4") ? (
+              <video
+                src={videoSrc}
+                width={832}
+                height={1248}
+                title={imageAlt || "Story video"}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  display: "block",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+                controls
+                autoPlay
+                loop
+                muted
+              />
+            ) : (
+              <iframe
+                src={videoSrc}
+                title={imageAlt || "Story video"}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
+          </div>
+        ) : imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={imageAlt || "Page illustration"}
+            width={832}
+            height={1248}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+        ) : null}
+      </div>
 
-                {interactiveNote && (
-                    <div className="interactive-section">
-                        <button
-                            onClick={() => { setNoteVisible(!noteVisible); }}
-                            disabled={isLoading}
-                        >
-                            {isLoading ? 'Carregando...' : (noteVisible ? 'Esconder Detalhes' : interactiveNote.buttonText)}
-                        </button>
-                        {noteVisible && (
-                            <div className="interactive-note-box">
-                                <h3>{interactiveNote.title}</h3>
-                                <p dangerouslySetInnerHTML={{ __html: interactiveNote.content }}></p>
+      {/* RIGHT PAGE: TEXT AND INTERACTIVE NOTE */}
+      <div className="right-page">
+        <p dangerouslySetInnerHTML={{ __html: storyText }} />
 
-                                {interactiveNote.realtimeDataText && (
-                                    <div className="realtime-data" dangerouslySetInnerHTML={{ __html: (realtimeData || '').replace(/\n/g, '<br />') }} />
-                                )}
+        {interactiveNote && (
+          <div className="interactive-section">
+            <button onClick={() => setNoteVisible(!noteVisible)}>
+              {noteVisible ? "Esconder Detalhes" : interactiveNote.buttonText}
+            </button>
 
-                                {interactiveNote.moreInfoLink && (
-                                    <a
-                                        href={interactiveNote.moreInfoLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="more-info-link"
-                                    >
-                                        Learn More &rarr;
-                                    </a>
-                                )}
-                                {interactiveNote.source && <em className="source-text">{interactiveNote.source}</em>}
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
+            {noteVisible && (
+    <div className="interactive-note-box">
+    <h3>{interactiveNote.title}</h3>
+    <p dangerouslySetInnerHTML={{ __html: interactiveNote.content }} />
 
-            {/* Componente de Áudio (visível, mas pode ser estilizado para ficar escondido ou como um controle pequeno) */}
-            <div className="audio-controls">
-                <audio ref={audioRef} />
-                {audioSrc && ( // Só mostra os controles se houver um arquivo de áudio
-                    <>
-                        <button onClick={togglePlayPauseAudio}>
-                            {isPlaying ? '⏸️' : '▶️'}
-                        </button>
-                        <input
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            defaultValue="0.5" // Volume inicial
-                            onChange={changeAudioVolume}
-                            title="Volume da música"
-                        />
-                    </>
-                )}
-            </div>
+    {realtimeData && (
+      <div
+        className="realtime-data"
+        dangerouslySetInnerHTML={{
+          __html: realtimeData.replace(/\n/g, "<br />"),
+        }}
+      />
+    )}
 
-            <style jsx>{`
-                /* Estilos existentes */
-                .book-page-container {
-                    display: flex;
-                    align-items: flex-start;
-                    width: 100%;
-                    max-width: 1100px;
-                    margin: 2rem auto;
-                    background-color: #fdfaf1;
-                    border-radius: 8px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1) inset;
-                    overflow: hidden;
-                    border: 1px solid #dcd3b8;
-                }
-                .left-page, .right-page {
-                    width: 50%;
-                    position: relative;
-                }
+    {interactiveNote.moreInfoLink && (
+      <a
+        href={interactiveNote.moreInfoLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="more-info-link"
+      >
+        Learn More &rarr;
+      </a>
+    )}
+    {interactiveNote.source && (
+      <em className="source-text">{interactiveNote.source}</em>
+    )}
+  </div>
 
-                .left-page {
-                    padding: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: #e0d8c0;
-                }
+            )}
+          </div>
+        )}
+      </div>
 
-                .right-page {
-                    padding: 3rem;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                    font-family: 'Georgia', serif;
-                    font-size: 1.4em;
-                    line-height: 1.7;
-                    color: #4a4a4a;
-                    border-left: 1px dashed #dcd3b8;
-                    min-height: 100%;
-                }
-                
-                .interactive-section { margin-top: 2rem; }
-                button {
-                    background-color: #8b4513; color: white; border: none;
-                    padding: 0.8rem 1.5rem; border-radius: 5px; cursor: pointer;
-                    font-size: 0.9em; transition: background-color 0.3s ease;
-                }
-                button:hover:not(:disabled) { background-color: #a0522d; }
-                button:disabled {
-                    background-color: #c5bba8;
-                    cursor: not-allowed;
-                }
-                .interactive-note-box { 
-                    margin-top: 1rem; padding: 1rem; background-color: #f5f0e1;
-                    border-left: 4px solid #8b4513;
-                }
-                .interactive-note-box h3 {
-                    color: #8b4513;
-                    font-size: 1.2em;
-                    display: block;
-                    margin-bottom: 0.5rem;
-                }
-
-                .realtime-data { 
-                    font-weight: normal;
-                    color: #5c4033;
-                    white-space: pre-wrap;
-                    margin-top: 1rem;
-                }
-                .realtime-data strong {
-                    font-weight: bold;
-                    color: #c23b22;
-                }
-                .source-text { font-size: 0.8em; color: #777; margin-top: 0.5rem; display: block; }
-
-                .more-info-link {
-                    display: inline-block;
-                    margin-top: 1rem;
-                    color: #007bff;
-                    text-decoration: none;
-                    font-weight: bold;
-                    transition: color 0.3s ease;
-                }
-                .more-info-link:hover {
-                    color: #0056b3;
-                    text-decoration: underline;
-                }
-
-                /* Estilos para os controles de áudio */
-                .audio-controls {
-                position: fixed;
-                top: 20px;            /* Agora fica no topo */
-                right: 20px;          /* Encostado à direita */
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                background-color: rgba(255, 255, 255, 0.85);
-                padding: 10px 15px;
-                border-radius: 20px;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-                z-index: 1000;
-            }
-
-                .audio-controls button {
-                    background-color: #333;
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    width: 40px;
-                    height: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    font-size: 1.2em;
-                    line-height: 1; /* Para centralizar o ícone */
-                    padding: 0;
-                }
-                .audio-controls button:hover {
-                    background-color: #555;
-                }
-                .audio-controls input[type="range"] {
-                    width: 100px;
-                    -webkit-appearance: none;
-                    height: 5px;
-                    background: #ddd;
-                    outline: none;
-                    opacity: 0.7;
-                    transition: opacity .2s;
-                }
-                .audio-controls input[type="range"]:hover {
-                    opacity: 1;
-                }
-                .audio-controls input[type="range"]::-webkit-slider-thumb {
-                    -webkit-appearance: none;
-                    appearance: none;
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 50%;
-                    background: #8b4513;
-                    cursor: pointer;
-                }
-                .audio-controls input[type="range"]::-moz-range-thumb {
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 50%;
-                    background: #8b4513;
-                    cursor: pointer;
-                }
-
-
-                @media (max-width: 768px) {
-                    .book-page-container {
-                        flex-direction: column;
-                    }
-                    .left-page, .right-page {
-                        width: 100%;
-                    }
-                    .right-page {
-                        padding: 1.5rem;
-                        border-left: none;
-                        border-top: 1px dashed #dcd3b8;
-                    }
-                    .audio-controls {
-                        bottom: 10px;
-                        left: 10px;
-                        transform: translateX(0); /* Remove a centralização para telas pequenas */
-                        width: auto; /* Permite que os controles se ajustem ao conteúdo */
-                        right: 10px; /* Alinha à direita também */
-                        justify-content: center; /* Centraliza o conteúdo dentro dos controles */
-                    }
-                }
-            `}</style>
+      {/* AUDIO CONTROLS */}
+      {audioSrc && (
+        <div className="audio-controls">
+          <audio ref={audioRef} src={audioSrc} />
+          <button onClick={togglePlayPauseAudio}>
+            {isPlaying ? "⏸️" : "▶️"}
+          </button>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            defaultValue="0.5"
+            onChange={changeAudioVolume}
+            title="Volume"
+          />
         </div>
-    );
+      )}
+    </div>
+
+    <style jsx>{`
+      /* === FULL PAGE BACKGROUND === */
+      .page-background {
+  position: relative;
+  min-height: 100vh;
+  background: (circle at top left, #0b0b1e, #050517 80%);
+  overflow-x: hidden;
 }
+
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+
+      /* === BOOK PAGE CONTAINER === */
+      .book-page-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1100px;
+  margin: 4rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #444;
+
+  /* === FUNDO ESPACIAL === */
+  background: radial-gradient(circle at top left, #0b0b1e, #050517 80%);
+  box-shadow: 
+    0 0 50px rgba(255, 255, 255, 0.1) inset,
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.05) inset;
+
+  /* Para dar profundidade e leve brilho */
+}
+
+.book-page-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/stars-bg.webp") repeat;
+  background-size: cover;
+  opacity: 0.15;
+  z-index: 0;
+  animation: twinkle 15s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+/* Garante que as páginas fiquem acima do background */
+.book-page-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+      .left-page,
+      .right-page {
+        width: 50%;
+        position: relative;
+      }
+
+      .left-page {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0d8c0;
+      }
+
+      .right-page {
+  position: relative;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: "Georgia", serif;
+  font-size: 1.4em;
+  line-height: 1.7;
+  color: #ffffff; /* texto mais claro para contraste espacial */
+  border-left: 1px dashed #777;
+
+  /* === BACKGROUND ESPACIAL === */
+  background: radial-gradient(circle at top left, #0b0b1e, #050517 80%);
+  overflow: hidden;
+}
+
+.right-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/stars-bg.webp") repeat;
+  background-size: cover;
+  opacity: 0.2;
+  z-index: 0;
+  animation: twinkle 12s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.35; }
+}
+
+/* garante que o conteúdo fique acima do background */
+.right-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+      .interactive-section {
+        margin-top: 2rem;
+      }
+
+      .interactive-section button {
+        background-color: #8b4513;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .interactive-section button:hover {
+        background-color: #a0522d;
+      }
+
+      .interactive-note-box {
+  margin-top: 1rem;
+  padding: 1.2rem;
+  background: radial-gradient(circle at top left, #0b0b1e, #050517 90%);
+  border-left: 4px solid #6f9fff; /* azul cósmico */
+  color: #e0e0ff;
+  box-shadow: 0 0 15px rgba(111, 159, 255, 0.4), 0 2px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.interactive-note-box::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 8px;
+  background: radial-gradient(circle, rgba(111, 159, 255, 0.2), transparent 70%);
+  z-index: -1;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+
+      .realtime-data {
+        margin-top: 1rem;
+        white-space: pre-wrap;
+        color: #e8e1ddff;
+      }
+
+      .source-text {
+        font-size: 0.8em;
+        color: #777;
+        margin-top: 0.5rem;
+        display: block;
+      }
+
+      .more-info-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .more-info-link:hover {
+        text-decoration: underline;
+      }
+
+      .audio-controls {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 10px 15px;
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+      }
+
+      .audio-controls button {
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .audio-controls input[type="range"] {
+        width: 100px;
+        height: 5px;
+        background: #ddd;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .book-page-container {
+          flex-direction: column;
+        }
+
+        .left-page,
+        .right-page {
+          width: 100%;
+        }
+
+        .right-page {
+          padding: 1.5rem;
+          border-left: none;
+          border-top: 1px dashed #dcd3b8;
+        }
+
+        .audio-controls {
+          bottom: 10px;
+          top: auto;
+          left: 10px;
+          right: 10px;
+          width: auto;
+        }
+      }
+    `}</style>
+  </div>
+);
+};

@@ -1,0 +1,26 @@
+/* components/AuroraMap.module.css */
+.mapContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Mantém a proporção do mapa */
+}
+.auroraOval {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Largura do oval */
+    background: radial-gradient(ellipse at center, rgba(0, 255, 130, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    transition: all 1.5s ease-out; /* Animação suave */
+}
+.mapLabel {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}

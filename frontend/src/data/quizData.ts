@@ -206,7 +206,7 @@ export const quizData: Question[] = [
     // --- Chapter 4: Solar Wind and Auroras (Egyptians) ---
     {
         id: 'q16',
-        question: "What is Ra's 'invisible breath,' which the Egyptians observed and Kuarasy said made the sky 'dance' with colors, to science?",
+        question: "What is Ra's 'invisible winds,' which the Egyptians observed and Kuarasy said made the sky 'dance' with colors, to science?",
         options: [
             "Geomagnetic Storms",
             "Sunspots",
@@ -214,7 +214,7 @@ export const quizData: Question[] = [
             "Solar Wind and Auroras"
         ],
         correctAnswer: "Solar Wind and Auroras",
-        explanation: "The 'invisible breath' is the Solar Wind, a constant stream of particles from the Sun. When it interacts with Earth's magnetic field, it causes the Auroras, the beautiful dancing lights in the sky, especially visible at the poles.",
+        explanation: "The 'invisible winds' is the Solar Wind, a constant stream of particles from the Sun. When it interacts with Earth's magnetic field, it causes the Auroras, the beautiful dancing lights in the sky, especially visible at the poles.",
         relatedChapterId: 'egipcios'
     },
     {

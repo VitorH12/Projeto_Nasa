@@ -1,0 +1,139 @@
+/* app/simulador/simulador.module.css */
+
+/* Animação de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container principal da página */
+.simuladorContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    animation: fadeIn 0.8s ease-out;
+    color: #edf2f7; /* Texto claro para o tema escuro */
+}
+
+/* Cabeçalho */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #a0aec0;
+    max-width: 700px;
+    margin: 0.5rem auto 0 auto;
+}
+
+/* --- Estilização do Slider (StormSelector) --- */
+.stormSelector {
+    padding: 2rem 0;
+    text-align: center;
+    background: rgba(10, 10, 25, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(5px);
+}
+
+.stormLabel {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    transition: color 0.4s ease; /* Transição suave de cor */
+}
+
+/* Cores dinâmicas para o label */
+.stormLabel.g1 { color: #4caf50; } /* Verde */
+.stormLabel.g2 { color: #ffeb3b; } /* Amarelo */
+.stormLabel.g3 { color: #ff9800; } /* Laranja */
+.stormLabel.g4 { color: #f44336; } /* Vermelho */
+.stormLabel.g5 { color: #b71c1c; } /* Vermelho escuro */
+
+
+/* Customizando a aparência do input range */
+.slider {
+    width: 80%;
+    max-width: 600px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #4a5568; /* Fundo do slider */
+    border-radius: 4px;
+    outline: none;
+    transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #edf2f7; /* Cor do 'pegador' */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: #edf2f7;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+/* --- Estilização dos Cards de Persona --- */
+.personaGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.personaCard {
+    background: rgba(23, 25, 35, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top-width: 4px; /* Borda superior mais grossa para a cor */
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.personaCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Cores dinâmicas para a borda do card */
+.personaCard.g1 { border-top-color: #4caf50; }
+.personaCard.g2 { border-top-color: #ffeb3b; }
+.personaCard.g3 { border-top-color: #ff9800; }
+.personaCard.g4 { border-top-color: #f44336; }
+.personaCard.g5 { border-top-color: #b71c1c; }
+
+.personaCard h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.personaCard p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #cbd5e0;
+    flex-grow: 1; /* Faz o parágrafo crescer e empurra o 'h3' para cima */
+}

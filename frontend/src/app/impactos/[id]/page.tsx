@@ -1,7 +1,7 @@
 // /src/app/impactos/[id]/page.tsx
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { notFound } from "next/navigation";
 import { impactsData } from '../../../../components/impactsData';
@@ -22,6 +22,50 @@ export default function ImpactoPage({ params }: ImpactoPageProps) {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.3); 
+
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (audioEl) {
+      if (story?.audioSrc) {
+        // Se a fonte do áudio mudar, atualiza e tenta tocar
+        if (audioEl.src !== window.location.origin + story.audioSrc) {
+          audioEl.src = story.audioSrc;
+          audioEl.loop = true;
+          audioEl.volume = 0.3; // Volume inicial
+          audioEl.play()
+            .then(() => setIsPlaying(true))
+            .catch(() => setIsPlaying(false)); // Autoplay bloqueado
+        }
+      } else {
+        audioEl.pause();
+        audioEl.src = '';
+        setIsPlaying(false);
+      }
+    }
+  }, [story, volume]);
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+    }
+  };
+
+  const togglePlayPause = () => {
+    const audioEl = audioRef.current;
+    if (!audioEl) return;
+
+    if (audioEl.paused) {
+      audioEl.play().then(() => setIsPlaying(true));
+    } else {
+      audioEl.pause();
+      setIsPlaying(false);
+    }
+  };
 
   if (!story) {
     return notFound();
@@ -35,7 +79,7 @@ export default function ImpactoPage({ params }: ImpactoPageProps) {
     setTimeout(() => {
       setCurrentPage(newPage);
       setIsFading(false);
-    }, 300); // Duração da animação de fade
+    }, 300); 
   };
 
   const handleNextPage = () => {
@@ -101,16 +145,51 @@ export default function ImpactoPage({ params }: ImpactoPageProps) {
         </div>
         
         <div className="story-navigation">
-          <button onClick={handlePrevPage} disabled={currentPage === 0}>
-            Previous Page
-          </button>
-          <button onClick={handleBackToMenu} className="back-to-menu-button">
-            Back to Menu
-          </button>
-          <button onClick={handleNextPage} disabled={currentPage === totalPages - 1}>
-            Next
-          </button>
-        </div>
+  <button onClick={handlePrevPage} disabled={currentPage === 0}>
+    Previous Page
+  </button>
+
+  <button onClick={handleBackToMenu} className="back-to-menu-button">
+    Back to Menu
+  </button>
+
+  <div className="next-volume-container">
+    <button 
+      onClick={handleNextPage} 
+      disabled={currentPage === totalPages - 1}
+    >
+      Next
+    </button>
+    <div className="story-controls-container">
+            <div className="audio-controls">
+                {/* O elemento de áudio fica aqui, invisível */}
+                <audio ref={audioRef} />
+
+                {/* Os botões só aparecem se houver uma música para tocar */}
+                {story.audioSrc && (
+                  // --- 3. ADICIONE O SLIDER DE VOLUME AO LADO DO BOTÃO ---
+                  <>
+                    <button onClick={togglePlayPause} className="play-pause-button" title={isPlaying ? "Pause" : "Play"}>
+                        {isPlaying ? '⏸️' : '▶️'}
+                    </button>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                        className="volume-slider"
+                        title="Volume"
+                    />
+                  </>
+                )}
+            </div>
+          </div>
+
+  </div>
+</div>
+
       </div>
     </>
   );

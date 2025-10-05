@@ -6,52 +6,52 @@ import Navbar from '../../../components/Navbar'; // Ajuste o caminho conforme ne
 export default function GlossaryPage() {
   const terms = [
     {
-      term: 'Space Weather (Clima Espacial)',
+      term: 'Space Weather',
       definition: 'Refers to the dynamic conditions in space, particularly around Earth, that are influenced by solar activity (like solar flares, CMEs, and solar wind). These conditions can affect technology in space and on Earth.',
       simplified: 'It\'s like the "weather" of space, caused by the Sun\'s activity, which can affect our world and our devices.'
     },
     {
-      term: 'Solar Flare (Erupção Solar)',
+      term: 'Solar Flare',
       definition: 'A sudden, intense burst of radiation from the Sun\'s surface, often associated with sunspots. They release enormous amounts of energy and light.',
       simplified: 'A giant "sneeze" or "flash" of light and energy from the Sun.'
     },
     {
-      term: 'Coronal Mass Ejection (CME) (Ejeção de Massa Coronal)',
+      term: 'Coronal Mass Ejection (CME)',
       definition: 'A large expulsion of plasma and magnetic field from the Sun\'s corona. CMEs can travel through space and, if directed towards Earth, can cause geomagnetic storms.',
       simplified: 'A "strong sigh" or "burp" of hot gas and magnetic bubbles from the Sun, traveling through space.'
     },
     {
-      term: 'Solar Wind (Vento Solar)',
+      term: 'Solar Wind',
       definition: 'A continuous flow of charged particles (plasma) released from the Sun\'s corona, constantly streaming outwards through the solar system.',
       simplified: 'The Sun\'s constant "breath," a gentle but continuous stream of tiny particles.'
     },
     {
-      term: 'Geomagnetic Storm (Tempestade Geomagnética)',
+      term: 'Geomagnetic Storm',
       definition: 'A major disturbance of Earth\'s magnetosphere that occurs when there is a very efficient exchange of energy from the solar wind into the space environment surrounding Earth. These storms can cause auroras and impact technology.',
       simplified: 'An "invisible storm" around Earth, caused by the Sun\'s strong breath or burps, that can make auroras and affect devices.'
     },
     {
-      term: 'Kp Index (Índice Kp)',
+      term: 'Kp Index',
       definition: 'A planetary index of geomagnetic activity, ranging from 0 to 9, which quantifies the magnitude of geomagnetic storms. Higher Kp values indicate stronger disturbances.',
       simplified: 'A number (from 0 to 9) that tells us how "grumpy" or "excited" the Sun\'s breath is making Earth\'s magnetic shield. Higher numbers mean more excitement!'
     },
     {
-      term: 'GICs (Geomagnetically Induced Currents) (Correntes Geomagneticamente Induzidas)',
+      term: 'GICs (Geomagnetically Induced Currents)',
       definition: 'Electric currents induced in long conductors (like power lines, pipelines, railway tracks) on Earth\'s surface during geomagnetic storms. They can overload and damage transformers.',
       simplified: 'Extra "invisible electricity" that flows through power lines and other long metal objects on Earth when the Sun\'s invisible storm is strong, sometimes causing problems.'
     },
     {
-      term: 'SEPs (Solar Energetic Particles) (Partículas Solares Energéticas)',
+      term: 'SEPs (Solar Energetic Particles)',
       definition: 'High-energy particles (protons, electrons, heavy ions) accelerated by solar flares or CMEs. They pose radiation hazards, especially to astronauts and spacecraft.',
       simplified: 'Tiny, super-fast particles thrown out by the Sun\'s sneezes or burps. They carry a lot of energy and can be dangerous for astronauts.'
     },
     {
-      term: 'Ionosphere (Ionosfera)',
+      term: 'Ionosphere',
       definition: 'A region of Earth\'s upper atmosphere where atoms and molecules are ionized by solar radiation. It plays a crucial role in radio communication and GPS signals.',
       simplified: 'A special layer high up in Earth\'s atmosphere that can be bouncy for radio waves and tricky for GPS signals when the Sun is active.'
     },
     {
-      term: 'Aurora (Aurora Boreal/Austral)',
+      term: 'Aurora',
       definition: 'Natural light displays in the sky, primarily seen in high-latitude regions (around the Arctic and Antarctic). They are caused by disturbances in the magnetosphere due to the solar wind.',
       simplified: 'Beautiful dancing lights in the sky (like nature\'s light show), usually near the North and South Poles, caused by the Sun\'s particles hitting Earth\'s shield.'
     }

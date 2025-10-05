@@ -38,6 +38,7 @@ export default function StoryViewer({ chapterData, chapterSlug }) {
     return (
         <div className="story-viewer-container">
             <StoryPage
+                videoSrc={currentPage.videoSrc}
                 imageSrc={currentPage.imageSrc}
                 imageAlt={currentPage.imageAlt}
                 storyText={currentPage.storyText}
@@ -60,21 +61,57 @@ export default function StoryViewer({ chapterData, chapterSlug }) {
 
             <style jsx>{`
                 .story-viewer-container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 1rem;
-                    max-width: 900px; /* Limite a largura para melhor leitura */
-                    margin: 0 auto; /* Centraliza */
-                }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: radial-gradient(circle at top, #0b0b1e 0%, #050517 80%);
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.05),
+    0 0 60px rgba(0, 0, 50, 0.8) inset,
+    0 10px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  color: #e0e0ff;
+  z-index: 1;
+}
+
+.story-viewer-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/stars-bg.webp") repeat;
+  background-size: cover;
+  opacity: 0.15;
+  animation: twinkle 12s infinite ease-in-out;
+  z-index: 0;
+}
+
+.story-viewer-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
                 .navigation-controls {
-                    margin-top: 2rem;
+                    position: absolute;
+                    top: 1rem;
+                    left: 50%;
+                    transform: translateX(-50%);
                     display: flex;
                     gap: 1rem;
-                    width: 100%; /* Ocupa toda a largura disponível */
-                    justify-content: space-around; /* Distribui os botões */
-                    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+                    width: auto;
+                    z-index: 5;
                 }
+
+
                 .navigation-controls button {
                     background-color: #8b4513;
                     color: white;
