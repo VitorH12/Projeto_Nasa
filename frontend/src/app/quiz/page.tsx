@@ -75,7 +75,7 @@ export default function QuizPage() {
             background: 'transparent',
             color: '#facc15',
             border: '2px solid rgba(255,255,255,0.5)',
-            borderRadius: '50%',
+
             width: '36px',
             height: '36px',
             fontSize: '1.4rem',

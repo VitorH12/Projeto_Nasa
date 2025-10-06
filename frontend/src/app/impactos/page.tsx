@@ -37,6 +37,60 @@ export default function ImpactosPage() {
     <>
       <Navbar />
 
+      {/* --- ÁUDIO DE FUNDO FIXO --- */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '80px',
+          right: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          zIndex: 1000,
+          background: 'rgba(0,0,0,0.25)',
+          padding: '6px 12px',
+          borderRadius: '20px',
+          backdropFilter: 'blur(6px)',
+        }}
+      >
+        <audio ref={audioRef} src="/audio/space-ambience.mp3" loop />
+        <button
+          onClick={toggleMusic}
+          style={{
+            background: 'transparent',
+            color: '#facc15',
+            border: '2px solid rgba(255,255,255,0.5)',
+
+            width: '36px',
+            height: '36px',
+            fontSize: '1.4rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {isPlaying ? '⏸️' : '▶️'}
+        </button>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+          style={{
+            width: '120px',
+            height: '6px',
+            borderRadius: '6px',
+            background: 'linear-gradient(90deg, #ff6ec7, #6ec1ff)',
+            appearance: 'none',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
+        />
+      </div>
+
       <main className="impactos-container">
         <div className="impactos-header">
           <h1 className="main-title">🌌 How Does the Sun Affect Us?</h1>
@@ -44,30 +98,6 @@ export default function ImpactosPage() {
             Solar activity impacts essential technologies in our daily lives.
             Click on a character to discover their story and the real-life events that affected them.
           </p>
-
-          {/* 🎵 Botão de Música */}
-          <div className="music-controls">
-            <audio
-              ref={audioRef}
-              src="/audio/space-ambience.mp3" // coloque aqui o caminho da música
-              loop
-            />
-            <button onClick={toggleMusic} className="music-button" title={isPlaying ? "Pause music" : "Play music"}>
-              {isPlaying ? '⏸️' : '▶️'}
-            </button>
-            {isPlaying && (
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
-                className="volume-slider"
-                title="Volume"
-              />
-            )}
-          </div>
         </div>
 
         <div className="impacto-cards-grid">

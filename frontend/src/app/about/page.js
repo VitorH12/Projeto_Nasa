@@ -1,8 +1,7 @@
-// src/app/about/page.js
 'use client'
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import Head from 'next/head';
-import Navbar from '../../../components/Navbar'; // Ajuste o caminho conforme necessário
+import Navbar from '../../../components/Navbar';
 
 export default function AboutPage() {
   const audioRef = useRef(null);
@@ -26,8 +25,9 @@ export default function AboutPage() {
     setVolume(vol);
     if (audioRef.current) audioRef.current.volume = vol;
   };
+
   return (
-    <div style={{ backgroundColor: '#0f172a', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#0f172a', minHeight: '100vh', position: 'relative' }}>
       <Head>
         <title>About Ocllo Space - Space Weather Story</title>
         <meta
@@ -37,10 +37,41 @@ export default function AboutPage() {
       </Head>
 
       <Navbar />
-      {/* CONTROLES DE ÁUDIO FIXOS */}
-      <div className="audio-controls">
+
+      {/* --- CONTROLES DE ÁUDIO FIXOS --- */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '80px',
+          right: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          zIndex: 1000,
+          background: 'rgba(0,0,0,0.25)',
+          padding: '6px 12px',
+          borderRadius: '20px',
+          backdropFilter: 'blur(6px)',
+        }}
+      >
         <audio ref={audioRef} src="/audio/space-ambience.mp3" loop />
-        <button onClick={toggleAudio}>{isPlaying ? '⏸️' : '▶️'}</button>
+        <button
+          onClick={toggleAudio}
+          style={{
+            background: 'transparent',
+            color: '#facc15',
+            border: '2px solid rgba(255,255,255,0.5)',
+            width: '36px',
+            height: '36px',
+            fontSize: '1.4rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {isPlaying ? '⏸️' : '▶️'}
+        </button>
         <input
           type="range"
           min="0"
@@ -48,9 +79,19 @@ export default function AboutPage() {
           step="0.01"
           value={volume}
           onChange={handleVolumeChange}
+          style={{
+            width: '120px',
+            height: '6px',
+            borderRadius: '6px',
+            background: 'linear-gradient(90deg, #ff6ec7, #6ec1ff)',
+            appearance: 'none',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
         />
       </div>
 
+      {/* --- CONTEÚDO DA PÁGINA --- */}
       <div
         style={{
           fontFamily: "'Poppins', sans-serif",
@@ -73,13 +114,7 @@ export default function AboutPage() {
           About Ocllo Space
         </h1>
 
-        <p
-          style={{
-            fontSize: '1.1rem',
-            marginBottom: '1.5rem',
-            textAlign: 'center',
-          }}
-        >
+        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', textAlign: 'center' }}>
           Welcome to Ocllo Space, your digital journey into the fascinating world of space weather!
         </p>
 
