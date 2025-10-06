@@ -1,150 +1,294 @@
-'use client';
-import Navbar from '../../components/Navbar'; // Ajuste o caminho conforme sua estrutura
-import Link from 'next/link';
-import Image from 'next/image'; 
+'use client'
+import React, { useRef, useState, useEffect } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/navigation';
+import Navbar from '../../components/Navbar';
 
-export default function HomePage() {
-    return (
-        <div className="homepage-container">
-            <Navbar />
-            
-            <main className="homepage-content">
-                <div className="hero-section">
-                    {/* Imagem principal do Kuarasy no topo do conteúdo, mantendo proporções */}
+export default function AboutPage() {
+  const router = useRouter();
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
 
-                    <h1 className="hero-title">Welcome to the Ocllo Space!</h1>
-                    <p className="hero-subtitle">A magical journey through the history and science of our Sun, guided by Kuarasy and his friends!</p>
-                    <Link href="/historias" passHref>
-                        <button className="start-journey-button">Start the Adventure!</button>
-                    </Link>
-                </div>
-            </main>
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (audioEl) {
+      audioEl.loop = true;
+      audioEl.volume = volume;
+      audioEl.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+    }
+  }, []);
 
-            <style jsx>{`
-                .homepage-container {
-                    display: flex;
-                    flex-direction: column;
-                    min-height: 100vh;
-                    /* Gradiente de fundo preenchendo a tela */
-                    background: linear-gradient(135deg, #4A0000 0%, #FF4500 50%, #FFD700 100%); 
-                    color: #fff; 
-                    font-family: 'Comic Sans MS', cursive; 
-                    position: relative; 
-                }
+  const togglePlayPause = () => {
+    const audioEl = audioRef.current;
+    if (!audioEl) return;
+    if (audioEl.paused) audioEl.play().then(() => setIsPlaying(true));
+    else {
+      audioEl.pause();
+      setIsPlaying(false);
+    }
+  };
 
-                .homepage-content {
-                    flex-grow: 1; 
-                    display: flex;
-                    align-items: center; 
-                    justify-content: center; 
-                    padding: 2rem;
-                    text-align: center;
-                    position: relative; 
-                    z-index: 2; 
-                    margin-top: 60px; /* Espaço para a Navbar fixa */
-                }
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const vol = parseFloat(e.target.value);
+    setVolume(vol);
+    if (audioRef.current) audioRef.current.volume = vol;
+  };
 
-                .hero-section {
-                    max-width: 800px;
-                    padding: 2rem;
-                    background-color: rgba(0, 0, 0, 0.6); 
-                    border-radius: 15px;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                    backdrop-filter: blur(5px); /* Efeito de desfoque sutil no fundo */
-                    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda clara */
-                }
+  const handleStartAdventure = () => {
+    router.push('/historias');
+  };
 
-                .kuarasy-image-wrapper {
-                    margin-bottom: 2rem;
-                    position: relative;
-                    width: fit-content; /* Se ajusta ao tamanho da imagem */
-                    margin-left: auto;
-                    margin-right: auto;
-                }
+  return (
+    <div
+      style={{
+        background: 'radial-gradient(ellipse at bottom, #0d1b2a 0%, #000 100%)',
+        minHeight: '100vh',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <Head>
+        <title>Ocllo Space — Journey Through the Solar System</title>
+        <meta
+          name="description"
+          content="Explore space weather through Ocllo Space, a journey across the Solar System."
+        />
+      </Head>
 
-                .kuarasy-image {
-                    border-radius: 10px; /* Borda arredondada para a imagem */
-                    box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Sombra para dar destaque */
-                }
+      <Navbar />
+      <div className="stars"></div>
 
-                .hero-title {
-                    font-size: 4em; 
-                    margin-bottom: 0.5em;
-                    color: #FFD700; 
-                    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-                    line-height: 1.1;
-                }
+      {/* --- CONTROLES DE ÁUDIO FIXOS --- */}
+      <div className="audio-controls">
+        <audio ref={audioRef} src="/audio/about.mp3" loop />
 
-                .hero-subtitle {
-                    font-size: 1.8em;
-                    margin-bottom: 2em;
-                    color: #FFECB3; 
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-                }
+        <button onClick={togglePlayPause}>{isPlaying ? '⏸️' : '▶️'}</button>
 
-                .start-journey-button {
-                    background-color: #FFA500; 
-                    color: white;
-                    border: none;
-                    padding: 1.2em 2.5em;
-                    border-radius: 50px; 
-                    font-size: 1.5em;
-                    font-weight: bold;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease, transform 0.2s ease;
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                }
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
+        <span>Background Music</span>
+      </div>
 
-                .start-journey-button:hover {
-                    background-color: #FF8C00; 
-                    transform: translateY(-3px); 
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-                }
+      {/* --- CONTEÚDO PRINCIPAL --- */}
+      <div className="content">
+        <h1 className="main-title">Ocllo Space</h1>
+        <p className="subtitle">
+          Journey Through the Solar System — Explore Space Weather and the Sun’s Moods 🌞
+        </p>
+        <p className="text">
+          Welcome to <strong>Ocllo Space</strong>, your cosmic gateway to the weather beyond Earth.
+          Discover how solar winds dance through planets, storms rage on Jupiter, and icy winds blow
+          on Neptune. Let the background music and golden glow take you on a journey through the
+          stars.
+        </p>
 
-                /* Responsividade */
-                @media (max-width: 768px) {
-                    .homepage-content {
-                        margin-top: 50px; 
-                        padding: 1rem;
-                    }
-                    .hero-title {
-                        font-size: 2.5em;
-                    }
-                    .hero-subtitle {
-                        font-size: 1.2em;
-                    }
-                    .start-journey-button {
-                        padding: 1em 2em;
-                        font-size: 1.2em;
-                    }
-                    .hero-section {
-                        padding: 1.5rem;
-                    }
-                    .kuarasy-image-wrapper {
-                        width: 200px; /* Reduzir em mobile */
-                        height: 300px; /* Manter proporção */
-                    }
-                }
+        {/* --- BOTÃO DOURADO SOLAR --- */}
+        <button className="start-btn" onClick={handleStartAdventure}>
+          <span className="btn-glow"></span>
+          <span className="btn-text"> Start Adventure</span>
+        </button>
+      </div>
 
-                @media (max-width: 480px) {
-                    .hero-title {
-                        font-size: 2em;
-                    }
-                    .hero-subtitle {
-                        font-size: 1em;
-                    }
-                    .start-journey-button {
-                        padding: 0.8em 1.5em;
-                        font-size: 1em;
-                    }
-                    .kuarasy-image-wrapper {
-                        width: 150px; /* Reduzir mais em telas muito pequenas */
-                        height: 225px;
-                    }
-                }
-            `}</style>
-        </div>
-    );
+      {/* --- ESTILOS --- */}
+      <style jsx>{`
+        .audio-controls {
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          z-index: 1000;
+          background: rgba(0, 0, 0, 0.25);
+          padding: 10px 12px;
+          border-radius: 20px;
+          backdrop-filter: blur(6px);
+        }
+
+        .audio-controls button {
+          background: linear-gradient(135deg, #facc15, #f59e0b);
+          color: black;
+          border: none;
+          width: 42px;
+          height: 42px;
+          font-size: 1.4rem;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 8px rgba(255, 255, 0, 0.4);
+        }
+
+        .audio-controls input[type='range'] {
+          width: 120px;
+          height: 6px;
+          border-radius: 6px;
+          background: linear-gradient(90deg, #facc15, #fde047);
+          appearance: none;
+          cursor: pointer;
+          outline: none;
+        }
+
+        .audio-controls input[type='range']::-webkit-slider-thumb,
+        .audio-controls input[type='range']::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: black;
+          cursor: pointer;
+        }
+
+        .audio-controls span {
+          font-size: 0.7rem;
+          color: #facc15aa;
+        }
+
+        .content {
+          font-family: 'Poppins', sans-serif;
+          color: #e2e8f0;
+          padding: 4rem 2rem;
+          max-width: 900px;
+          margin: 0 auto;
+          text-align: center;
+          position: relative;
+          z-index: 10;
+        }
+
+        .main-title {
+          font-size: 3rem;
+          color: #ffd700;
+          margin-bottom: 2rem;
+          text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .subtitle {
+          font-size: 1.3rem;
+          color: #fefcbf;
+          text-shadow: 0 0 10px rgba(255, 255, 200, 0.5);
+        }
+
+        .text {
+          margin-top: 2rem;
+          font-size: 1.1rem;
+          color: #cbd5e1;
+          line-height: 1.8;
+        }
+
+        /* --- BOTÃO DOURADO SOLAR --- */
+        .start-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 3rem;
+          padding: 1.2rem 3rem;
+          font-size: 1.3rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          color: black;
+          background: linear-gradient(135deg, #fde047, #fbbf24);
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          border-radius: 40px;
+          cursor: pointer;
+          overflow: hidden;
+          transition: all 0.4s ease;
+          box-shadow: 0 0 25px rgba(255, 215, 0, 0.4),
+            0 0 50px rgba(255, 200, 0, 0.3);
+        }
+
+        .start-btn::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
+          transform: translateX(-100%);
+          animation: shine 3.5s infinite linear;
+        }
+
+        @keyframes shine {
+          0% {
+            transform: translateX(-100%);
+          }
+          50% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+
+        .start-btn:hover {
+          transform: scale(1.07);
+          box-shadow: 0 0 40px rgba(255, 255, 100, 0.6),
+            0 0 80px rgba(255, 200, 0, 0.5);
+          background: linear-gradient(135deg, #fff176, #fcd34d);
+        }
+
+        .btn-glow {
+          position: absolute;
+          width: 120%;
+          height: 200%;
+          top: -50%;
+          left: -10%;
+          background: radial-gradient(
+            ellipse at center,
+            rgba(255, 255, 255, 0.2),
+            transparent 70%
+          );
+          opacity: 0.6;
+          filter: blur(6px);
+          animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+          0%,
+          100% {
+            opacity: 0.4;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.1);
+          }
+        }
+
+        .btn-text {
+          position: relative;
+          z-index: 2;
+        }
+
+        .stars {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: transparent url('/images/stars.png') repeat top center;
+          animation: moveStars 200s linear infinite;
+          z-index: 0;
+        }
+
+        @keyframes moveStars {
+          from {
+            background-position: 0 0;
+          }
+          to {
+            background-position: -10000px 5000px;
+          }
+        }
+      `}</style>
+    </div>
+  );
 }
