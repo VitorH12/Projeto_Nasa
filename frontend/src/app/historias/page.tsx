@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { libraryData } from '../../data/libraryData';
 import ChapterList from '../../components/ChapterList';
 import Navbar from '../../../components/Navbar';
@@ -9,18 +9,24 @@ export default function HistoriasIndexPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
 
-  const toggleMusic = () => {
-    const audioEl = audioRef.current;
-    if (!audioEl) return;
-
-    if (audioEl.paused) {
-      audioEl.play();
-      setIsPlaying(true);
-    } else {
-      audioEl.pause();
-      setIsPlaying(false);
-    }
-  };
+  useEffect(() => {
+          const audioEl = audioRef.current;
+          if (audioEl) {
+              audioEl.loop = true;
+              audioEl.volume = volume;
+              audioEl.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+          }
+      }, []);
+  
+      const togglePlayPause = () => {
+          const audioEl = audioRef.current;
+          if (!audioEl) return;
+          if (audioEl.paused) audioEl.play().then(() => setIsPlaying(true));
+          else {
+              audioEl.pause();
+              setIsPlaying(false);
+          }
+      };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
@@ -53,7 +59,7 @@ export default function HistoriasIndexPage() {
         >
           <audio ref={audioRef} src="/audio/storySun.mp3" loop />
           <button
-            onClick={toggleMusic}
+            onClick={togglePlayPause}
             style={{
               background: 'transparent',
               color: '#facc15',
@@ -87,6 +93,8 @@ export default function HistoriasIndexPage() {
               outline: 'none',
             }}
           />
+          <span style={{ fontSize: '0.65rem', color: '#facc15aa' }}>
+            Background Music</span>
         </div>
 
         <div className="chapters-container">

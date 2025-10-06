@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect} from 'react';
 import Head from 'next/head';
 import Navbar from '../../../components/Navbar';
 
@@ -9,16 +9,24 @@ export default function GlossaryPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
 
-  const toggleMusic = () => {
-    if (!audioRef.current) return;
-    if (audioRef.current.paused) {
-      audioRef.current.play();
-      setIsPlaying(true);
-    } else {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
+   useEffect(() => {
+          const audioEl = audioRef.current;
+          if (audioEl) {
+              audioEl.loop = true;
+              audioEl.volume = volume;
+              audioEl.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+          }
+      }, []);
+  
+      const togglePlayPause = () => {
+          const audioEl = audioRef.current;
+          if (!audioEl) return;
+          if (audioEl.paused) audioEl.play().then(() => setIsPlaying(true));
+          else {
+              audioEl.pause();
+              setIsPlaying(false);
+          }
+      };
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
@@ -106,7 +114,7 @@ export default function GlossaryPage() {
       >
         <audio ref={audioRef} src="/audio/glossary.mp3" loop />
         <button
-          onClick={toggleMusic}
+          onClick={togglePlayPause}
           style={{
             background: 'transparent',
             color: '#facc15',
@@ -139,6 +147,8 @@ export default function GlossaryPage() {
             outline: 'none',
           }}
         />
+        <span style={{ fontSize: '0.65rem', color: '#facc15aa' }}>
+            Background Music</span>
       </div>
 
       <div

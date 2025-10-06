@@ -102,6 +102,7 @@ export default function LabPage() {
                 >
                     {isPlaying ? '⏸️' : '▶️'}
                 </button>
+                
                 <input
                     type="range"
                     min="0"
@@ -119,6 +120,8 @@ export default function LabPage() {
                         outline: 'none',
                     }}
                 />
+                <span style={{ fontSize: '0.65rem', color: '#facc15aa' }}>
+            Background Music</span>
             </div>
 
             <main className={styles.labContainer}>

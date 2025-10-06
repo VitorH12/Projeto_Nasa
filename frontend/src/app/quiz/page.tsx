@@ -51,7 +51,7 @@ export default function QuizPage() {
       <Navbar />
 
       {/* Áudio invisível */}
-      <audio ref={audioRef} src="/audio/space-ambience.mp3" />
+      <audio ref={audioRef} src="/audio/quiz.mp3" />
 
       {/* Controles de áudio flutuantes */}
       <div
@@ -105,6 +105,9 @@ export default function QuizPage() {
             outline: 'none',
           }}
         />
+          <span style={{ fontSize: '0.65rem', color: '#facc15aa' }}>
+            Background Music</span>
+
       </div>
 
       <div className={styles.quizPageContent}>

@@ -43,44 +43,27 @@ export default function TourSolarPage() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.2);
-  const [userHasInteracted, setUserHasInteracted] = useState(false);
 
+  // toca automaticamente ao carregar
   useEffect(() => {
     const audioEl = audioRef.current;
     if (audioEl) {
-      audioEl.src = "/audio/tour-solar.mp3";
-      audioEl.volume = volume;
       audioEl.loop = true;
+      audioEl.volume = volume;
+      audioEl.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
     }
-
-    const handleInteraction = () => handleFirstInteraction();
-    window.addEventListener("click", handleInteraction, { once: true });
-    window.addEventListener("keydown", handleInteraction, { once: true });
-
-    return () => {
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("keydown", handleInteraction);
-    };
   }, []);
 
-  const handleFirstInteraction = () => {
-    if (!userHasInteracted && audioRef.current && audioRef.current.paused) {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-        setUserHasInteracted(true);
-      }).catch(error => console.log("Audio play failed on interaction:", error));
-    }
-  };
-
-  const togglePlayPause = useCallback(() => {
+  const togglePlayPause = () => {
     const audioEl = audioRef.current;
     if (!audioEl) return;
-    if (audioEl.paused) audioEl.play().then(() => setIsPlaying(true));
-    else {
+    if (audioEl.paused) {
+      audioEl.play().then(() => setIsPlaying(true));
+    } else {
       audioEl.pause();
       setIsPlaying(false);
     }
-  }, []);
+  };
 
   const handleVolumeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
@@ -91,6 +74,8 @@ export default function TourSolarPage() {
   return (
     <>
       <Navbar />
+      <audio ref={audioRef} src="/audio/tour-solar.mp3" autoPlay loop />
+
       <main className={styles.tourContainer}>
         <header className={styles.header}>
           <h1>Weather on Solar System</h1>
@@ -111,34 +96,36 @@ export default function TourSolarPage() {
             top: '80px',
             right: '20px',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            gap: '10px',
+            gap: '6px',
             zIndex: 1000,
             background: 'rgba(0,0,0,0.25)',
-            padding: '6px 12px',
+            padding: '10px 12px',
             borderRadius: '20px',
             backdropFilter: 'blur(6px)',
           }}
         >
-          <audio ref={audioRef} />
           <button
             onClick={togglePlayPause}
             style={{
-              background: 'transparent',
-              color: '#facc15',
-              border: '2px solid rgba(255,255,255,0.5)',
-
-              width: '36px',
-              height: '36px',
+              background: 'linear-gradient(135deg, #facc15, #f59e0b)',
+              color: 'black',
+              border: 'none',
+              width: '42px',
+              height: '42px',
               fontSize: '1.4rem',
+              borderRadius: '50%',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              boxShadow: '0 0 8px rgba(255,255,0,0.4)',
             }}
           >
             {isPlaying ? '⏸️' : '▶️'}
           </button>
+
           <input
             type="range"
             min="0"
@@ -150,14 +137,36 @@ export default function TourSolarPage() {
               width: '120px',
               height: '6px',
               borderRadius: '6px',
-              background: 'linear-gradient(90deg, #ff6ec7, #6ec1ff)',
+              background: 'linear-gradient(90deg, #facc15, #fde047)',
               appearance: 'none',
               cursor: 'pointer',
               outline: 'none',
             }}
           />
+
+          {/* Bolinha preta do slider */}
+          <style jsx>{`
+            input[type="range"]::-webkit-slider-thumb {
+              appearance: none;
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background: white;
+              cursor: pointer;
+            }
+            input[type="range"]::-moz-range-thumb {
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background: black;
+              cursor: pointer;
+            }
+          `}</style>
+
+          <span style={{ fontSize: '0.7rem', color: '#facc15aa' }}>Background Music</span>
         </div>
 
+        {/* --- MAPA DO SISTEMA SOLAR --- */}
         <div className={styles.solarSystemMap}>
           <div className={styles.sun} />
           {orderedPlanetKeys.map(key => {
@@ -181,15 +190,15 @@ export default function TourSolarPage() {
 
         <AnimatePresence>
           {selectedId && (
-            <motion.div 
+            <motion.div
               className={styles.panelBackdrop}
               onClick={() => setSelectedId(null)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <InfoPanel 
-                planet={selectedPlanetData} 
+              <InfoPanel
+                planet={selectedPlanetData}
                 onClose={() => setSelectedId(null)}
                 layoutId={selectedId}
               />
