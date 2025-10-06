@@ -1,15 +1,65 @@
 'use client';
+import React, { useRef, useState } from 'react';
 import { libraryData } from '../../data/libraryData';
 import ChapterList from '../../components/ChapterList';
 import Navbar from '../../../components/Navbar';
 
 export default function HistoriasIndexPage() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.3);
+
+  const toggleMusic = () => {
+    const audioEl = audioRef.current;
+    if (!audioEl) return;
+
+    if (audioEl.paused) {
+      audioEl.play();
+      setIsPlaying(true);
+    } else {
+      audioEl.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+    }
+  };
+
   return (
     <>
       <div className="page-background">
         <Navbar />
         <div className="chapters-container">
           <h1 className="main-title">☀️ Discover the Stories of Kuarasy!</h1>
+
+          {/* 🎵 Botão de música ambiente */}
+          <div className="music-controls">
+            <audio
+              ref={audioRef}
+              src="/audio/storySun.mp3" // coloque o arquivo de música aqui
+              loop
+            />
+            <button onClick={toggleMusic} className="music-button" title={isPlaying ? "Pause music" : "Play music"}>
+              {isPlaying ? '⏸️' : '▶️ '}
+            </button>
+            {isPlaying && (
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="volume-slider"
+                title="Volume"
+              />
+            )}
+          </div>
 
           <div className="about-book-section">
             <p>
@@ -45,7 +95,7 @@ export default function HistoriasIndexPage() {
         /* === BACKGROUND ESPACIAL === */
         .page-background {
           position: relative;
-          min-height: 100vh;
+          min-height: 70vh;
           background: radial-gradient(circle at top, #000010 0%, #000015 60%, #000020 100%);
           overflow-x: hidden;
         }
@@ -69,8 +119,8 @@ export default function HistoriasIndexPage() {
         /* === CONTAINER DE CAPÍTULOS === */
         .chapters-container {
           position: relative;
-          z-index: 1; /* conteúdo acima do background */
-          padding: 6rem 2rem 3rem; /* espaço extra no topo para navbar */
+          z-index: 1;
+          padding: 6rem 2rem 3rem;
           max-width: 1200px;
           margin: auto;
           color: white;
@@ -80,10 +130,46 @@ export default function HistoriasIndexPage() {
         .main-title {
           font-size: 3rem;
           color: #FFD700;
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
           text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
         }
 
+        /* === CONTROLES DE MÚSICA === */
+        .music-controls {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.8rem;
+          margin-bottom: 2rem;
+        }
+
+        .music-button {
+          background-color: #1e293b;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 0.6rem 1rem;
+          cursor: pointer;
+          font-weight: 600;
+          transition: background 0.3s;
+        }
+
+        .music-button:hover {
+          background-color: #334155;
+        }
+
+        .volume-slider {
+        /*deixe mais fino*/
+        /*diminua a bolinha*/
+          -webkit-appearance: none;
+          background: #1e293b;
+          border-radius: 5px;
+          height: 4px;
+          width: 100px;
+          cursor: pointer;
+        }
+
+        /* === SEÇÃO SOBRE O LIVRO === */
         .about-book-section {
           background: rgba(255, 255, 255, 0.08);
           border: 1px solid rgba(255, 255, 255, 0.15);
@@ -131,7 +217,7 @@ export default function HistoriasIndexPage() {
         /* === RESPONSIVIDADE === */
         @media (max-width: 768px) {
           .chapters-container {
-            padding: 6rem 1rem 2rem; /* mantém espaço para navbar no topo */
+            padding: 6rem 1rem 2rem;
           }
 
           .main-title {
@@ -152,9 +238,8 @@ export default function HistoriasIndexPage() {
           }
         }
 
-        /* === GARANTE QUE A NAVBAR FIQUE ACIMA DE TUDO === */
         :global(nav) {
-          position: fixed; /* fixa no topo */
+          position: fixed;
           top: 0;
           left: 0;
           width: 100%;

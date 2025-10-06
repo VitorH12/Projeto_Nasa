@@ -76,16 +76,16 @@ export const libraryData = {
             {
                 imageSrc: '/maori-6.png',
                 imageAlt: 'Kuarasy com a menina Maori e o velho Maori',
-                storyText: 'There are days when the Sun says goodbye in a… different way. The sky glows red and gold, like flames dancing across the clouds. We don’t know why, but it feels as if the Sun is stretching its arms a little longer, sending sparks of its own stories across the world before night falls.',
-            },
+                storyText: 'The old fisherman said: "There are days when the Sun says goodbye in a… different way. The sky glows red and gold, like flames dancing across the clouds. We don’t know why, but it feels as if the Sun is stretching its arms a little longer, sending sparks of its own stories across the world before night falls."',
+            },  
             {
                 imageSrc: '/maori-7.png',
                 imageAlt: 'Kuarasy com a menina Maori',
                 storyText: "This fire in the sky is the Sun sending out bursts of energy! Sometimes, the dark spots on its surface, called sunspots, store up so much power that they suddenly explode. These explosions shoot waves of energy and light into space. You cannot see this energy itself, but it is strong enough that we can feel its presence here on Earth as warmth, light, or even tiny shakes in the Sun’s invisible wind.", // Linka de volta para manchas solares
                 interactiveNote: {
-                    buttonText: 'What are this "bursts of energy"?',
+                    buttonText: 'What are these "bursts of energy"?',
                     title: '🔆 Solar Flares',
-                    content: 'Māori legends tried to explain the mysteries of the sky. Today, science shows us that the Sun has energy explosions called Solar Flares! They originate in Sunspot regions, where magnetic energy accumulates and is suddenly released. Although we cannot see them directly, their radiation can energize the upper atmosphere, intensifying the colors of sunrise and sunset. An intense Flare can also be the beginning of a powerful sigh from the Sun, which we\'ll see next!', // Prepara para CMEs
+                    content: 'Māori legends tried to explain the mysteries of the sky. Today, science shows us that the Sun has energy explosions called Solar Flares! They originate in Sunspot regions, where magnetic energy accumulates and is suddenly released. Although we cannot see them directly, their radiation can energize the upper atmosphere, intensifying the colors of sunrise and sunset. Sometimes, one of these solar “sneezes” becomes so strong that it pushes great clouds of solar material into space — the Sun’s “sigh,” which we’ll discover next!', // Prepara para CMEs
                     realtimeDataText: 'Connecting to NASA for real-time data...',
                     source: 'Source: NASA DONKI FLR API'
                 }
@@ -93,52 +93,51 @@ export const libraryData = {
         ]
     },
     incas: { // CAUSA 3: Ejeções de Massa Coronal (CMEs) - o "suspiro forte"
-        title: "Chapter 3: The Incas and the Sun's Strong Sigh",
-        summary: "Explore the Incas' reverence for the Sun and discover how the Sun's 'strong sighs' " +
-                 "can affect Earth, and how they are " +
-                 "even more powerful than the 'breaths of fire'.",
-        coverImage: "/covers/incas-cover.png",
-        audioSrc: "/audio/incas-audio.mp3",
-        pages: [
-            {
-                imageSrc: '/incas-1.png',
-                imageAlt: 'Kuarasy no templo do Sol com os Incas',
-                storyText: 'It was the time of Inti Raymi. Cusco pulsed with music and colors: drums echoed, feet stamped the earth in circular dances, and adorned llamas paraded before the golden temple.',
-            },
-            {
-                imageSrc: '/incas-2.png',
-                imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'The Inca raised his arms to the sky: "Inti is our father! All life breathes because his light sustains it!"',
-            },
-            {
-                imageSrc: '/incas-3.png',
-                imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'Kuarasy, with his gentle glow, smiled. He saw the love and fear in the hearts of the Incas. Approaching those listening, he spoke in a voice that seemed to whisper with the mountain wind. "You love him like children and fear his absence. But did you know that Inti sometimes casts so much energy away from himself that he could, for an instant, make the light of the Earth waver, extinguishing even the brightest flame you have lit?',
-            },
-            {
-                imageSrc: '/incas-4-1.png',
-                imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'A murmur of astonishment and apprehension ran through the people. The idea of ​​Inti, their protector, causing such darkness was almost inconceivable. A young weaver, wide-eyed, asked softly, "And what would we do without him, even for a brief moment? How would we harvest? How would we live?"?',
-            },
-            {
-                imageSrc: '/incas-5.png',
-                imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: 'Kuarasy, with the calm of someone who knows the secrets of the universe, replied: "You would dance in the dark, guided by faith in its return... because the Sun always returns. That is the promise of its existence, even when it shows its most powerful and mysterious side. It is not a punishment, but a demonstration of its immense and constant energy."', // Linka para flares
-            },
-            {
-                imageSrc: '/incas-6.png',
-                imageAlt: 'Kuarasy com o sacerdote inca',
-                storyText: "A child, who had been watching intently, finally had the courage to look into Kuarasy's golden eyes. - So Inti never truly abandons us? Not even when he sighs so heavily? - Never, Kuarasy replied, touching the top of the child's head. - But he wishes to be understood in his fullness, not just worshipped in his mysteries.",
-                interactiveNote: {
-                    buttonText: 'What is the Sun\'s "sigh"?',
-                    title: '☀️ Coronal Mass Ejections (CMEs)',
-                    content: 'A long time ago, the Incas celebrated Inti Raymi to ensure the Sun would return after winter. Today, we don\'t fear the Sun disappearing, but that it might give us a very "strong sigh"! The Sun, which is a great ball of fire, sometimes releases a giant "sigh" of plasma (hot gas), called a Coronal Mass Ejection (CME). This "sigh" is so powerful that, if it comes close to Earth, it can cause a magnetic storm. It is a much larger release of material than Solar Flares, which we saw earlier. A CME takes longer to reach Earth, but carries much more energy and matter, potentially causing an even stronger "breath" from the Sun!', // Linka CMEs a Flares e prepara para Vento Solar
-                    realtimeDataText: 'Checking for recent CMEs...',
-                    source: 'Source: NASA DONKI CME API'
-                }
+    title: "Chapter 3: The Incas and the Sun's Strong Sigh",
+    summary: "Explore the Incas' reverence for the Sun and discover how the Sun's 'strong sighs' " +
+             "can affect Earth, and how they are even more powerful than the 'breaths of fire'.",
+    coverImage: "/covers/incas-cover.png",
+    audioSrc: "/audio/incas-audio.mp3",
+    pages: [
+        {
+            imageSrc: '/incas-1.png',
+            imageAlt: 'Kuarasy no templo do Sol com os Incas',
+            storyText: 'It was the time of Inti Raymi. Cusco pulsed with music and colors: drums echoed, feet stamped the earth in circular dances, and adorned llamas paraded before the golden temple.',
+        },
+        {
+            imageSrc: '/incas-2.png',
+            imageAlt: 'Kuarasy com o sacerdote inca',
+            storyText: 'The Inca raised his arms to the sky: "Inti is our father! All life breathes because his light sustains it!"',
+        },
+        {
+            imageSrc: '/incas-3.png',
+            imageAlt: 'Kuarasy com o sacerdote inca',
+            storyText: 'Kuarasy, with his gentle glow, smiled. He saw the love and fear in the hearts of the Incas. Approaching those listening, he spoke in a voice that seemed to whisper with the mountain wind: "You love him like children and fear his absence. But did you know that Inti sometimes sends so much energy into space that, for a brief moment, the light on Earth can flicker, even the brightest flames you have lit?"',
+        },
+        {
+            imageSrc: '/incas-4-1.png',
+            imageAlt: 'Kuarasy com o sacerdote inca',
+            storyText: 'A murmur of astonishment ran through the people. A young weaver, wide-eyed, asked softly, "And what would we do without him, even for a brief moment? How would we harvest? How would we live?"',
+        },
+        {
+            imageSrc: '/incas-5.png',
+            imageAlt: 'Kuarasy com o sacerdote inca',
+            storyText: 'Kuarasy replied calmly: "You would dance in the dark, guided by faith in its return... because the Sun always returns. This is not punishment; it is a demonstration of its immense, constant energy—sometimes showing us its power through a very strong sigh."', // Linka para flares
+        },
+        {
+            imageSrc: '/incas-6.png',
+            imageAlt: 'Kuarasy com o sacerdote inca',
+            storyText: "A child, who had been watching intently, finally had the courage to look into Kuarasy's golden eyes. - So Inti never truly abandons us? Not even when he sighs so heavily? - Never, Kuarasy replied, touching the top of the child's head. - But he wishes to be understood in his fullness, not just worshipped in his mysteries.",
+            interactiveNote: {
+                buttonText: 'What is the Sun\'s "sigh"?',
+                title: '☀️ Coronal Mass Ejections (CMEs)',
+                content: 'A long time ago, the Incas celebrated Inti Raymi to welcome the Sun’s return after winter. Today, scientists know that the Sun sometimes releases a giant sigh of plasma, called a Coronal Mass Ejection (CME). This "sigh" carries much more material and energy than a Solar Flare. If it reaches Earth, it can cause magnetic storms, affecting satellites, power grids, and radio signals. CMEs take longer to arrive than flares, but their effects are often much stronger—a true "breath of power" from our star! This also connects to the invisible solar winds and auroras that the Egyptians will help us understand next!',
+                realtimeDataText: 'Checking for recent CMEs...',
+                source: 'Source: NASA DONKI CME API'
             }
-        ]
-    },
+        }
+    ]
+},
     egipcios: { // EFEITO 1: Vento Solar e Auroras - o "vento invisível" constante
     title: "Chapter 4: The Egyptians and Ra's Invisible Wind",
     summary: "Learn about the god Ra and how the Sun's constant 'wind' carries particles across space, " +

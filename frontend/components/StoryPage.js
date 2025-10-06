@@ -427,7 +427,7 @@ Even when the Sun is calm, NASA and NOAA scientists observe space every day. The
         {interactiveNote && (
           <div className="interactive-section">
             <button onClick={() => setNoteVisible(!noteVisible)}>
-              {noteVisible ? "Esconder Detalhes" : interactiveNote.buttonText}
+              {noteVisible ? "Hide Details" : interactiveNote.buttonText}
             </button>
 
             {noteVisible && (
@@ -686,7 +686,6 @@ Even when the Sun is calm, NASA and NOAA scientists observe space every day. The
         display: flex;
         align-items: center;
         gap: 10px;
-        background-color: rgba(255, 255, 255, 0.85);
         padding: 10px 15px;
         border-radius: 20px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
@@ -694,12 +693,11 @@ Even when the Sun is calm, NASA and NOAA scientists observe space every day. The
       }
 
       .audio-controls button {
-        background-color: #333;
-        color: white;
         border: none;
-        border-radius: 50%;
+        background-color: transparent;
         width: 40px;
         height: 40px;
+        font-size: 1.1rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -708,8 +706,7 @@ Even when the Sun is calm, NASA and NOAA scientists observe space every day. The
 
       .audio-controls input[type="range"] {
         width: 100px;
-        height: 5px;
-        background: #ddd;
+        height: 3px;
         cursor: pointer;
       }
 

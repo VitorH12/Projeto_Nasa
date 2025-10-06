@@ -11,7 +11,7 @@ export const solarSystemData = {
         name: "Venus",
         image: "/venus.png",
         stat: "Always 900°F / 482°C",
-        description: "Venus is the hottest planet in the solar system, like a giant oven in space! Its thick clouds trap all the heat, making it scorchingly hot day and night. The sky is full of yellow clouds made of acid—yikes! Beautiful but fiery, Venus is a planet you definitely wouldn’t want to visit without a super cool spacesuit.",
+        description: "Venus is the hottest planet in the solar system, like a giant oven in space! Its thick clouds trap all the heat, making it scorchingly hot day and night. The sky is full of yellow clouds made of acid—wow! Beautiful but fiery, Venus is a planet you definitely wouldn’t want to visit without a super cool spacesuit.",
         position: { top: '35%', left: '25%' },
         sourceLink: "https://solarsystem.nasa.gov/planets/venus/in-depth/"
     },
@@ -35,7 +35,7 @@ export const solarSystemData = {
         name: "Europa",
         image: "/europa.jpg",
         stat: "Secret Ocean & -328°F",
-        description: "Europa is a shiny ice ball that hides a secret: a giant ocean under its icy surface! There could be twice as much water as all the oceans on Earth combined. Even though it’s super cold on top, scientists think this hidden ocean could have alien life. Would you like to dive under the ice and see?",
+        description: "Europa is a Jupiter's moon and a shiny ice ball that hides a secret: a giant ocean under its icy surface! There could be twice as much water as all the oceans on Earth combined. Even though it’s super cold on top, scientists think this hidden ocean could have alien life. Would you like to dive under the ice and see?",
         position: { top: '25%', left: '62%' },
         sourceLink: "https://solarsystem.nasa.gov/moons/jupiter-moons/europa/overview/"
     },
@@ -76,7 +76,7 @@ export const solarSystemData = {
         image: "/triton-1.png",
         stat: "Ice Volcanoes & -391°F",
         description: "Triton, Neptune’s biggest moon, is icy and wild! Its ice volcanoes shoot nitrogen and dust miles into the sky. Triton also orbits backward, as if it was captured by Neptune, making it one of the most unusual moons in the solar system. Would you dare to explore this chilly, upside-down world?",
-        position: { top: '35%', left: '98%' },
+        position: { top: '35%', left: '95%' },
         sourceLink: "https://science.nasa.gov/neptune/moons/triton/"
     },
     neptune: {
@@ -84,7 +84,7 @@ export const solarSystemData = {
         image: "/neptune.png",
         stat: "Supersonic Winds: 1,200 mph",
         description: "Neptune is the farthest planet from the Sun and full of surprises! Its winds can blow at supersonic speeds, up to 1,200 mph, and its blue clouds swirl in giant storms like the Great Dark Spot. It’s a wild, windy, and beautiful world—like a superhero planet with unstoppable gusts!",
-        position: { top: '30%', left: '95%' },
+        position: { top: '30%', left: '90%' },
         sourceLink: "https://solarsystem.nasa.gov/planets/neptune/in-depth/"
     }
 };

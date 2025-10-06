@@ -1,9 +1,31 @@
 // src/app/about/page.js
-import React from 'react';
+'use client'
+import React, {useRef, useState} from 'react';
 import Head from 'next/head';
 import Navbar from '../../../components/Navbar'; // Ajuste o caminho conforme necessário
 
 export default function AboutPage() {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+
+  const toggleAudio = () => {
+    if (!audioRef.current) return;
+
+    if (audioRef.current.paused) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    const vol = parseFloat(e.target.value);
+    setVolume(vol);
+    if (audioRef.current) audioRef.current.volume = vol;
+  };
   return (
     <div style={{ backgroundColor: '#0f172a', minHeight: '100vh' }}>
       <Head>
@@ -15,6 +37,19 @@ export default function AboutPage() {
       </Head>
 
       <Navbar />
+      {/* CONTROLES DE ÁUDIO FIXOS */}
+      <div className="audio-controls">
+        <audio ref={audioRef} src="/audio/space-ambience.mp3" loop />
+        <button onClick={toggleAudio}>{isPlaying ? '⏸️' : '▶️'}</button>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
+      </div>
 
       <div
         style={{
@@ -164,6 +199,53 @@ export default function AboutPage() {
           Thank you for joining us on this cosmic adventure!
         </p>
       </div>
+      <style jsx>{`
+        .audio-controls {
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: transparent; /* só transparente */
+          padding: 5px 10px;
+          border-radius: 20px;
+          z-index: 1000;
+        }
+
+        .audio-controls button {
+          background: transparent;
+          color: #facc15;
+          border: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-size: 1.2em;
+        }
+
+        .audio-controls input[type='range'] {
+          width: 100px;
+          height: 5px;
+          cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+          .audio-controls {
+            top: 10px;
+            right: 10px;
+            gap: 5px;
+          }
+
+          .audio-controls input[type='range'] {
+            width: 80px;
+          }
+        }
+      `}</style>
     </div>
+    
   );
 }

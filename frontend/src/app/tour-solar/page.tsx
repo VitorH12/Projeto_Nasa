@@ -125,7 +125,7 @@ export default function TourSolarPage() {
             <Navbar />
             <main className={styles.tourContainer}>
                 <header className={styles.header}>
-                    <h1>Weather on Other Planets</h1>
+                    <h1>Weather on Solar System</h1>
                     <p>
                         Each planet in our solar system has its own unique weather.
                         But one thing is certain: Only Earth has a weather we can live with.
